@@ -52,7 +52,7 @@ Blending ancient wisdom with modern science.</p>
             <div class="col-md-4 col-lg-3">
                 <div class="card h-100 border-0 shadow-sm category-card">
                     <div class="card-body text-center">
-                        <i class="bi bi-flower2 text-success" style="font-size: 3rem;"></i>
+                        <i class="bi bi-stars text-success" style="font-size: 3rem;"></i>
                         <h5 class="card-title mt-3"><?php echo e($category['name']); ?></h5>
                         <a href="/Bio-Organic-Herbal-Solutions/public/shop.php?category=<?php echo $category['id']; ?>" class="btn btn-outline-success btn-sm mt-2">View Products</a>
                     </div>
