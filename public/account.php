@@ -37,9 +37,6 @@ include 'includes/header.php';
                     <a href="#profile" class="list-group-item list-group-item-action active" data-bs-toggle="tab">
                         <i class="bi bi-person"></i> Profile
                     </a>
-                    <a href="/Bio-Organic-Herbal-Solutions/public/orders.php" class="list-group-item list-group-item-action">
-                        <i class="bi bi-bag"></i> My Orders
-                    </a>
                     <a href="#password" class="list-group-item list-group-item-action" data-bs-toggle="tab">
                         <i class="bi bi-key"></i> Change Password
                     </a>
