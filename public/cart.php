@@ -37,7 +37,7 @@ include 'includes/header.php';
 
 <main class="flex-fill">
     <div class="container my-5">
-        <h2 class="mb-4">Shopping Cart</h2>
+        <h2 class="mb-4 fw-bold">Shopping Cart</h2>
 
         <?php if (empty($_SESSION['cart'])): ?>
             <div class="alert alert-info">

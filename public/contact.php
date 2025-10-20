@@ -12,7 +12,7 @@ include 'includes/header.php';
     <div class="container">
         <div class="row mb-5">
             <div class="col-lg-12 text-center">
-                <h1 class="display-4 mb-3">Contact Us</h1>
+                <h1 class="display-4 mb-3 fw-bold">Contact Us</h1>
                 <p class="lead text-muted">Get in touch with Bio-Organic Herbal Solutions</p>
             </div>
         </div>

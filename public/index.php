@@ -46,7 +46,10 @@ Blending ancient wisdom with modern science.</p>
 <!-- Categories Section -->
 <section class="categories-section py-5">
     <div class="container">
-        <h2 class="text-center mb-4">Shop by Category</h2>
+        <div class="text-center mb-5">
+            <h2 class="fw-bold">Shop by Category</h2>
+            <p class="text-muted">Explore our natural and organic product collections</p>
+        </div>
         <div class="row g-4">
             <?php foreach ($categories as $category): ?>
             <div class="col-md-4 col-lg-3">
@@ -66,7 +69,7 @@ Blending ancient wisdom with modern science.</p>
 <!-- Featured Products -->
 <section class="products-section py-5 bg-light">
     <div class="container">
-        <h2 class="text-center mb-4">Featured Products</h2>
+        <h2 class="text-center mb-4 fw-bold">Featured Products</h2>
         <div class="row g-4">
             <?php foreach ($featured_products as $product): ?>
             <div class="col-6 col-md-6 col-lg-3">

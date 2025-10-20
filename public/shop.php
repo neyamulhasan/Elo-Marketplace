@@ -35,19 +35,19 @@ include 'includes/header.php';
     <div class="row">
         <!-- Sidebar -->
         <div class="col-lg-3 mb-4">
-            <div class="card">
-                <div class="card-header bg-success text-white">
-                    <h5 class="mb-0">Categories</h5>
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-success text-white border-0">
+                    <h5 class="mb-0"><i class="bi bi-grid-3x3-gap-fill me-2"></i>Categories</h5>
                 </div>
                 <div class="list-group list-group-flush">
                     <a href="/Bio-Organic-Herbal-Solutions/public/shop.php" 
-                       class="list-group-item list-group-item-action <?php echo !$category_id ? 'active' : ''; ?>">
-                        All Products
+                       class="list-group-item list-group-item-action border-0 d-flex justify-content-between align-items-center <?php echo !$category_id ? 'active' : ''; ?>">
+                        <span><i class="bi bi-collection me-2"></i>All Products</span>
                     </a>
                     <?php foreach ($categories as $category): ?>
                     <a href="/Bio-Organic-Herbal-Solutions/public/shop.php?category=<?php echo $category['id']; ?>" 
-                       class="list-group-item list-group-item-action <?php echo $category_id == $category['id'] ? 'active' : ''; ?>">
-                        <?php echo e($category['name']); ?>
+                       class="list-group-item list-group-item-action border-0 d-flex justify-content-between align-items-center <?php echo $category_id == $category['id'] ? 'active' : ''; ?>">
+                        <span><i class="bi bi-stars me-2"></i><?php echo e($category['name']); ?></span>
                     </a>
                     <?php endforeach; ?>
                 </div>
@@ -70,7 +70,7 @@ include 'includes/header.php';
         <!-- Products -->
         <div class="col-lg-9">
             <div class="d-flex justify-content-between align-items-center mb-4">
-                <h2>Products</h2>
+                <h2 class="fw-bold">Products</h2>
                 <p class="text-muted mb-0"><?php echo count($products); ?> products found</p>
             </div>
 
