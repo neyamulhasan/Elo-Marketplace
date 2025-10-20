@@ -1,0 +1,45 @@
+    <!-- Footer -->
+    <footer class="bg-dark text-light mt-5 pt-5 pb-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="d-flex align-items-center mb-3">
+                        <img src="/Bio-Organic-Herbal-Solutions/public/assets/images/bio.jpg" alt="Bio-Organic Herbal Solutions" style="height: 50px; margin-right: 10px;">
+                        <h5 class="text-success mb-0">Bio-Organic Herbal</h5>
+                    </div>
+                    <p>Your trusted source for natural and organic herbal products in Bangladesh.</p>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/Bio.Organic.Herbal.Solutions" target="_blank" class="text-light me-3" title="Facebook"><i class="bi bi-facebook"></i></a>
+                        <a href="https://wa.me/8801792457594" target="_blank" class="text-light me-3" title="WhatsApp"><i class="bi bi-whatsapp"></i></a>
+                        <a href="https://www.instagram.com" target="_blank" class="text-light me-3" title="Instagram"><i class="bi bi-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5 class="mb-3">Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="/Bio-Organic-Herbal-Solutions/public/" class="text-light text-decoration-none">Home</a></li>
+                        <li><a href="/Bio-Organic-Herbal-Solutions/public/shop.php" class="text-light text-decoration-none">Shop</a></li>
+                        <li><a href="/Bio-Organic-Herbal-Solutions/public/about.php" class="text-light text-decoration-none">About Us</a></li>
+                        <li><a href="/Bio-Organic-Herbal-Solutions/public/contact.php" class="text-light text-decoration-none">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5 class="mb-3">Contact Us</h5>
+                    <p><i class="bi bi-geo-alt"></i> Dhaka, Bangladesh</p>
+                    <p><i class="bi bi-whatsapp"></i> <a href="https://wa.me/8801792457594" target="_blank" class="text-light text-decoration-none">+880 1792-457594</a></p>
+                    <p><i class="bi bi-facebook"></i> <a href="https://www.facebook.com/Bio.Organic.Herbal.Solutions" target="_blank" class="text-light text-decoration-none">Facebook Page</a></p>
+                </div>
+            </div>
+            <hr class="bg-secondary">
+            <div class="text-center">
+                <p class="mb-0">&copy; <?php echo date('Y'); ?> Bio-Organic Herbal Solutions. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS Bundle (Local) -->
+    <script src="/Bio-Organic-Herbal-Solutions/public/assets/js/vendor/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="/Bio-Organic-Herbal-Solutions/public/assets/js/main.js"></script>
+</body>
+</html>
