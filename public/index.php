@@ -70,22 +70,37 @@ Blending ancient wisdom with modern science.</p>
         <div class="row g-4">
             <?php foreach ($featured_products as $product): ?>
             <div class="col-6 col-md-6 col-lg-3">
-                <div class="card h-100 product-card">
-                    <img src="<?php echo e(getProductPrimaryImage($product)); ?>" 
-                         class="card-img-top" 
-                         alt="<?php echo e($product['name']); ?>"
-                         onerror="this.src='/Bio-Organic-Herbal-Solutions/public/assets/images/placeholder-product.svg'">
-                    <div class="card-body p-2 p-md-3">
-                        <h6 class="card-title small mb-2"><?php echo e($product['name']); ?></h6>
-                        <p class="text-success fw-bold mb-2"><?php echo formatPrice($product['price']); ?></p>
-                        <div class="d-flex justify-content-between gap-1">
-                            <a href="/Bio-Organic-Herbal-Solutions/public/product.php?id=<?php echo $product['id']; ?>" class="btn btn-sm btn-outline-success flex-grow-1">View</a>
-                            <button class="btn btn-sm btn-success add-to-cart" data-id="<?php echo $product['id']; ?>">
-                                <i class="bi bi-cart-plus"></i>
+                <a href="/Bio-Organic-Herbal-Solutions/public/product.php?id=<?php echo $product['id']; ?>" class="text-decoration-none text-dark">
+                    <div class="card h-100 product-card d-flex flex-column" style="cursor: pointer;">
+                        <img src="<?php echo e(getProductPrimaryImage($product)); ?>" 
+                             class="card-img-top" 
+                             alt="<?php echo e($product['name']); ?>"
+                             onerror="this.src='/Bio-Organic-Herbal-Solutions/public/assets/images/placeholder-product.svg'">
+                        <div class="card-body p-2 p-md-3 flex-grow-1">
+                            <div class="mb-2 d-flex flex-wrap gap-1">
+                                <?php if (hasDiscount($product['discount_percentage'])): ?>
+                                    <span class="badge bg-danger small"><?php echo number_format($product['discount_percentage'], 0); ?>% OFF</span>
+                                <?php else: ?>
+                                    <span class="badge bg-info small">Regular Price</span>
+                                <?php endif; ?>
+                            </div>
+                            <h6 class="card-title small mb-2"><?php echo e($product['name']); ?></h6>
+                            <div class="mb-2" style="min-height: 48px; display: flex; flex-direction: column; justify-content: center;">
+                                <?php if (hasDiscount($product['discount_percentage'])): ?>
+                                    <p class="text-muted text-decoration-line-through small mb-1"><?php echo formatPrice($product['price']); ?></p>
+                                    <p class="text-success fw-bold mb-0"><?php echo formatPrice(calculateDiscountedPrice($product['price'], $product['discount_percentage'])); ?></p>
+                                <?php else: ?>
+                                    <p class="text-success fw-bold mb-0"><?php echo formatPrice($product['price']); ?></p>
+                                <?php endif; ?>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-transparent border-0 p-2 p-md-3 mt-auto">
+                            <button class="btn btn-sm btn-success w-100 add-to-cart" data-id="<?php echo $product['id']; ?>" onclick="event.preventDefault(); event.stopPropagation();">
+                                <i class="bi bi-cart-plus"></i> <span class="d-none d-md-inline">Add to Cart</span><span class="d-inline d-md-none">Add</span>
                             </button>
                         </div>
                     </div>
-                </div>
+                </a>
             </div>
             <?php endforeach; ?>
         </div>

@@ -22,41 +22,69 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($product && $product['stock'] > 0) {
             $quantity = isset($_POST['quantity']) ? intval($_POST['quantity']) : 1;
             
-            // Check if product already in cart
-            $found = false;
-            foreach ($_SESSION['cart'] as &$item) {
-                if ($item['id'] == $product_id) {
-                    $item['quantity'] += $quantity;
-                    $found = true;
+            // Check current quantity in cart
+            $current_cart_qty = 0;
+            $found_index = -1;
+            
+            foreach ($_SESSION['cart'] as $index => $item) {
+                if (intval($item['id']) === $product_id) {
+                    $current_cart_qty = $item['quantity'];
+                    $found_index = $index;
                     break;
                 }
             }
             
-            if (!$found) {
+            // Check if total quantity exceeds stock
+            $total_qty = $current_cart_qty + $quantity;
+            if ($total_qty > $product['stock']) {
+                setFlashMessage('error', 'Cannot add more items. Only ' . $product['stock'] . ' items available in stock!');
+                header('Location: ' . ($_SERVER['HTTP_REFERER'] ?? '/Bio-Organic-Herbal-Solutions/public/shop.php'));
+                exit();
+            }
+            
+            // Update existing item or add new one
+            if ($found_index >= 0) {
+                $_SESSION['cart'][$found_index]['quantity'] = $current_cart_qty + $quantity;
+            } else {
                 $_SESSION['cart'][] = [
-                    'id' => $product['id'],
+                    'id' => intval($product['id']),
                     'name' => $product['name'],
-                    'price' => $product['price'],
+                    'price' => floatval($product['price']),
                     'quantity' => $quantity
                 ];
             }
             
             setFlashMessage('success', 'Product added to cart successfully!');
+        } else {
+            setFlashMessage('error', 'Product not available or out of stock!');
         }
     } elseif ($action === 'update') {
-        foreach ($_SESSION['cart'] as &$item) {
-            if ($item['id'] == $product_id) {
+        // Get product to check stock
+        $product = $productModel->getById($product_id);
+        
+        foreach ($_SESSION['cart'] as $key => $item) {
+            if (intval($item['id']) === $product_id) {
                 $quantity = isset($_POST['quantity']) ? intval($_POST['quantity']) : 1;
-                $item['quantity'] = max(1, $quantity);
+                
+                // Check if requested quantity exceeds stock
+                if ($product && $quantity > $product['stock']) {
+                    $_SESSION['cart'][$key]['quantity'] = intval($product['stock']);
+                    setFlashMessage('warning', 'Quantity adjusted to available stock (' . $product['stock'] . ' items)');
+                } else {
+                    $_SESSION['cart'][$key]['quantity'] = max(1, $quantity);
+                    setFlashMessage('success', 'Cart updated successfully!');
+                }
                 break;
             }
         }
-        setFlashMessage('success', 'Cart updated successfully!');
     } elseif ($action === 'remove') {
-        $_SESSION['cart'] = array_filter($_SESSION['cart'], function($item) use ($product_id) {
-            return $item['id'] != $product_id;
-        });
-        $_SESSION['cart'] = array_values($_SESSION['cart']); // Reindex array
+        $new_cart = [];
+        foreach ($_SESSION['cart'] as $item) {
+            if (intval($item['id']) !== $product_id) {
+                $new_cart[] = $item;
+            }
+        }
+        $_SESSION['cart'] = $new_cart;
         setFlashMessage('success', 'Product removed from cart!');
     }
     

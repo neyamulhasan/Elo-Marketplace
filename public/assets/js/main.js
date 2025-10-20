@@ -8,12 +8,28 @@ document.addEventListener('DOMContentLoaded', function() {
     addToCartButtons.forEach(button => {
         button.addEventListener('click', function(e) {
             e.preventDefault();
+            e.stopPropagation();
+            
             const productId = this.getAttribute('data-id');
+            
+            if (!productId) {
+                alert('Error: Product ID not found!');
+                return;
+            }
+            
+            // Disable button temporarily to prevent double clicks
+            this.disabled = true;
+            
+            // Remove any existing cart forms first
+            const existingForms = document.querySelectorAll('form[data-cart-form="true"]');
+            existingForms.forEach(f => f.remove());
             
             // Create form and submit
             const form = document.createElement('form');
             form.method = 'POST';
             form.action = '/Bio-Organic-Herbal-Solutions/public/cart-action.php';
+            form.setAttribute('data-cart-form', 'true');
+            form.style.display = 'none';
             
             const productInput = document.createElement('input');
             productInput.type = 'hidden';

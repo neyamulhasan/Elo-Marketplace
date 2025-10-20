@@ -7,8 +7,20 @@
     --light-color: #f8f9fa;
 }
 
+html {
+    height: 100%;
+}
+
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Main content wrapper */
+main, .main-content {
+    flex: 1 0 auto;
 }
 
 /* Hero Section */
@@ -29,7 +41,12 @@ body {
 
 .product-card img {
     height: 250px;
-    object-fit: cover;
+    object-fit: contain;
+    object-position: center;
+    width: 100%;
+    border-bottom: 1px solid #dee2e6;
+    display: block !important;
+    background-color: #ffffff;
 }
 
 /* Category Cards */
@@ -78,6 +95,9 @@ body {
 /* Footer */
 footer {
     margin-top: auto;
+    flex-shrink: 0;
+    width: 100%;
+    background-color: #343a40 !important;
 }
 
 footer a {
@@ -86,6 +106,26 @@ footer a {
 
 footer a:hover {
     color: var(--primary-color) !important;
+}
+
+/* Product Cards - Clickable Enhancement */
+.product-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+}
+
+a:has(.product-card) {
+    text-decoration: none;
+}
+
+/* Discount Badge */
+.badge.bg-danger {
+    font-weight: 600;
+    letter-spacing: 0.5px;
 }
 
 /* Cards */
@@ -143,19 +183,30 @@ footer a:hover {
     }
     
     .product-card img {
-        height: 180px;
+        height: 180px !important;
+        object-fit: contain !important;
+        min-height: 180px;
+        max-height: 180px;
+        background-color: #ffffff;
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
     }
 }
 
 @media (min-width: 769px) and (max-width: 991px) {
     .product-card img {
         height: 220px;
+        object-fit: contain;
+        background-color: #ffffff;
     }
 }
 
 @media (min-width: 992px) {
     .product-card img {
         height: 280px;
+        object-fit: contain;
+        background-color: #ffffff;
     }
 }
 

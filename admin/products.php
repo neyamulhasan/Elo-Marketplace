@@ -73,6 +73,7 @@ include 'includes/header.php';
                         <th>Name</th>
                         <th>Category</th>
                         <th>Price</th>
+                        <th>Discount</th>
                         <th>Stock</th>
                         <th>Status</th>
                         <th>Actions</th>
@@ -97,7 +98,21 @@ include 'includes/header.php';
                             <?php endif; ?>
                         </td>
                         <td><?php echo e($product['category_name']); ?></td>
-                        <td><?php echo formatPrice($product['price']); ?></td>
+                        <td>
+                            <?php if (hasDiscount($product['discount_percentage'])): ?>
+                                <small class="text-muted text-decoration-line-through d-block"><?php echo formatPrice($product['price']); ?></small>
+                                <strong><?php echo formatPrice(calculateDiscountedPrice($product['price'], $product['discount_percentage'])); ?></strong>
+                            <?php else: ?>
+                                <?php echo formatPrice($product['price']); ?>
+                            <?php endif; ?>
+                        </td>
+                        <td>
+                            <?php if (hasDiscount($product['discount_percentage'])): ?>
+                                <span class="badge bg-danger"><?php echo number_format($product['discount_percentage'], 0); ?>% OFF</span>
+                            <?php else: ?>
+                                <span class="text-muted">-</span>
+                            <?php endif; ?>
+                        </td>
                         <td>
                             <?php if ($product['stock'] <= 0): ?>
                                 <span class="badge bg-danger">Out of Stock</span>

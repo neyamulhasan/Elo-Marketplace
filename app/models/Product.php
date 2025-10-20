@@ -119,14 +119,16 @@ class Product {
      */
     public function create($data) {
         $query = "INSERT INTO " . $this->table_name . " 
-                  (name, description, price, stock, category_id, sku, image, images, status) 
-                  VALUES (:name, :description, :price, :stock, :category_id, :sku, :image, :images, :status)";
+                  (name, description, price, discount_percentage, stock, category_id, sku, image, images, status) 
+                  VALUES (:name, :description, :price, :discount_percentage, :stock, :category_id, :sku, :image, :images, :status)";
         
         $stmt = $this->conn->prepare($query);
         
         $stmt->bindParam(":name", $data['name']);
         $stmt->bindParam(":description", $data['description']);
         $stmt->bindParam(":price", $data['price']);
+        $discount = $data['discount_percentage'] ?? 0.00;
+        $stmt->bindParam(":discount_percentage", $discount);
         $stmt->bindParam(":stock", $data['stock']);
         $stmt->bindParam(":category_id", $data['category_id']);
         $stmt->bindParam(":sku", $data['sku']);
@@ -151,6 +153,7 @@ class Product {
     public function update($id, $data) {
         $query = "UPDATE " . $this->table_name . " 
                   SET name = :name, description = :description, price = :price, 
+                      discount_percentage = :discount_percentage,
                       stock = :stock, category_id = :category_id, sku = :sku, 
                       image = :image, images = :images, status = :status 
                   WHERE id = :id";
@@ -160,6 +163,8 @@ class Product {
         $stmt->bindParam(":name", $data['name']);
         $stmt->bindParam(":description", $data['description']);
         $stmt->bindParam(":price", $data['price']);
+        $discount = $data['discount_percentage'] ?? 0.00;
+        $stmt->bindParam(":discount_percentage", $discount);
         $stmt->bindParam(":stock", $data['stock']);
         $stmt->bindParam(":category_id", $data['category_id']);
         $stmt->bindParam(":sku", $data['sku']);

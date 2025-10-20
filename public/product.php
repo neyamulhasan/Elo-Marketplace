@@ -121,10 +121,19 @@ include 'includes/header.php';
                 <?php else: ?>
                     <span class="badge bg-danger ms-2">Out of Stock</span>
                 <?php endif; ?>
+                <?php if (hasDiscount($product['discount_percentage'])): ?>
+                    <span class="badge bg-danger ms-2"><?php echo number_format($product['discount_percentage'], 0); ?>% OFF</span>
+                <?php endif; ?>
             </div>
 
             <div class="mb-4">
-                <h3 class="text-success"><?php echo formatPrice($product['price']); ?></h3>
+                <?php if (hasDiscount($product['discount_percentage'])): ?>
+                    <h4 class="text-muted text-decoration-line-through mb-2"><?php echo formatPrice($product['price']); ?></h4>
+                    <h3 class="text-success"><?php echo formatPrice(calculateDiscountedPrice($product['price'], $product['discount_percentage'])); ?></h3>
+                    <p class="text-danger fw-bold">You save: <?php echo formatPrice($product['price'] - calculateDiscountedPrice($product['price'], $product['discount_percentage'])); ?></p>
+                <?php else: ?>
+                    <h3 class="text-success"><?php echo formatPrice($product['price']); ?></h3>
+                <?php endif; ?>
             </div>
 
             <div class="mb-4">

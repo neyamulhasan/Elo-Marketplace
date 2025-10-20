@@ -77,39 +77,53 @@ include 'includes/header.php';
             <?php if (count($products) > 0): ?>
             <div class="row g-4">
                 <?php foreach ($products as $product): ?>
-                <div class="col-md-6 col-lg-4">
-                    <div class="card h-100 product-card">
-                        <img src="<?php echo e(getProductPrimaryImage($product)); ?>" 
-                             class="card-img-top" 
-                             alt="<?php echo e($product['name']); ?>"
-                             style="height: 250px; object-fit: cover;"
-                             onerror="this.src='/Bio-Organic-Herbal-Solutions/public/assets/images/placeholder-product.svg'">
-                        <div class="card-body">
-                            <span class="badge bg-success mb-2"><?php echo e($product['category_name']); ?></span>
-                            <h6 class="card-title"><?php echo e($product['name']); ?></h6>
-                            <p class="card-text small text-muted"><?php echo substr(e($product['description']), 0, 80) . '...'; ?></p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <span class="text-success fw-bold fs-5"><?php echo formatPrice($product['price']); ?></span>
+                <div class="col-6 col-md-6 col-lg-4">
+                    <a href="/Bio-Organic-Herbal-Solutions/public/product.php?id=<?php echo $product['id']; ?>" class="text-decoration-none text-dark">
+                        <div class="card h-100 product-card d-flex flex-column" style="cursor: pointer;">
+                            <img src="<?php echo e(getProductPrimaryImage($product)); ?>" 
+                                 class="card-img-top" 
+                                 alt="<?php echo e($product['name']); ?>"
+                                 onerror="this.src='/Bio-Organic-Herbal-Solutions/public/assets/images/placeholder-product.svg'">
+                            <div class="card-body p-2 p-md-3 flex-grow-1">
+                                <div class="mb-2 d-flex flex-wrap gap-1">
+                                    <span class="badge bg-success small"><?php echo e($product['category_name']); ?></span>
+                                    <?php if (hasDiscount($product['discount_percentage'])): ?>
+                                        <span class="badge bg-danger small"><?php echo number_format($product['discount_percentage'], 0); ?>% OFF</span>
+                                    <?php else: ?>
+                                        <span class="badge bg-info small">Regular Price</span>
+                                    <?php endif; ?>
+                                </div>
+                                <h6 class="card-title small"><?php echo e($product['name']); ?></h6>
+                                <p class="card-text small text-muted d-none d-md-block"><?php echo substr(e($product['description']), 0, 80) . '...'; ?></p>
+                                <div class="mb-2" style="min-height: 48px; display: flex; flex-direction: column; justify-content: center;">
+                                    <?php if (hasDiscount($product['discount_percentage'])): ?>
+                                        <span class="text-muted text-decoration-line-through small d-block"><?php echo formatPrice($product['price']); ?></span>
+                                        <span class="text-success fw-bold"><?php echo formatPrice(calculateDiscountedPrice($product['price'], $product['discount_percentage'])); ?></span>
+                                    <?php else: ?>
+                                        <span class="text-success fw-bold"><?php echo formatPrice($product['price']); ?></span>
+                                    <?php endif; ?>
+                                </div>
+                                <div class="d-flex justify-content-end align-items-center mb-2">
+                                    <?php if ($product['stock'] > 0): ?>
+                                        <span class="badge bg-success small">In Stock</span>
+                                    <?php else: ?>
+                                        <span class="badge bg-danger small">Out of Stock</span>
+                                    <?php endif; ?>
+                                </div>
+                            </div>
+                            <div class="card-footer bg-transparent border-0 p-2 p-md-3 mt-auto">
                                 <?php if ($product['stock'] > 0): ?>
-                                    <span class="badge bg-success">In Stock</span>
+                                    <button class="btn btn-success btn-sm w-100 add-to-cart" data-id="<?php echo $product['id']; ?>" onclick="event.preventDefault(); event.stopPropagation();">
+                                        <i class="bi bi-cart-plus"></i> <span class="d-none d-md-inline">Add to Cart</span><span class="d-inline d-md-none">Add</span>
+                                    </button>
                                 <?php else: ?>
-                                    <span class="badge bg-danger">Out of Stock</span>
+                                    <button class="btn btn-secondary btn-sm w-100" disabled>
+                                        <i class="bi bi-x-circle"></i> Out of Stock
+                                    </button>
                                 <?php endif; ?>
                             </div>
                         </div>
-                        <div class="card-footer bg-transparent border-0">
-                            <div class="d-flex gap-2">
-                                <a href="/Bio-Organic-Herbal-Solutions/public/product.php?id=<?php echo $product['id']; ?>" class="btn btn-outline-success btn-sm flex-grow-1">
-                                    <i class="bi bi-eye"></i> View
-                                </a>
-                                <?php if ($product['stock'] > 0): ?>
-                                <button class="btn btn-success btn-sm flex-grow-1 add-to-cart" data-id="<?php echo $product['id']; ?>">
-                                    <i class="bi bi-cart-plus"></i> Add to Cart
-                                </button>
-                                <?php endif; ?>
-                            </div>
-                        </div>
-                    </div>
+                    </a>
                 </div>
                 <?php endforeach; ?>
             </div>

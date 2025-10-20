@@ -70,6 +70,13 @@ include 'includes/header.php';
                                 <input type="number" class="form-control" name="price" step="0.01" min="0" required placeholder="0.00">
                             </div>
 
+                            <!-- Discount -->
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Discount (%) <small class="text-muted">Optional</small></label>
+                                <input type="number" class="form-control" name="discount_percentage" step="0.01" min="0" max="100" placeholder="0.00">
+                                <small class="text-muted">Leave 0 for no discount</small>
+                            </div>
+
                             <!-- Stock -->
                             <div class="col-md-6 mb-3">
                                 <label class="form-label">Stock Quantity <span class="text-danger">*</span></label>

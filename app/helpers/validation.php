@@ -151,6 +151,29 @@ function formatPrice($price) {
 }
 
 /**
+ * Calculate discounted price
+ * @param float $price
+ * @param float $discount_percentage
+ * @return float
+ */
+function calculateDiscountedPrice($price, $discount_percentage) {
+    $discount = floatval($discount_percentage);
+    if ($discount > 0) {
+        return $price - ($price * $discount / 100);
+    }
+    return $price;
+}
+
+/**
+ * Check if product has discount
+ * @param float $discount_percentage
+ * @return bool
+ */
+function hasDiscount($discount_percentage) {
+    return $discount_percentage !== null && floatval($discount_percentage) > 0;
+}
+
+/**
  * Format date for display
  * @param string $date
  * @return string
