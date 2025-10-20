@@ -52,10 +52,10 @@
                     <a class="nav-link <?php echo (basename($_SERVER['PHP_SELF']) == 'users.php') ? 'active' : ''; ?>" href="/Bio-Organic-Herbal-Solutions/admin/users.php">
                         <i class="bi bi-people"></i> Users
                     </a>
-                    <hr class="text-white">
-                    <a class="nav-link" href="/Bio-Organic-Herbal-Solutions/public/" target="_blank">
-                        <i class="bi bi-globe"></i> View Website
+                    <a class="nav-link <?php echo (basename($_SERVER['PHP_SELF']) == 'settings.php') ? 'active' : ''; ?>" href="/Bio-Organic-Herbal-Solutions/admin/settings.php">
+                        <i class="bi bi-gear"></i> Settings
                     </a>
+                    <hr class="text-white">
                     <a class="nav-link" href="/Bio-Organic-Herbal-Solutions/public/logout.php">
                         <i class="bi bi-box-arrow-right"></i> Logout
                     </a>

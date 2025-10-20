@@ -5,16 +5,22 @@ require_once '../app/helpers/validation.php';
 require_once '../app/helpers/image_helper.php';
 require_once '../app/models/Product.php';
 require_once '../app/models/Category.php';
+require_once '../app/models/Setting.php';
 
 $database = new Database();
 $db = $database->getConnection();
 
 $productModel = new Product($db);
 $categoryModel = new Category($db);
+$settingModel = new Setting($db);
 
 // Get featured products
 $featured_products = $productModel->getAll(8);
 $categories = $categoryModel->getAll();
+
+// Get site settings
+$home_banner_image = $settingModel->get('home_banner_image') ?? '/Bio-Organic-Herbal-Solutions/public/assets/images/hero-image.jpg';
+$about_us_image = $settingModel->get('about_us_image') ?? '/Bio-Organic-Herbal-Solutions/public/assets/images/about-image.jpg';
 
 $page_title = "Home";
 include 'includes/header.php';
@@ -26,11 +32,12 @@ include 'includes/header.php';
         <div class="row align-items-center">
             <div class="col-lg-6">
                 <h1 class="display-4 fw-bold text-success mb-3">Natural & Organic Herbal Solutions</h1>
-                <p class="lead mb-4">Discover the power of nature with our premium quality herbal products sourced from the finest organic farms in Bangladesh.</p>
+                <p class="lead mb-4">We bring you the finest organic medicines,
+Blending ancient wisdom with modern science.</p>
                 <a href="/Bio-Organic-Herbal-Solutions/public/shop.php" class="btn btn-success btn-lg">Shop Now</a>
             </div>
             <div class="col-lg-6">
-                <img src="/Bio-Organic-Herbal-Solutions/public/assets/images/hero-image.jpg" alt="Herbal Products" class="img-fluid rounded" onerror="this.src='/Bio-Organic-Herbal-Solutions/public/assets/images/placeholder-hero.svg'">
+                <img src="<?php echo e($home_banner_image); ?>" alt="Herbal Products" class="img-fluid rounded" onerror="this.src='/Bio-Organic-Herbal-Solutions/public/assets/images/placeholder-hero.svg'">
             </div>
         </div>
     </div>
@@ -110,7 +117,7 @@ include 'includes/header.php';
                 </div>
             </div>
             <div class="col-lg-6">
-                <img src="/Bio-Organic-Herbal-Solutions/public/assets/images/about-image.jpg" alt="About Us" class="img-fluid rounded" onerror="this.src='/Bio-Organic-Herbal-Solutions/public/assets/images/placeholder-about.svg'">
+                <img src="<?php echo e($about_us_image); ?>" alt="About Us" class="img-fluid rounded" onerror="this.src='/Bio-Organic-Herbal-Solutions/public/assets/images/placeholder-about.svg'">
             </div>
         </div>
     </div>
