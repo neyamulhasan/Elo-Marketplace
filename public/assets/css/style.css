@@ -143,7 +143,19 @@ footer a:hover {
     }
     
     .product-card img {
-        height: 200px;
+        height: 180px;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 991px) {
+    .product-card img {
+        height: 220px;
+    }
+}
+
+@media (min-width: 992px) {
+    .product-card img {
+        height: 280px;
     }
 }
 

@@ -21,6 +21,17 @@
                 <img src="/Bio-Organic-Herbal-Solutions/public/assets/images/bio.jpg" alt="Bio-Organic Herbal Solutions" style="height: 40px; margin-right: 10px;">
                 Bio-Organic Herbal
             </a>
+            
+            <!-- Mobile Cart Icon (Always Visible) -->
+            <a class="btn btn-outline-success position-relative d-lg-none me-2" href="/Bio-Organic-Herbal-Solutions/public/cart.php">
+                <i class="bi bi-cart"></i>
+                <?php if (isset($_SESSION['cart']) && count($_SESSION['cart']) > 0): ?>
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                        <?php echo count($_SESSION['cart']); ?>
+                    </span>
+                <?php endif; ?>
+            </a>
+            
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -35,7 +46,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/Bio-Organic-Herbal-Solutions/public/contact.php">Contact</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item d-none d-lg-block">
                         <a class="nav-link" href="/Bio-Organic-Herbal-Solutions/public/cart.php">
                             <i class="bi bi-cart"></i> Cart 
                             <?php if (isset($_SESSION['cart']) && count($_SESSION['cart']) > 0): ?>

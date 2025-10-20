@@ -18,57 +18,99 @@ include 'includes/header.php';
             <a href="/Bio-Organic-Herbal-Solutions/public/shop.php" class="alert-link">Continue Shopping</a>
         </div>
     <?php else: ?>
-        <div class="row">
+        <div class="row g-4">
             <div class="col-lg-8">
                 <div class="card">
                     <div class="card-body">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>Product</th>
-                                    <th>Price</th>
-                                    <th>Quantity</th>
-                                    <th>Subtotal</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php 
-                                $total = 0;
-                                foreach ($_SESSION['cart'] as $item): 
-                                    $subtotal = $item['price'] * $item['quantity'];
-                                    $total += $subtotal;
-                                ?>
-                                <tr>
-                                    <td>
-                                        <strong><?php echo e($item['name']); ?></strong>
-                                    </td>
-                                    <td><?php echo formatPrice($item['price']); ?></td>
-                                    <td>
-                                        <form action="/Bio-Organic-Herbal-Solutions/public/cart-action.php" method="POST" class="d-inline">
-                                            <input type="hidden" name="product_id" value="<?php echo $item['id']; ?>">
-                                            <input type="hidden" name="action" value="update">
-                                            <div class="input-group" style="width: 120px;">
-                                                <input type="number" name="quantity" class="form-control form-control-sm" 
-                                                       value="<?php echo $item['quantity']; ?>" min="1" 
-                                                       onchange="this.form.submit()">
-                                            </div>
-                                        </form>
-                                    </td>
-                                    <td class="fw-bold"><?php echo formatPrice($subtotal); ?></td>
-                                    <td>
-                                        <form action="/Bio-Organic-Herbal-Solutions/public/cart-action.php" method="POST" class="d-inline">
+                        <!-- Desktop View -->
+                        <div class="table-responsive d-none d-md-block">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Product</th>
+                                        <th>Price</th>
+                                        <th>Quantity</th>
+                                        <th>Subtotal</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php 
+                                    $total = 0;
+                                    foreach ($_SESSION['cart'] as $item): 
+                                        $subtotal = $item['price'] * $item['quantity'];
+                                        $total += $subtotal;
+                                    ?>
+                                    <tr>
+                                        <td>
+                                            <strong><?php echo e($item['name']); ?></strong>
+                                        </td>
+                                        <td><?php echo formatPrice($item['price']); ?></td>
+                                        <td>
+                                            <form action="/Bio-Organic-Herbal-Solutions/public/cart-action.php" method="POST" class="d-inline">
+                                                <input type="hidden" name="product_id" value="<?php echo $item['id']; ?>">
+                                                <input type="hidden" name="action" value="update">
+                                                <div class="input-group" style="width: 120px;">
+                                                    <input type="number" name="quantity" class="form-control form-control-sm" 
+                                                           value="<?php echo $item['quantity']; ?>" min="1" 
+                                                           onchange="this.form.submit()">
+                                                </div>
+                                            </form>
+                                        </td>
+                                        <td class="fw-bold"><?php echo formatPrice($subtotal); ?></td>
+                                        <td>
+                                            <form action="/Bio-Organic-Herbal-Solutions/public/cart-action.php" method="POST" class="d-inline">
+                                                <input type="hidden" name="product_id" value="<?php echo $item['id']; ?>">
+                                                <input type="hidden" name="action" value="remove">
+                                                <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Remove this item?')">
+                                                    <i class="bi bi-trash"></i>
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Mobile View -->
+                        <div class="d-md-none">
+                            <?php 
+                            $total = 0;
+                            foreach ($_SESSION['cart'] as $item): 
+                                $subtotal = $item['price'] * $item['quantity'];
+                                $total += $subtotal;
+                            ?>
+                            <div class="card mb-3 border">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between align-items-start mb-2">
+                                        <h6 class="mb-0 flex-grow-1"><?php echo e($item['name']); ?></h6>
+                                        <form action="/Bio-Organic-Herbal-Solutions/public/cart-action.php" method="POST" class="d-inline ms-2">
                                             <input type="hidden" name="product_id" value="<?php echo $item['id']; ?>">
                                             <input type="hidden" name="action" value="remove">
                                             <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Remove this item?')">
                                                 <i class="bi bi-trash"></i>
                                             </button>
                                         </form>
-                                    </td>
-                                </tr>
-                                <?php endforeach; ?>
-                            </tbody>
-                        </table>
+                                    </div>
+                                    <p class="text-muted mb-2">Price: <?php echo formatPrice($item['price']); ?></p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <form action="/Bio-Organic-Herbal-Solutions/public/cart-action.php" method="POST" class="d-inline">
+                                            <input type="hidden" name="product_id" value="<?php echo $item['id']; ?>">
+                                            <input type="hidden" name="action" value="update">
+                                            <div class="input-group" style="width: 120px;">
+                                                <button type="submit" name="quantity" value="<?php echo max(1, $item['quantity'] - 1); ?>" class="btn btn-outline-secondary btn-sm">-</button>
+                                                <input type="number" name="quantity" class="form-control form-control-sm text-center" 
+                                                       value="<?php echo $item['quantity']; ?>" min="1" readonly>
+                                                <button type="submit" name="quantity" value="<?php echo $item['quantity'] + 1; ?>" class="btn btn-outline-secondary btn-sm">+</button>
+                                            </div>
+                                        </form>
+                                        <strong class="text-success"><?php echo formatPrice($subtotal); ?></strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <?php endforeach; ?>
+                        </div>
                     </div>
                 </div>
             </div>

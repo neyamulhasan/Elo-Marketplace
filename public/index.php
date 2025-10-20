@@ -29,15 +29,15 @@ include 'includes/header.php';
 <!-- Hero Section -->
 <section class="hero-section bg-success bg-opacity-10 py-5">
     <div class="container">
-        <div class="row align-items-center">
-            <div class="col-lg-6">
-                <h1 class="display-4 fw-bold text-success mb-3">Natural & Organic Herbal Solutions</h1>
-                <p class="lead mb-4">We bring you the finest organic medicines,
+        <div class="row align-items-center g-4">
+            <div class="col-lg-6 mb-4 mb-lg-0">
+                <h1 class="display-4 fw-bold text-success mb-4">Natural & Organic Herbal Solutions</h1>
+                <p class="lead mb-5">We bring you the finest organic medicines,
 Blending ancient wisdom with modern science.</p>
-                <a href="/Bio-Organic-Herbal-Solutions/public/shop.php" class="btn btn-success btn-lg">Shop Now</a>
+                <a href="/Bio-Organic-Herbal-Solutions/public/shop.php" class="btn btn-success btn-lg px-5 py-3">Shop Now</a>
             </div>
             <div class="col-lg-6">
-                <img src="<?php echo e($home_banner_image); ?>" alt="Herbal Products" class="img-fluid rounded" onerror="this.src='/Bio-Organic-Herbal-Solutions/public/assets/images/placeholder-hero.svg'">
+                <img src="<?php echo e($home_banner_image); ?>" alt="Herbal Products" class="img-fluid rounded shadow" onerror="this.src='/Bio-Organic-Herbal-Solutions/public/assets/images/placeholder-hero.svg'">
             </div>
         </div>
     </div>
@@ -69,18 +69,17 @@ Blending ancient wisdom with modern science.</p>
         <h2 class="text-center mb-4">Featured Products</h2>
         <div class="row g-4">
             <?php foreach ($featured_products as $product): ?>
-            <div class="col-md-6 col-lg-3">
+            <div class="col-6 col-md-6 col-lg-3">
                 <div class="card h-100 product-card">
                     <img src="<?php echo e(getProductPrimaryImage($product)); ?>" 
                          class="card-img-top" 
                          alt="<?php echo e($product['name']); ?>"
-                         style="height: 200px; object-fit: cover;"
                          onerror="this.src='/Bio-Organic-Herbal-Solutions/public/assets/images/placeholder-product.svg'">
-                    <div class="card-body">
-                        <h6 class="card-title"><?php echo e($product['name']); ?></h6>
-                        <p class="text-success fw-bold"><?php echo formatPrice($product['price']); ?></p>
-                        <div class="d-flex justify-content-between">
-                            <a href="/Bio-Organic-Herbal-Solutions/public/product.php?id=<?php echo $product['id']; ?>" class="btn btn-sm btn-outline-success">View</a>
+                    <div class="card-body p-2 p-md-3">
+                        <h6 class="card-title small mb-2"><?php echo e($product['name']); ?></h6>
+                        <p class="text-success fw-bold mb-2"><?php echo formatPrice($product['price']); ?></p>
+                        <div class="d-flex justify-content-between gap-1">
+                            <a href="/Bio-Organic-Herbal-Solutions/public/product.php?id=<?php echo $product['id']; ?>" class="btn btn-sm btn-outline-success flex-grow-1">View</a>
                             <button class="btn btn-sm btn-success add-to-cart" data-id="<?php echo $product['id']; ?>">
                                 <i class="bi bi-cart-plus"></i>
                             </button>

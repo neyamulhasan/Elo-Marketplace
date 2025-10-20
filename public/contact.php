@@ -29,7 +29,7 @@ include 'includes/header.php';
                                 <i class="bi bi-geo-alt-fill text-success fs-4 me-3"></i>
                                 <div>
                                     <h6 class="mb-1">Location</h6>
-                                    <p class="text-muted mb-0">Dhaka, Bangladesh</p>
+                                    <p class="text-muted mb-0">Gazipur Chowrasta 1704<br>Gazipur, Bangladesh</p>
                                 </div>
                             </div>
                         </div>
