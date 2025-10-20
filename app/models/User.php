@@ -124,6 +124,24 @@ class User {
     }
 
     /**
+     * Update user password
+     * @param int $id
+     * @param string $password
+     * @return bool
+     */
+    public function updatePassword($id, $password) {
+        $query = "UPDATE " . $this->table_name . " 
+                  SET password = :password 
+                  WHERE id = :id";
+        
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(":password", $password);
+        $stmt->bindParam(":id", $id);
+        
+        return $stmt->execute();
+    }
+
+    /**
      * Get all users (admin only)
      * @return array
      */
