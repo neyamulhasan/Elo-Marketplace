@@ -103,6 +103,23 @@ class User {
     }
 
     /**
+     * Get user by email
+     * @param string $email
+     * @return array|false
+     */
+    public function getByEmail($email) {
+        $query = "SELECT id, name, email, phone, address, role, status, created_at 
+                  FROM " . $this->table_name . " 
+                  WHERE email = :email LIMIT 1";
+        
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(":email", $email);
+        $stmt->execute();
+        
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    /**
      * Update user profile
      * @param int $id
      * @param array $data
@@ -110,12 +127,13 @@ class User {
      */
     public function updateProfile($id, $data) {
         $query = "UPDATE " . $this->table_name . " 
-                  SET name = :name, phone = :phone, address = :address 
+                  SET name = :name, email = :email, phone = :phone, address = :address 
                   WHERE id = :id";
         
         $stmt = $this->conn->prepare($query);
         
         $stmt->bindParam(":name", $data['name']);
+        $stmt->bindParam(":email", $data['email']);
         $stmt->bindParam(":phone", $data['phone']);
         $stmt->bindParam(":address", $data['address']);
         $stmt->bindParam(":id", $id);

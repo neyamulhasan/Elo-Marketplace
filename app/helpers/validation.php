@@ -42,6 +42,15 @@ function sanitizeString($input) {
 }
 
 /**
+ * Sanitize email input
+ * @param string $email
+ * @return string
+ */
+function sanitizeEmail($email) {
+    return filter_var(trim($email), FILTER_SANITIZE_EMAIL);
+}
+
+/**
  * Validate required field
  * @param string $value
  * @return bool
