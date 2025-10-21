@@ -21,6 +21,32 @@ if (!file_exists($upload_dir)) {
 
 $success_count = 0;
 $errors = [];
+$deleted = [];
+
+// Handle delete actions first
+if (isset($_POST['delete_banner'])) {
+    $old_image = $settingModel->get('home_banner_image');
+    if ($old_image && strpos($old_image, '/uploads/settings/') !== false) {
+        $old_file = '../public' . str_replace('/Bio-Organic-Herbal-Solutions/public', '', $old_image);
+        if (file_exists($old_file)) {
+            @unlink($old_file);
+        }
+    }
+    $settingModel->delete('home_banner_image');
+    $deleted[] = 'Banner image removed';
+}
+
+if (isset($_POST['delete_about'])) {
+    $old_image = $settingModel->get('about_us_image');
+    if ($old_image && strpos($old_image, '/uploads/settings/') !== false) {
+        $old_file = '../public' . str_replace('/Bio-Organic-Herbal-Solutions/public', '', $old_image);
+        if (file_exists($old_file)) {
+            @unlink($old_file);
+        }
+    }
+    $settingModel->delete('about_us_image');
+    $deleted[] = 'About Us image removed';
+}
 
 // Handle Home Banner Image Upload
 if (isset($_FILES['home_banner_image']) && $_FILES['home_banner_image']['error'] === UPLOAD_ERR_OK) {
@@ -91,8 +117,11 @@ if (isset($_FILES['about_us_image']) && $_FILES['about_us_image']['error'] === U
 }
 
 // Set flash messages
-if ($success_count > 0) {
-    setFlashMessage('success', "Settings updated successfully! $success_count image(s) uploaded.");
+if ($success_count > 0 || count($deleted) > 0) {
+    $parts = [];
+    if ($success_count > 0) $parts[] = "$success_count image(s) uploaded";
+    if (count($deleted) > 0) $parts[] = implode(', ', $deleted);
+    setFlashMessage('success', 'Settings updated successfully! ' . implode(' | ', $parts));
 } elseif (count($errors) > 0) {
     setFlashMessage('error', implode(' ', $errors));
 } else {

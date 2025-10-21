@@ -42,4 +42,16 @@ class Setting {
         }
         return $result;
     }
+
+    /**
+     * Delete a setting by key
+     * @param string $key
+     * @return bool
+     */
+    public function delete($key) {
+        $query = "DELETE FROM " . $this->table . " WHERE setting_key = :key";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':key', $key);
+        return $stmt->execute();
+    }
 }

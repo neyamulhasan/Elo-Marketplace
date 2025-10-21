@@ -46,7 +46,12 @@ include 'includes/header.php';
                                      style="max-height: 300px; object-fit: cover;"
                                      id="banner-preview"
                                      onerror="this.src='/Bio-Organic-Herbal-Solutions/public/assets/images/placeholder-hero.svg'">
-                                <p class="text-muted small mt-2 mb-0">Current Banner Image</p>
+                                <p class="text-muted small mt-2">Current Banner Image</p>
+                                <?php if (!empty($settings['home_banner_image'])): ?>
+                                    <button type="submit" name="delete_banner" value="1" class="btn btn-sm btn-outline-danger mt-2">
+                                        <i class="bi bi-trash"></i> Delete Banner Image
+                                    </button>
+                                <?php endif; ?>
                             </div>
                         </div>
 
@@ -75,7 +80,12 @@ include 'includes/header.php';
                                      style="max-height: 300px; object-fit: cover;"
                                      id="about-preview"
                                      onerror="this.src='/Bio-Organic-Herbal-Solutions/public/assets/images/placeholder-about.svg'">
-                                <p class="text-muted small mt-2 mb-0">Current About Us Image</p>
+                                <p class="text-muted small mt-2">Current About Us Image</p>
+                                <?php if (!empty($settings['about_us_image'])): ?>
+                                    <button type="submit" name="delete_about" value="1" class="btn btn-sm btn-outline-danger mt-2">
+                                        <i class="bi bi-trash"></i> Delete About Image
+                                    </button>
+                                <?php endif; ?>
                             </div>
                         </div>
 
