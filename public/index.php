@@ -87,10 +87,12 @@ Blending ancient wisdom with modern science.</p>
             <div class="col-6 col-md-6 col-lg-3">
                 <a href="/Bio-Organic-Herbal-Solutions/public/product.php?id=<?php echo $product['id']; ?>" class="text-decoration-none text-dark">
                     <div class="card h-100 product-card d-flex flex-column" style="cursor: pointer;">
-                        <img src="<?php echo e(getProductPrimaryImage($product)); ?>" 
-                             class="card-img-top" 
-                             alt="<?php echo e($product['name']); ?>"
-                             onerror="this.src='/Bio-Organic-Herbal-Solutions/public/assets/images/placeholder-product.svg'">
+                        <div class="product-image-container">
+                            <img src="<?php echo e(getProductPrimaryImage($product)); ?>" 
+                                 class="product-image" 
+                                 alt="<?php echo e($product['name']); ?>"
+                                 onerror="this.src='/Bio-Organic-Herbal-Solutions/public/assets/images/placeholder-product.svg'">
+                        </div>
                         <div class="card-body p-2 p-md-3 flex-grow-1">
                             <div class="mb-2 d-flex flex-wrap gap-1">
                                 <?php if (hasDiscount($product['discount_percentage'])): ?>

@@ -84,11 +84,13 @@ include 'includes/header.php';
                 <?php foreach ($products as $product): ?>
                 <div class="col-6 col-md-6 col-lg-4">
                     <a href="/Bio-Organic-Herbal-Solutions/public/product.php?id=<?php echo $product['id']; ?>" class="text-decoration-none text-dark">
-                        <div class="card h-100 product-card d-flex flex-column" style="cursor: pointer;">
-                            <img src="<?php echo e(getProductPrimaryImage($product)); ?>" 
-                                 class="card-img-top" 
-                                 alt="<?php echo e($product['name']); ?>"
-                                 onerror="this.src='/Bio-Organic-Herbal-Solutions/public/assets/images/placeholder-product.svg'">
+                        <div class="card h-100 product-card d-flex flex-column">
+                            <div class="product-image-container">
+                                <img src="<?php echo e(getProductPrimaryImage($product)); ?>" 
+                                     class="product-image" 
+                                     alt="<?php echo e($product['name']); ?>"
+                                     onerror="this.src='/Bio-Organic-Herbal-Solutions/public/assets/images/placeholder-product.svg'">
+                            </div>
                             <div class="card-body p-2 p-md-3 flex-grow-1">
                                 <div class="mb-2 d-flex flex-wrap gap-1">
                                     <span class="badge bg-success small"><?php echo e($product['category_name']); ?></span>
@@ -98,14 +100,13 @@ include 'includes/header.php';
                                         <span class="badge bg-info small">Regular Price</span>
                                     <?php endif; ?>
                                 </div>
-                                <h6 class="card-title small"><?php echo e($product['name']); ?></h6>
-                                <p class="card-text small text-muted d-none d-md-block"><?php echo substr(e($product['description']), 0, 80) . '...'; ?></p>
+                                <h6 class="card-title small mb-2"><?php echo e($product['name']); ?></h6>
                                 <div class="mb-2" style="min-height: 48px; display: flex; flex-direction: column; justify-content: center;">
                                     <?php if (hasDiscount($product['discount_percentage'])): ?>
-                                        <span class="text-muted text-decoration-line-through small d-block"><?php echo formatPrice($product['price']); ?></span>
-                                        <span class="text-success fw-bold"><?php echo formatPrice(calculateDiscountedPrice($product['price'], $product['discount_percentage'])); ?></span>
+                                        <p class="text-muted text-decoration-line-through small mb-1"><?php echo formatPrice($product['price']); ?></p>
+                                        <p class="text-success fw-bold mb-0"><?php echo formatPrice(calculateDiscountedPrice($product['price'], $product['discount_percentage'])); ?></p>
                                     <?php else: ?>
-                                        <span class="text-success fw-bold"><?php echo formatPrice($product['price']); ?></span>
+                                        <p class="text-success fw-bold mb-0"><?php echo formatPrice($product['price']); ?></p>
                                     <?php endif; ?>
                                 </div>
                                 <div class="d-flex justify-content-end align-items-center mb-2">

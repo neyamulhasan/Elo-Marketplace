@@ -52,7 +52,6 @@ include 'includes/header.php';
                             <img src="<?php echo e($image); ?>" 
                                  class="d-block w-100" 
                                  alt="<?php echo e($product['name']); ?>"
-                                 style="height: 400px; object-fit: cover;"
                                  onerror="this.src='/Bio-Organic-Herbal-Solutions/public/assets/images/placeholder-large.svg'">
                         </div>
                         <?php endforeach; ?>
@@ -91,8 +90,7 @@ include 'includes/header.php';
                                  class="img-thumbnail cursor-pointer thumbnail-nav" 
                                  data-bs-target="#productImageCarousel" 
                                  data-bs-slide-to="<?php echo $index; ?>"
-                                 alt="Thumbnail <?php echo $index + 1; ?>"
-                                 style="height: 80px; object-fit: cover; cursor: pointer;">
+                                 alt="Thumbnail <?php echo $index + 1; ?>">
                         </div>
                         <?php endforeach; ?>
                     </div>
@@ -104,7 +102,6 @@ include 'includes/header.php';
                 <img src="<?php echo e($productImages[0]); ?>" 
                      class="card-img-top" 
                      alt="<?php echo e($product['name']); ?>"
-                     style="height: 400px; object-fit: cover;"
                      onerror="this.src='/Bio-Organic-Herbal-Solutions/public/assets/images/placeholder-large.svg'">
             </div>
             <?php endif; ?>
