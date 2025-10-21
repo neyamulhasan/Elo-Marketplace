@@ -3,19 +3,20 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-4 mb-4">
+                    <h5 class="mb-3 fw-bold text-success">Bio-Organic Herbal</h5>
                     <div class="d-flex align-items-center mb-3">
                         <img src="/Bio-Organic-Herbal-Solutions/public/assets/images/bio.jpg" alt="Bio-Organic Herbal Solutions" class="rounded-circle" style="height: 50px; width: 50px; object-fit: cover; margin-right: 10px;">
-                        <h5 class="text-success mb-0">Bio-Organic Herbal</h5>
                     </div>
                     <p>Your trusted source for natural and organic herbal products in Bangladesh.</p>
                     <div class="social-links">
                         <a href="https://www.facebook.com/Bio.Organic.Herbal.Solutions" target="_blank" class="text-light me-3" title="Facebook"><i class="bi bi-facebook"></i></a>
                         <a href="https://wa.me/8801792457594" target="_blank" class="text-light me-3" title="WhatsApp"><i class="bi bi-whatsapp"></i></a>
-                        <a href="https://www.instagram.com" target="_blank" class="text-light me-3" title="Instagram"><i class="bi bi-instagram"></i></a>
+                        <a href="https://m.me/Bio.Organic.Herbal.Solutions" target="_blank" class="text-light me-3" title="Messenger"><i class="bi bi-messenger"></i></a>
+                        <a href="tel:+8801792457594" class="text-light me-3" title="Call Us"><i class="bi bi-telephone-fill"></i></a>
                     </div>
                 </div>
                 <div class="col-md-4 mb-4">
-                    <h5 class="mb-3">Quick Links</h5>
+                    <h5 class="mb-3 fw-bold text-success">Quick Links</h5>
                     <ul class="list-unstyled">
                         <li><a href="/Bio-Organic-Herbal-Solutions/public/" class="text-light text-decoration-none">Home</a></li>
                         <li><a href="/Bio-Organic-Herbal-Solutions/public/shop.php" class="text-light text-decoration-none">Shop</a></li>
@@ -24,10 +25,9 @@
                     </ul>
                 </div>
                 <div class="col-md-4 mb-4">
-                    <h5 class="mb-3">Contact Us</h5>
+                    <h5 class="mb-3 fw-bold text-success">Contact Us</h5>
                     <p><i class="bi bi-geo-alt"></i> Gazipur Chowrasta 1704<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gazipur, Bangladesh</p>
-                    <p><i class="bi bi-whatsapp"></i> <a href="https://wa.me/8801792457594" target="_blank" class="text-light text-decoration-none">+880 1792-457594</a></p>
-                    <p><i class="bi bi-facebook"></i> <a href="https://www.facebook.com/Bio.Organic.Herbal.Solutions" target="_blank" class="text-light text-decoration-none">Bio-Organic Herbal Solutions</a></p>
+                    <p><i class="bi bi-telephone-fill"></i> <a href="tel:+8801792457594" class="text-light text-decoration-none">+880 1792-457594</a></p>
                 </div>
             </div>
             <hr class="bg-secondary">

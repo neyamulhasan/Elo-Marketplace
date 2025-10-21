@@ -61,6 +61,32 @@ include 'includes/header.php';
                         </div>
 
                         <div class="mb-4">
+                            <div class="d-flex align-items-start mb-3">
+                                <i class="bi bi-messenger text-success fs-4 me-3"></i>
+                                <div>
+                                    <h6 class="mb-1">Messenger</h6>
+                                    <a href="https://m.me/Bio.Organic.Herbal.Solutions" target="_blank" class="text-decoration-none text-success">
+                                        Message us on Messenger
+                                    </a>
+                                    <p class="text-muted small mb-0">Chat with us directly</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <div class="d-flex align-items-start mb-3">
+                                <i class="bi bi-telephone-fill text-success fs-4 me-3"></i>
+                                <div>
+                                    <h6 class="mb-1">Phone</h6>
+                                    <a href="tel:+8801792457594" class="text-decoration-none text-success">
+                                        +880 1792-457594
+                                    </a>
+                                    <p class="text-muted small mb-0">Call us anytime</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
                             <h6 class="mb-3">Follow Us</h6>
                             <div class="d-flex gap-2">
                                 <a href="https://www.facebook.com/Bio.Organic.Herbal.Solutions" target="_blank" class="btn btn-outline-success btn-sm">
@@ -68,6 +94,9 @@ include 'includes/header.php';
                                 </a>
                                 <a href="https://wa.me/8801792457594" target="_blank" class="btn btn-outline-success btn-sm">
                                     <i class="bi bi-whatsapp"></i> WhatsApp
+                                </a>
+                                <a href="https://m.me/Bio.Organic.Herbal.Solutions" target="_blank" class="btn btn-outline-success btn-sm">
+                                    <i class="bi bi-messenger"></i> Messenger
                                 </a>
                             </div>
                         </div>
