@@ -39,17 +39,18 @@ CREATE TABLE `categories` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
   `description` text DEFAULT NULL,
+  `image` varchar(255) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Insert sample categories
-INSERT INTO `categories` (`name`, `description`) VALUES
-('Herbal Supplements', 'Natural herbal supplements for health and wellness'),
-('Organic Oils', 'Pure organic essential and carrier oils'),
-('Herbal Teas', 'Premium quality herbal tea blends'),
-('Natural Skincare', 'Organic skincare products'),
-('Ayurvedic Products', 'Traditional Ayurvedic herbal remedies');
+INSERT INTO `categories` (`name`, `description`, `image`) VALUES
+('Herbal Supplements', 'Natural herbal supplements for health and wellness', NULL),
+('Organic Oils', 'Pure organic essential and carrier oils', NULL),
+('Herbal Teas', 'Premium quality herbal tea blends', NULL),
+('Natural Skincare', 'Organic skincare products', NULL),
+('Ayurvedic Products', 'Traditional Ayurvedic herbal remedies', NULL);
 
 -- --------------------------------------------------------
 -- Table structure for table `products`
@@ -60,9 +61,12 @@ CREATE TABLE `products` (
   `name` varchar(150) NOT NULL,
   `description` text DEFAULT NULL,
   `price` decimal(10,2) NOT NULL,
+  `discount_percentage` decimal(5,2) DEFAULT 0.00,
   `stock` int(11) DEFAULT 0,
   `category_id` int(11) DEFAULT NULL,
   `sku` varchar(50) DEFAULT NULL,
+  `image` varchar(255) DEFAULT NULL,
+  `images` text DEFAULT NULL,
   `status` tinyint(1) DEFAULT 1,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`),
@@ -71,12 +75,12 @@ CREATE TABLE `products` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Insert sample products
-INSERT INTO `products` (`name`, `description`, `price`, `stock`, `category_id`, `sku`, `status`) VALUES
-('Turmeric Powder 100g', 'Pure organic turmeric powder with high curcumin content', 250.00, 50, 1, 'TUR-100', 1),
-('Neem Oil 50ml', 'Cold-pressed organic neem oil for skin and hair', 180.00, 30, 2, 'NEEM-50', 1),
-('Green Tea 50g', 'Premium quality organic green tea leaves', 320.00, 40, 3, 'GT-50', 1),
-('Aloe Vera Gel 100ml', 'Pure aloe vera gel for skin care', 150.00, 60, 4, 'ALO-100', 1),
-('Ashwagandha Powder 100g', 'Premium quality ashwagandha root powder', 450.00, 25, 5, 'ASH-100', 1);
+INSERT INTO `products` (`name`, `description`, `price`, `discount_percentage`, `stock`, `category_id`, `sku`, `status`) VALUES
+('Turmeric Powder 100g', 'Pure organic turmeric powder with high curcumin content', 250.00, 0.00, 50, 1, 'TUR-100', 1),
+('Neem Oil 50ml', 'Cold-pressed organic neem oil for skin and hair', 180.00, 0.00, 30, 2, 'NEEM-50', 1),
+('Green Tea 50g', 'Premium quality organic green tea leaves', 320.00, 0.00, 40, 3, 'GT-50', 1),
+('Aloe Vera Gel 100ml', 'Pure aloe vera gel for skin care', 150.00, 0.00, 60, 4, 'ALO-100', 1),
+('Ashwagandha Powder 100g', 'Premium quality ashwagandha root powder', 450.00, 0.00, 25, 5, 'ASH-100', 1);
 
 -- --------------------------------------------------------
 -- Table structure for table `product_images`
@@ -173,5 +177,25 @@ CREATE TABLE `messages` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+-- Table structure for table `site_settings`
+-- --------------------------------------------------------
+
+CREATE TABLE `site_settings` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `setting_key` varchar(50) NOT NULL,
+  `setting_value` text DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `setting_key` (`setting_key`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- Insert default site settings
+INSERT INTO `site_settings` (`setting_key`, `setting_value`) VALUES
+('home_banner_image', '/Bio-Organic-Herbal-Solutions/public/assets/images/hero-image.jpg'),
+('about_us_image', '/Bio-Organic-Herbal-Solutions/public/assets/images/about-image.jpg'),
+('default_category_logo', '/Bio-Organic-Herbal-Solutions/public/assets/images/bio.jpg');
 
 COMMIT;

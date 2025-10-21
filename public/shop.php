@@ -5,12 +5,17 @@ require_once '../app/helpers/validation.php';
 require_once '../app/helpers/image_helper.php';
 require_once '../app/models/Product.php';
 require_once '../app/models/Category.php';
+require_once '../app/models/Setting.php';
 
 $database = new Database();
 $db = $database->getConnection();
 
 $productModel = new Product($db);
 $categoryModel = new Category($db);
+$settingModel = new Setting($db);
+
+// Get default category logo
+$default_category_logo = $settingModel->get('default_category_logo') ?? '/Bio-Organic-Herbal-Solutions/public/assets/images/bio.jpg';
 
 // Get filters
 $category_id = isset($_GET['category']) ? intval($_GET['category']) : null;
@@ -44,11 +49,11 @@ include 'includes/header.php';
                        class="list-group-item list-group-item-action border-0 d-flex justify-content-between align-items-center <?php echo !$category_id ? 'active' : ''; ?>">
                         <span><i class="bi bi-collection me-2"></i>All Products</span>
                     </a>
-                    <?php foreach ($categories as $category): ?>
-                    <a href="/Bio-Organic-Herbal-Solutions/public/shop.php?category=<?php echo $category['id']; ?>" 
-                       class="list-group-item list-group-item-action border-0 d-flex justify-content-between align-items-center <?php echo $category_id == $category['id'] ? 'active' : ''; ?>">
-                        <span><i class="bi bi-stars me-2"></i><?php echo e($category['name']); ?></span>
-                    </a>
+                <?php foreach ($categories as $category): ?>
+                <a href="/Bio-Organic-Herbal-Solutions/public/shop.php?category=<?php echo $category['id']; ?>" 
+                   class="list-group-item list-group-item-action border-0 d-flex align-items-center <?php echo $category_id == $category['id'] ? 'active' : ''; ?>">
+                    <span><?php echo e($category['name']); ?></span>
+                </a>
                     <?php endforeach; ?>
                 </div>
             </div>

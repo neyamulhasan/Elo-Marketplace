@@ -21,6 +21,7 @@ $categories = $categoryModel->getAll();
 // Get site settings
 $home_banner_image = $settingModel->get('home_banner_image') ?? '/Bio-Organic-Herbal-Solutions/public/assets/images/hero-image.jpg';
 $about_us_image = $settingModel->get('about_us_image') ?? '/Bio-Organic-Herbal-Solutions/public/assets/images/about-image.jpg';
+$fallback_category_logo = '/Bio-Organic-Herbal-Solutions/public/assets/images/bio.jpg';
 
 $page_title = "Home";
 include 'includes/header.php';
@@ -52,14 +53,25 @@ Blending ancient wisdom with modern science.</p>
         </div>
         <div class="row g-4">
             <?php foreach ($categories as $category): ?>
-            <div class="col-md-4 col-lg-3">
-                <div class="card h-100 border-0 shadow-sm category-card">
-                    <div class="card-body text-center">
-                        <i class="bi bi-stars text-success" style="font-size: 3rem;"></i>
-                        <h5 class="card-title mt-3"><?php echo e($category['name']); ?></h5>
-                        <a href="/Bio-Organic-Herbal-Solutions/public/shop.php?category=<?php echo $category['id']; ?>" class="btn btn-outline-success btn-sm mt-2">View Products</a>
+            <div class="col-md-6 col-lg-3">
+                <?php 
+                $categoryImage = !empty($category['image']) ? $category['image'] : $fallback_category_logo;
+                ?>
+                <a href="/Bio-Organic-Herbal-Solutions/public/shop.php?category=<?php echo $category['id']; ?>" 
+                   class="text-decoration-none">
+                    <div class="category-tile position-relative overflow-hidden rounded shadow-sm" 
+                         style="height: 250px;">
+                        <img src="<?php echo e($categoryImage); ?>" 
+                             alt="<?php echo e($category['name']); ?>" 
+                             class="w-100 h-100 object-fit-cover">
+                        <div class="position-absolute top-0 start-0 w-100 h-100" 
+                             style="background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.7) 100%); z-index: 1;"></div>
+                        <div class="position-absolute bottom-0 start-0 w-100 p-3" style="z-index: 2;">
+                            <h5 class="fw-bold mb-2 text-white"><?php echo e($category['name']); ?></h5>
+                            <span class="btn btn-success btn-sm">View Products</span>
+                        </div>
                     </div>
-                </div>
+                </a>
             </div>
             <?php endforeach; ?>
         </div>

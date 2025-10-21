@@ -30,6 +30,7 @@ include 'includes/header.php';
                 <thead>
                     <tr>
                         <th>ID</th>
+                        <th>Image</th>
                         <th>Name</th>
                         <th>Description</th>
                         <th>Created</th>
@@ -40,6 +41,22 @@ include 'includes/header.php';
                     <?php foreach ($categories as $category): ?>
                     <tr>
                         <td><?php echo $category['id']; ?></td>
+                        <td>
+                            <?php 
+                            $categoryImage = $category['image'] ?? null;
+                            if (empty($categoryImage)) {
+                                // Get default category logo from settings
+                                require_once '../app/models/Setting.php';
+                                $settingModel = new Setting($db);
+                                $categoryImage = $settingModel->get('default_category_logo') ?? '/Bio-Organic-Herbal-Solutions/public/assets/images/bio.jpg';
+                            }
+                            ?>
+                            <img src="<?php echo e($categoryImage); ?>" 
+                                 alt="<?php echo e($category['name']); ?>" 
+                                 class="img-thumbnail"
+                                 style="width: 50px; height: 50px; object-fit: contain;"
+                                 onerror="this.src='/Bio-Organic-Herbal-Solutions/public/assets/images/placeholder-category.svg'">
+                        </td>
                         <td><?php echo e($category['name']); ?></td>
                         <td><?php echo e($category['description']); ?></td>
                         <td><?php echo formatDate($category['created_at']); ?></td>
@@ -63,7 +80,7 @@ include 'includes/header.php';
 <div class="modal fade" id="addCategoryModal" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form action="/Bio-Organic-Herbal-Solutions/admin/category-action.php" method="POST">
+            <form action="/Bio-Organic-Herbal-Solutions/admin/category-action.php" method="POST" enctype="multipart/form-data">
                 <input type="hidden" name="action" value="add">
                 <div class="modal-header bg-success text-white">
                     <h5 class="modal-title">Add New Category</h5>
@@ -77,6 +94,22 @@ include 'includes/header.php';
                     <div class="mb-3">
                         <label class="form-label">Description</label>
                         <textarea class="form-control" name="description" rows="3"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Category Image</label>
+                        <div class="mb-2">
+                            <img id="add_image_preview" 
+                                 src="/Bio-Organic-Herbal-Solutions/public/assets/images/placeholder-category.svg" 
+                                 alt="Preview" 
+                                 class="img-thumbnail d-block"
+                                 style="max-height: 150px; object-fit: contain;">
+                        </div>
+                        <input type="file" 
+                               class="form-control" 
+                               name="image" 
+                               accept="image/*"
+                               onchange="previewCategoryImage(this, 'add_image_preview')">
+                        <small class="text-muted">Leave empty to use default category logo. Recommended: 300x300px (square)</small>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -92,9 +125,10 @@ include 'includes/header.php';
 <div class="modal fade" id="editCategoryModal" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form action="/Bio-Organic-Herbal-Solutions/admin/category-action.php" method="POST">
+            <form action="/Bio-Organic-Herbal-Solutions/admin/category-action.php" method="POST" enctype="multipart/form-data">
                 <input type="hidden" name="action" value="edit">
                 <input type="hidden" name="id" id="edit_id">
+                <input type="hidden" name="existing_image" id="edit_existing_image">
                 <div class="modal-header bg-warning text-white">
                     <h5 class="modal-title">Edit Category</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
@@ -107,6 +141,28 @@ include 'includes/header.php';
                     <div class="mb-3">
                         <label class="form-label">Description</label>
                         <textarea class="form-control" name="description" id="edit_description" rows="3"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Category Image</label>
+                        <div class="mb-2">
+                            <img id="edit_image_preview" 
+                                 src="/Bio-Organic-Herbal-Solutions/public/assets/images/placeholder-category.svg" 
+                                 alt="Preview" 
+                                 class="img-thumbnail d-block"
+                                 style="max-height: 150px; object-fit: contain;">
+                        </div>
+                        <input type="file" 
+                               class="form-control" 
+                               name="image" 
+                               accept="image/*"
+                               onchange="previewCategoryImage(this, 'edit_image_preview')">
+                        <small class="text-muted">Leave empty to keep current image. Upload new to replace.</small>
+                        <div class="form-check mt-2" id="delete_image_checkbox_wrapper" style="display: none;">
+                            <input class="form-check-input" type="checkbox" name="delete_image" value="1" id="delete_image_checkbox">
+                            <label class="form-check-label text-danger" for="delete_image_checkbox">
+                                Delete current custom image (will use default logo)
+                            </label>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -147,10 +203,40 @@ include 'includes/header.php';
 </div>
 
 <script>
+function previewCategoryImage(input, previewId) {
+    const preview = document.getElementById(previewId);
+    
+    if (input.files && input.files[0]) {
+        const reader = new FileReader();
+        
+        reader.onload = function(e) {
+            preview.src = e.target.result;
+        }
+        
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
 function editCategory(category) {
     document.getElementById('edit_id').value = category.id;
     document.getElementById('edit_name').value = category.name;
     document.getElementById('edit_description').value = category.description || '';
+    document.getElementById('edit_existing_image').value = category.image || '';
+    
+    // Set preview image
+    const defaultLogo = '/Bio-Organic-Herbal-Solutions/public/assets/images/bio.jpg';
+    const previewImg = document.getElementById('edit_image_preview');
+    previewImg.src = category.image || defaultLogo;
+    
+    // Show/hide delete checkbox
+    const deleteCheckboxWrapper = document.getElementById('delete_image_checkbox_wrapper');
+    const deleteCheckbox = document.getElementById('delete_image_checkbox');
+    if (category.image) {
+        deleteCheckboxWrapper.style.display = 'block';
+        deleteCheckbox.checked = false;
+    } else {
+        deleteCheckboxWrapper.style.display = 'none';
+    }
     
     new bootstrap.Modal(document.getElementById('editCategoryModal')).show();
 }

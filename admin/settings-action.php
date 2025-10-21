@@ -48,6 +48,8 @@ if (isset($_POST['delete_about'])) {
     $deleted[] = 'About Us image removed';
 }
 
+// Note: default_category_logo is no longer managed via settings
+
 // Handle Home Banner Image Upload
 if (isset($_FILES['home_banner_image']) && $_FILES['home_banner_image']['error'] === UPLOAD_ERR_OK) {
     $file = $_FILES['home_banner_image'];
@@ -115,6 +117,8 @@ if (isset($_FILES['about_us_image']) && $_FILES['about_us_image']['error'] === U
         }
     }
 }
+
+// No default category logo upload supported
 
 // Set flash messages
 if ($success_count > 0 || count($deleted) > 0) {

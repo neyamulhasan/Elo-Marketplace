@@ -61,6 +61,36 @@ main, .main-content {
     background-color: rgba(40, 167, 69, 0.05);
 }
 
+/* Category Tiles */
+.category-tile {
+    transition: all 0.3s ease;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.category-tile:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+}
+
+.category-tile img {
+    transition: transform 0.5s ease;
+}
+
+.category-tile:hover img {
+    transform: scale(1.1);
+}
+
+.category-tile .btn {
+    transition: all 0.3s ease;
+    opacity: 0.95;
+}
+
+.category-tile:hover .btn {
+    opacity: 1;
+    transform: scale(1.05);
+}
+
 /* Buttons */
 .btn-success {
     background-color: var(--primary-color);

@@ -49,13 +49,14 @@ class Category {
      */
     public function create($data) {
         $query = "INSERT INTO " . $this->table_name . " 
-                  (name, description) 
-                  VALUES (:name, :description)";
+                  (name, description, image) 
+                  VALUES (:name, :description, :image)";
         
         $stmt = $this->conn->prepare($query);
         
         $stmt->bindParam(":name", $data['name']);
         $stmt->bindParam(":description", $data['description']);
+        $stmt->bindParam(":image", $data['image']);
         
         return $stmt->execute();
     }
@@ -68,13 +69,14 @@ class Category {
      */
     public function update($id, $data) {
         $query = "UPDATE " . $this->table_name . " 
-                  SET name = :name, description = :description 
+                  SET name = :name, description = :description, image = :image 
                   WHERE id = :id";
         
         $stmt = $this->conn->prepare($query);
         
         $stmt->bindParam(":name", $data['name']);
         $stmt->bindParam(":description", $data['description']);
+        $stmt->bindParam(":image", $data['image']);
         $stmt->bindParam(":id", $id);
         
         return $stmt->execute();
