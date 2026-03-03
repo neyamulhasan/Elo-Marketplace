@@ -46,7 +46,7 @@ function handleImageUpload($file) {
     $new_filename = 'product_' . time() . '_' . uniqid() . '.' . $file_ext;
     $upload_dir = __DIR__ . '/../public/uploads/products/';
     
-    // Create directory if not exists and ensure proper permissions
+    // Create directory if not exists
     if (!file_exists($upload_dir)) {
         mkdir($upload_dir, 0775, true);
     }

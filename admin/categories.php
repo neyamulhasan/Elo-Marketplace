@@ -48,10 +48,7 @@ include 'includes/header.php';
                                 // Get default category logo from settings
                                 require_once '../app/models/Setting.php';
                                 $settingModel = new Setting($db);
-                                $dlogoRaw = $settingModel->get('default_category_logo');
-                                $categoryImage = $dlogoRaw ? BASE_URL . '/public/' . $dlogoRaw : BASE_URL . '/public/assets/images/bio.jpg';
-                            } else {
-                                $categoryImage = BASE_URL . '/public/' . $categoryImage;
+                                $categoryImage = $settingModel->get('default_category_logo') ?? BASE_URL . '/public/assets/images/elo.png';
                             }
                             ?>
                             <img src="<?php echo e($categoryImage); ?>" 
@@ -227,7 +224,7 @@ function editCategory(category) {
     document.getElementById('edit_existing_image').value = category.image || '';
     
     // Set preview image
-    const defaultLogo = '<?= BASE_URL ?>/public/assets/images/bio.jpg';
+    const defaultLogo = '<?= BASE_URL ?>/public/assets/images/elo.png';
     const previewImg = document.getElementById('edit_image_preview');
     previewImg.src = category.image || defaultLogo;
     

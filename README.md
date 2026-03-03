@@ -127,7 +127,7 @@ Bio-Organic-Herbal-Solutions/
 
 - **WhatsApp:** +880 1792-457594 (Click-to-chat enabled)
 - **Facebook:** [Bio.Organic.Herbal.Solutions](https://www.facebook.com/Bio.Organic.Herbal.Solutions)
-- **Company Logo:** bio.jpg (used throughout site)
+- **Company Logo:** elo.png (used throughout site)
 
 ---
 
@@ -167,7 +167,7 @@ Bio-Organic-Herbal-Solutions/
 ## 🎨 Design Features
 
 - **Color Scheme:** Green/organic theme
-- **Logo:** bio.jpg integrated throughout
+- **Logo:** elo.png integrated throughout
 - **Layout:** Clean, minimal, professional
 - **UI:** Bootstrap 5 components
 - **Icons:** Bootstrap Icons

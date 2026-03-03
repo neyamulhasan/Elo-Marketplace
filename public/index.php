@@ -18,12 +18,10 @@ $settingModel = new Setting($db);
 $featured_products = $productModel->getAll(8);
 $categories = $categoryModel->getAll();
 
-// Get site settings - stored as relative paths, build full URLs
-$_banner_raw = $settingModel->get('home_banner_image');
-$home_banner_image = $_banner_raw ? BASE_URL . '/public/' . $_banner_raw : BASE_URL . '/public/assets/images/hero-image.jpg';
-$_about_raw = $settingModel->get('about_us_image');
-$about_us_image = $_about_raw ? BASE_URL . '/public/' . $_about_raw : BASE_URL . '/public/assets/images/about-image.jpg';
-$fallback_category_logo = BASE_URL . '/public/assets/images/bio.jpg';
+// Get site settings
+$home_banner_image = $settingModel->get('home_banner_image') ?? BASE_URL . '/public/assets/images/hero-image.jpg';
+$about_us_image = $settingModel->get('about_us_image') ?? BASE_URL . '/public/assets/images/about-image.jpg';
+$fallback_category_logo = BASE_URL . '/public/assets/images/elo.png';
 
 $page_title = "Home";
 include 'includes/header.php';
@@ -57,7 +55,7 @@ Blending ancient wisdom with modern science.</p>
             <?php foreach ($categories as $category): ?>
             <div class="col-md-6 col-lg-3">
                 <?php 
-                $categoryImage = !empty($category['image']) ? BASE_URL . '/public/' . $category['image'] : $fallback_category_logo;
+                $categoryImage = !empty($category['image']) ? $category['image'] : $fallback_category_logo;
                 ?>
                 <a href="<?= BASE_URL ?>/public/shop.php?category=<?php echo $category['id']; ?>" 
                    class="text-decoration-none">

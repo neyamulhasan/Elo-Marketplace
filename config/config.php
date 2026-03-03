@@ -4,20 +4,20 @@
  * Application-wide constants and settings
  */
 
-// Auto-detect BASE_URL (works on localhost, VPS, and shared hosting with any folder name)
+// Site Information
+define('SITE_NAME', 'Elo Marketplace');
+define('SITE_EMAIL', 'info@elo-marketplace.com');
+
+// Auto-detect Base URL — works on localhost (XAMPP), shared hosting, and VPS
 if (!defined('BASE_URL')) {
     $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
-    $host = $_SERVER['HTTP_HOST'] ?? 'localhost';
-    $docRoot = rtrim(str_replace('\\', '/', realpath($_SERVER['DOCUMENT_ROOT'] ?? dirname(__DIR__))), '/');
-    $projectRoot = rtrim(str_replace('\\', '/', dirname(__DIR__)), '/');
-    $subfolder = str_replace($docRoot, '', $projectRoot);
-    define('BASE_URL', $protocol . '://' . $host . $subfolder);
+    $host     = $_SERVER['HTTP_HOST'] ?? 'localhost';
+    // Strip /admin/ or /public/ (and anything after) to find the project root path
+    $script   = str_replace('\\', '/', $_SERVER['SCRIPT_NAME'] ?? '/');
+    $base     = preg_replace('#/(admin|public)(/.*)?\z#', '', $script);
+    define('BASE_URL', rtrim($protocol . '://' . $host . $base, '/'));
 }
-
-// Site Information
-define('SITE_NAME', 'Bio-Organic Herbal Solutions');
 define('SITE_URL', BASE_URL);
-define('SITE_EMAIL', 'info@bioorganic.com');
 
 // Path Constants
 define('ROOT_PATH', dirname(__DIR__));

@@ -27,8 +27,8 @@ $confirm = $_GET['confirm'] ?? '';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Image Cleanup Utility</title>
-    <link rel="stylesheet" href="<?= BASE_URL ?>/public/assets/css/vendor/bootstrap.min.css">
-    <link rel="stylesheet" href="<?= BASE_URL ?>/public/assets/css/vendor/bootstrap-icons.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/public/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <style>
         body { padding: 20px; }
         .stats { background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0; }

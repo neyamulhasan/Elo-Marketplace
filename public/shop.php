@@ -15,7 +15,7 @@ $categoryModel = new Category($db);
 $settingModel = new Setting($db);
 
 // Get default category logo
-$default_category_logo = BASE_URL . '/public/assets/images/bio.jpg';
+$default_category_logo = $settingModel->get('default_category_logo') ?? BASE_URL . '/public/assets/images/elo.png';
 
 // Get filters
 $category_id = isset($_GET['category']) ? intval($_GET['category']) : null;

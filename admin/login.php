@@ -48,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Login - Bio-Organic Herbal Solutions</title>
+    <title>Admin Login - Elo Marketplace</title>
     <link href="<?= BASE_URL ?>/public/assets/css/vendor/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="<?= BASE_URL ?>/public/assets/css/vendor/bootstrap-icons.css">
     <style>
@@ -70,9 +70,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="card login-card">
                     <div class="card-body p-5">
                         <div class="text-center mb-4">
-                            <img src="<?= BASE_URL ?>/public/assets/images/bio.jpg" alt="Bio-Organic Herbal Solutions" style="height: 80px; margin-bottom: 15px; border-radius: 10px;">
+                            <img src="<?= BASE_URL ?>/public/assets/images/elo.png" alt="Elo Marketplace" style="height: 80px; margin-bottom: 15px; border-radius: 10px;">
                             <h3 class="mt-3">Admin Login</h3>
-                            <p class="text-muted">Bio-Organic Herbal Solutions</p>
+                            <p class="text-muted">Elo Marketplace</p>
                         </div>
                         
                         <?php if (!empty($errors)): ?>

@@ -1,13 +1,13 @@
--- Bio-Organic Herbal Solutions Database Schema
--- Database: bio_organic_herbal
+-- Elo Marketplace Database Schema
+-- Database: elo_marketplace
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
 
 -- Create database if not exists
-CREATE DATABASE IF NOT EXISTS `bio_organic_herbal` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE `bio_organic_herbal`;
+CREATE DATABASE IF NOT EXISTS `elo_marketplace` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `elo_marketplace`;
 
 -- --------------------------------------------------------
 -- Table structure for table `users`
@@ -192,7 +192,7 @@ CREATE TABLE `site_settings` (
   UNIQUE KEY `setting_key` (`setting_key`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- Insert default site settings (images are NULL; upload via admin panel)
+-- Insert default site settings
 INSERT INTO `site_settings` (`setting_key`, `setting_value`) VALUES
 ('home_banner_image', NULL),
 ('about_us_image', NULL),

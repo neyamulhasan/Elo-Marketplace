@@ -31,8 +31,8 @@
             <div class="col-md-3 col-lg-2 px-0 sidebar">
                 <div class="p-3 text-white">
                     <div class="d-flex align-items-center mb-2">
-                        <img src="<?= BASE_URL ?>/public/assets/images/bio.jpg" alt="Logo" style="height: 40px; margin-right: 10px; border-radius: 5px;">
-                        <h4 class="mb-0">Bio-Organic</h4>
+                        <img src="<?= BASE_URL ?>/public/assets/images/elo.png" alt="Logo" style="height: 40px; margin-right: 10px; border-radius: 5px;">
+                        <h4 class="mb-0">Elo Marketplace</h4>
                     </div>
                     <p class="small mb-0">Admin Panel</p>
                 </div>

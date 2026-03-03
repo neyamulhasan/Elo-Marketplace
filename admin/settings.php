@@ -40,7 +40,7 @@ include 'includes/header.php';
                         
                         <div class="mb-3">
                             <div class="border rounded p-3 bg-light text-center">
-                                <img src="<?php echo e(!empty($settings['home_banner_image']) ? BASE_URL . '/public/' . $settings['home_banner_image'] : BASE_URL . '/public/assets/images/hero-image.jpg'); ?>" 
+                                <img src="<?php echo e($settings['home_banner_image'] ?? BASE_URL . '/public/assets/images/hero-image.jpg'); ?>" 
                                      alt="Current Banner" 
                                      class="img-fluid rounded"
                                      style="max-height: 300px; object-fit: cover;"
@@ -74,7 +74,7 @@ include 'includes/header.php';
                         
                         <div class="mb-3">
                             <div class="border rounded p-3 bg-light text-center">
-                                <img src="<?php echo e(!empty($settings['about_us_image']) ? BASE_URL . '/public/' . $settings['about_us_image'] : BASE_URL . '/public/assets/images/about-image.jpg'); ?>" 
+                                <img src="<?php echo e($settings['about_us_image'] ?? BASE_URL . '/public/assets/images/about-image.jpg'); ?>" 
                                      alt="Current About Image" 
                                      class="img-fluid rounded"
                                      style="max-height: 300px; object-fit: cover;"

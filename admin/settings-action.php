@@ -27,8 +27,8 @@ $deleted = [];
 // Handle delete actions first
 if (isset($_POST['delete_banner'])) {
     $old_image = $settingModel->get('home_banner_image');
-    if ($old_image && strpos($old_image, 'uploads/settings/') !== false) {
-        $old_file = ROOT_PATH . '/public/' . $old_image;
+    if ($old_image && strpos($old_image, '/uploads/settings/') !== false) {
+        $old_file = '../public' . str_replace(BASE_URL . '/public', '', $old_image);
         if (file_exists($old_file)) {
             @unlink($old_file);
         }
@@ -39,8 +39,8 @@ if (isset($_POST['delete_banner'])) {
 
 if (isset($_POST['delete_about'])) {
     $old_image = $settingModel->get('about_us_image');
-    if ($old_image && strpos($old_image, 'uploads/settings/') !== false) {
-        $old_file = ROOT_PATH . '/public/' . $old_image;
+    if ($old_image && strpos($old_image, '/uploads/settings/') !== false) {
+        $old_file = '../public' . str_replace(BASE_URL . '/public', '', $old_image);
         if (file_exists($old_file)) {
             @unlink($old_file);
         }
@@ -66,12 +66,12 @@ if (isset($_FILES['home_banner_image']) && $_FILES['home_banner_image']['error']
         $filepath = $upload_dir . $filename;
         
         if (move_uploaded_file($file['tmp_name'], $filepath)) {
-            $relative_path = 'uploads/settings/' . $filename;
+            $relative_path = BASE_URL . '/public/uploads/settings/' . $filename;
             
             // Delete old image if exists and not default
             $old_image = $settingModel->get('home_banner_image');
-            if ($old_image && strpos($old_image, 'uploads/settings/') !== false) {
-                $old_file = ROOT_PATH . '/public/' . $old_image;
+            if ($old_image && strpos($old_image, '/uploads/settings/') !== false) {
+                $old_file = '../public' . str_replace(BASE_URL . '/public', '', $old_image);
                 if (file_exists($old_file)) {
                     unlink($old_file);
                 }
@@ -100,12 +100,12 @@ if (isset($_FILES['about_us_image']) && $_FILES['about_us_image']['error'] === U
         $filepath = $upload_dir . $filename;
         
         if (move_uploaded_file($file['tmp_name'], $filepath)) {
-            $relative_path = 'uploads/settings/' . $filename;
+            $relative_path = BASE_URL . '/public/uploads/settings/' . $filename;
             
             // Delete old image if exists and not default
             $old_image = $settingModel->get('about_us_image');
-            if ($old_image && strpos($old_image, 'uploads/settings/') !== false) {
-                $old_file = ROOT_PATH . '/public/' . $old_image;
+            if ($old_image && strpos($old_image, '/uploads/settings/') !== false) {
+                $old_file = '../public' . str_replace(BASE_URL . '/public', '', $old_image);
                 if (file_exists($old_file)) {
                     unlink($old_file);
                 }

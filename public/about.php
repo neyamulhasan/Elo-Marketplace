@@ -8,8 +8,7 @@ require_once '../app/models/Setting.php';
 $database = new Database();
 $db = $database->getConnection();
 $settingModel = new Setting($db);
-$_about_raw = $settingModel->get('about_us_image');
-$about_us_image = $_about_raw ? BASE_URL . '/public/' . $_about_raw : BASE_URL . '/public/assets/images/about-image.jpg';
+$about_us_image = $settingModel->get('about_us_image') ?? BASE_URL . '/public/assets/images/about-image.jpg';
 
 $page_title = "About Us";
 include 'includes/header.php';
@@ -29,11 +28,11 @@ include 'includes/header.php';
         <!-- Our Story -->
         <div class="row align-items-center mb-5">
             <div class="col-lg-6 mb-4 mb-lg-0">
-                <img src="<?php echo e($about_us_image); ?>" alt="Bio-Organic Herbal Solutions" class="img-fluid rounded shadow" onerror="this.src='<?= BASE_URL ?>/public/assets/images/placeholder-about.svg'">
+                <img src="<?php echo e($about_us_image); ?>" alt="Elo Marketplace" class="img-fluid rounded shadow" onerror="this.src='<?= BASE_URL ?>/public/assets/images/placeholder-about.svg'">
             </div>
             <div class="col-lg-6">
                 <h2 class="fw-bold mb-4">Our Story</h2>
-                <p class="mb-3">Bio-Organic Herbal Solutions is your trusted partner in natural health and wellness. We are dedicated to providing the finest quality organic and herbal products that promote holistic well-being.</p>
+                <p class="mb-3">Elo Marketplace is your trusted partner in natural health and wellness. We are dedicated to providing the finest quality organic and herbal products that promote holistic well-being.</p>
                 <p class="mb-3">Based in Gazipur, Bangladesh, we source our ingredients from trusted suppliers and ensure that every product meets the highest standards of quality and purity. Our commitment to natural solutions stems from the belief that nature provides the best remedies for a healthy life.</p>
                 <p class="mb-0">We specialize in skincare, haircare, wellness products, herbal teas, and essential oils - all crafted with care and dedication to your health.</p>
             </div>
@@ -69,7 +68,7 @@ include 'includes/header.php';
         <div class="row mb-5">
             <div class="col-12 text-center mb-5">
                 <h2 class="fw-bold">Why Choose Us?</h2>
-                <p class="text-muted">What makes Bio-Organic Herbal Solutions special</p>
+                <p class="text-muted">What makes Elo Marketplace special</p>
             </div>
         </div>
 

@@ -1,15 +1,16 @@
 <?php
 /**
- * Database Configuration — TEMPLATE
+ * Database Configuration — EXAMPLE FILE
  * Copy this file to database.php and fill in your credentials.
+ * database.php is NOT committed to git (it contains sensitive data).
  */
 
 class Database {
-    private $host = "localhost";
-    private $db_name = "your_database_name";
-    private $username = "your_db_user";
+    private $host     = "localhost";
+    private $db_name  = "your_database_name";
+    private $username = "your_db_username";
     private $password = "your_db_password";
-    public $conn;
+    public  $conn;
 
     public function getConnection() {
         $this->conn = null;

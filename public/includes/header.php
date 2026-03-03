@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Bio-Organic Herbal Solutions - Natural and Organic Herbal Products">
-    <title><?php echo isset($page_title) ? $page_title . ' - ' : ''; ?>Bio-Organic Herbal Solutions</title>
+    <meta name="description" content="Elo Marketplace - Your Online Shopping Destination">
+    <title><?php echo isset($page_title) ? $page_title . ' - ' : ''; ?>Elo Marketplace</title>
     
     <!-- Bootstrap 5 CSS (Local) -->
     <link href="<?= BASE_URL ?>/public/assets/css/vendor/bootstrap.min.css" rel="stylesheet">
@@ -18,8 +18,8 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
         <div class="container">
             <a class="navbar-brand fw-bold text-success d-flex align-items-center" href="<?= BASE_URL ?>/public/">
-                <img src="<?= BASE_URL ?>/public/assets/images/bio.jpg" alt="Bio-Organic Herbal Solutions" style="height: 40px; margin-right: 10px;">
-                Bio-Organic Herbal
+                <img src="<?= BASE_URL ?>/public/assets/images/elo.png" alt="Elo Marketplace" style="height: 40px; margin-right: 10px;">
+                Elo Marketplace
             </a>
             
             <!-- Mobile Cart Icon (Always Visible) -->

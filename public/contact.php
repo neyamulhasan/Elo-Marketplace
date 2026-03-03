@@ -13,7 +13,7 @@ include 'includes/header.php';
         <div class="row mb-5">
             <div class="col-lg-12 text-center">
                 <h1 class="display-4 mb-3 fw-bold">Contact Us</h1>
-                <p class="lead text-muted">Get in touch with Bio-Organic Herbal Solutions</p>
+                <p class="lead text-muted">Get in touch with Elo Marketplace</p>
             </div>
         </div>
 

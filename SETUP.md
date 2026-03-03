@@ -425,7 +425,7 @@ Options -Indexes
 ### Customize
 
 1. **Logo:**
-   - Replace `public/assets/images/bio.jpg` with your logo
+   - Replace `public/assets/images/elo.png` with your logo
    - Recommended size: 200x60px
 
 2. **Contact Info:**

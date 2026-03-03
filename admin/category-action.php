@@ -35,7 +35,7 @@ function handleCategoryImageUpload($file) {
     $filepath = $upload_dir . $filename;
     
     if (move_uploaded_file($file['tmp_name'], $filepath)) {
-        $relative_path = 'uploads/categories/' . $filename;
+        $relative_path = BASE_URL . '/public/uploads/categories/' . $filename;
         return ['success' => true, 'path' => $relative_path];
     }
     
@@ -44,8 +44,8 @@ function handleCategoryImageUpload($file) {
 
 // Helper function to delete category image
 function deleteCategoryImage($imagePath) {
-    if ($imagePath && strpos($imagePath, 'uploads/categories/') !== false) {
-        $file = ROOT_PATH . '/public/' . $imagePath;
+    if ($imagePath && strpos($imagePath, '/uploads/categories/') !== false) {
+        $file = '../public' . str_replace(BASE_URL . '/public', '', $imagePath);
         if (file_exists($file)) {
             @unlink($file);
         }

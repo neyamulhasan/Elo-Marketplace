@@ -14,10 +14,10 @@ $home_banner = $settingModel->get('home_banner_image');
 $about_us = $settingModel->get('about_us_image');
 
 $used_images = [];
-if ($home_banner && strpos($home_banner, 'uploads/settings/') !== false) {
+if ($home_banner && strpos($home_banner, '/uploads/settings/') !== false) {
     $used_images[] = basename($home_banner);
 }
-if ($about_us && strpos($about_us, 'uploads/settings/') !== false) {
+if ($about_us && strpos($about_us, '/uploads/settings/') !== false) {
     $used_images[] = basename($about_us);
 }
 

@@ -3,11 +3,11 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-4 mb-4">
-                    <h5 class="mb-3 fw-bold text-success">Bio-Organic Herbal</h5>
+                    <h5 class="mb-3 fw-bold text-success">Elo Marketplace</h5>
                     <div class="d-flex align-items-center mb-3">
-                        <img src="<?= BASE_URL ?>/public/assets/images/bio.jpg" alt="Bio-Organic Herbal Solutions" class="rounded-circle" style="height: 50px; width: 50px; object-fit: cover; margin-right: 10px;">
+                        <img src="<?= BASE_URL ?>/public/assets/images/elo.png" alt="Elo Marketplace" class="rounded-circle" style="height: 50px; width: 50px; object-fit: cover; margin-right: 10px;">
                     </div>
-                    <p>Your trusted source for natural and organic herbal products in Bangladesh.</p>
+                    <p>Your trusted online shopping destination for quality products.</p>
                     <div class="social-links">
                         <a href="https://www.facebook.com/Bio.Organic.Herbal.Solutions" target="_blank" class="text-light me-3" title="Facebook"><i class="bi bi-facebook"></i></a>
                         <a href="https://wa.me/8801792457594" target="_blank" class="text-light me-3" title="WhatsApp"><i class="bi bi-whatsapp"></i></a>
@@ -32,7 +32,7 @@
             </div>
             <hr class="bg-secondary">
             <div class="text-center">
-                <p class="mb-0">&copy; <?php echo date('Y'); ?> Bio-Organic Herbal Solutions. All rights reserved.</p>
+                <p class="mb-0">&copy; <?php echo date('Y'); ?> Elo Marketplace. All rights reserved.</p>
             </div>
         </div>
     </footer>

@@ -74,7 +74,7 @@ function uploadProductImages($product_id, $files) {
     $max_size = 2 * 1024 * 1024; // 2MB
     $upload_dir = __DIR__ . '/../public/uploads/products/';
     
-    // Ensure directory exists and has proper permissions
+    // Ensure directory exists
     if (!file_exists($upload_dir)) {
         mkdir($upload_dir, 0775, true);
     }

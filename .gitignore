@@ -1,22 +1,45 @@
-# User-uploaded files (never commit these)
+# ============================================
+# User-generated uploads (never commit these)
+# ============================================
 public/uploads/products/*
 public/uploads/categories/*
 public/uploads/settings/*
 
-# Keep the upload directories in repo
+# Keep the upload folders in git (but not their contents)
 !public/uploads/products/.gitkeep
 !public/uploads/categories/.gitkeep
 !public/uploads/settings/.gitkeep
 
-# XAMPP / server config
+# ============================================
+# Server / environment config (sensitive data)
+# ============================================
 config/database.php
 
+# ============================================
 # OS files
+# ============================================
 .DS_Store
 Thumbs.db
+desktop.ini
 
-# Editor directories
-.idea/
+# ============================================
+# Editor files
+# ============================================
 .vscode/
-*.swp
-*.swo
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# ============================================
+# PHP / dependency files
+# ============================================
+vendor/
+composer.lock
+
+# ============================================
+# Logs & temp files
+# ============================================
+*.log
+*.tmp
+*.cache
+/tmp/
