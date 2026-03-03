@@ -14,10 +14,10 @@ $home_banner = $settingModel->get('home_banner_image');
 $about_us = $settingModel->get('about_us_image');
 
 $used_images = [];
-if ($home_banner && strpos($home_banner, '/uploads/settings/') !== false) {
+if ($home_banner && strpos($home_banner, 'uploads/settings/') !== false) {
     $used_images[] = basename($home_banner);
 }
-if ($about_us && strpos($about_us, '/uploads/settings/') !== false) {
+if ($about_us && strpos($about_us, 'uploads/settings/') !== false) {
     $used_images[] = basename($about_us);
 }
 
@@ -49,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cleanup'])) {
     }
     
     setFlashMessage('success', "Cleanup complete! $deleted_count unused image(s) deleted.");
-    header('Location: /Bio-Organic-Herbal-Solutions/admin/cleanup-settings-images.php');
+    header('Location: ' . BASE_URL . '/admin/cleanup-settings-images.php');
     exit;
 }
 
@@ -61,7 +61,7 @@ include 'includes/header.php';
     <h2 class="mb-0">
         <i class="bi bi-trash"></i> Cleanup Settings Images
     </h2>
-    <a href="/Bio-Organic-Herbal-Solutions/admin/settings.php" class="btn btn-outline-secondary">
+    <a href="<?= BASE_URL ?>/admin/settings.php" class="btn btn-outline-secondary">
         <i class="bi bi-arrow-left"></i> Back to Settings
     </a>
 </div>

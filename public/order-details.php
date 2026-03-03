@@ -7,7 +7,7 @@ require_once '../app/models/Order.php';
 requireLogin();
 
 if (!isset($_GET['id'])) {
-    header('Location: /Bio-Organic-Herbal-Solutions/public/orders.php');
+    header('Location: ' . BASE_URL . '/public/orders.php');
     exit();
 }
 
@@ -19,7 +19,7 @@ $order = $orderModel->getById($_GET['id']);
 
 // Check if order exists and belongs to user
 if (!$order || $order['user_id'] != getUserId()) {
-    header('Location: /Bio-Organic-Herbal-Solutions/public/orders.php');
+    header('Location: ' . BASE_URL . '/public/orders.php');
     exit();
 }
 
@@ -32,7 +32,7 @@ include 'includes/header.php';
 <div class="container my-5">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h2>Order Details #<?php echo $order['id']; ?></h2>
-        <a href="/Bio-Organic-Herbal-Solutions/public/orders.php" class="btn btn-outline-secondary">
+        <a href="<?= BASE_URL ?>/public/orders.php" class="btn btn-outline-secondary">
             <i class="bi bi-arrow-left"></i> Back to Orders
         </a>
     </div>

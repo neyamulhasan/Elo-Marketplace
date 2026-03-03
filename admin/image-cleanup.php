@@ -27,8 +27,8 @@ $confirm = $_GET['confirm'] ?? '';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Image Cleanup Utility</title>
-    <link rel="stylesheet" href="/Bio-Organic-Herbal-Solutions/public/assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/public/assets/css/vendor/bootstrap.min.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/public/assets/css/vendor/bootstrap-icons.css">
     <style>
         body { padding: 20px; }
         .stats { background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0; }
@@ -154,9 +154,9 @@ $confirm = $_GET['confirm'] ?? '';
                     $relative_path = 'uploads/products/' . $filename;
                 ?>
                     <div class="orphan-item">
-                        <img src="/Bio-Organic-Herbal-Solutions/public/<?php echo $relative_path; ?>" 
+                        <img src="<?= BASE_URL ?>/public/<?php echo $relative_path; ?>" 
                              alt="<?php echo $filename; ?>"
-                             onerror="this.src='/Bio-Organic-Herbal-Solutions/public/assets/images/placeholder-product.svg'">
+                             onerror="this.src='<?= BASE_URL ?>/public/assets/images/placeholder-product.svg'">
                         <div class="flex-grow-1">
                             <div><strong><?php echo $filename; ?></strong></div>
                             <small class="text-muted"><?php echo formatBytes($size); ?></small>

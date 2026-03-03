@@ -21,8 +21,8 @@ include 'includes/header.php';
         <div class="col">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="/Bio-Organic-Herbal-Solutions/admin/dashboard.php">Dashboard</a></li>
-                    <li class="breadcrumb-item"><a href="/Bio-Organic-Herbal-Solutions/admin/products.php">Products</a></li>
+                    <li class="breadcrumb-item"><a href="<?= BASE_URL ?>/admin/dashboard.php">Dashboard</a></li>
+                    <li class="breadcrumb-item"><a href="<?= BASE_URL ?>/admin/products.php">Products</a></li>
                     <li class="breadcrumb-item active">Add Product</li>
                 </ol>
             </nav>
@@ -36,7 +36,7 @@ include 'includes/header.php';
                     <h4 class="mb-0"><i class="bi bi-plus-circle"></i> Add New Product</h4>
                 </div>
                 <div class="card-body">
-                    <form action="/Bio-Organic-Herbal-Solutions/admin/product-action.php" method="POST" enctype="multipart/form-data" id="addProductForm">
+                    <form action="<?= BASE_URL ?>/admin/product-action.php" method="POST" enctype="multipart/form-data" id="addProductForm">
                         <input type="hidden" name="action" value="add">
                         
                         <div class="row">
@@ -128,7 +128,7 @@ include 'includes/header.php';
                         <hr>
 
                         <div class="d-flex justify-content-between align-items-center">
-                            <a href="/Bio-Organic-Herbal-Solutions/admin/products.php" class="btn btn-secondary">
+                            <a href="<?= BASE_URL ?>/admin/products.php" class="btn btn-secondary">
                                 <i class="bi bi-x-circle"></i> Cancel
                             </a>
                             <button type="submit" class="btn btn-success btn-lg">

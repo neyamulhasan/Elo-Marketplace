@@ -4,7 +4,7 @@ require_once '../app/helpers/session.php';
 require_once '../app/helpers/validation.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    header('Location: /Bio-Organic-Herbal-Solutions/public/contact.php');
+    header('Location: ' . BASE_URL . '/public/contact.php');
     exit();
 }
 
@@ -17,13 +17,13 @@ $message = sanitizeString($_POST['message'] ?? '');
 // Validate
 if (empty($name) || empty($email) || empty($subject) || empty($message)) {
     setFlashMessage('error', 'All fields are required.');
-    header('Location: /Bio-Organic-Herbal-Solutions/public/contact.php');
+    header('Location: ' . BASE_URL . '/public/contact.php');
     exit();
 }
 
 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     setFlashMessage('error', 'Please enter a valid email address.');
-    header('Location: /Bio-Organic-Herbal-Solutions/public/contact.php');
+    header('Location: ' . BASE_URL . '/public/contact.php');
     exit();
 }
 
@@ -50,6 +50,6 @@ try {
     setFlashMessage('error', 'Failed to send message. Please contact us via WhatsApp: +880 1792-457594');
 }
 
-header('Location: /Bio-Organic-Herbal-Solutions/public/contact.php');
+header('Location: ' . BASE_URL . '/public/contact.php');
 exit();
 ?>

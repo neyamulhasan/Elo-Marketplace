@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $total_qty = $current_cart_qty + $quantity;
             if ($total_qty > $product['stock']) {
                 setFlashMessage('error', 'Cannot add more items. Only ' . $product['stock'] . ' items available in stock!');
-                header('Location: ' . ($_SERVER['HTTP_REFERER'] ?? '/Bio-Organic-Herbal-Solutions/public/shop.php'));
+                header('Location: ' . ($_SERVER['HTTP_REFERER'] ?? BASE_URL . '/public/shop.php'));
                 exit();
             }
             
@@ -88,11 +88,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         setFlashMessage('success', 'Product removed from cart!');
     }
     
-    header('Location: /Bio-Organic-Herbal-Solutions/public/cart.php');
+    header('Location: ' . BASE_URL . '/public/cart.php');
     exit();
 }
 
 // If GET request, redirect to cart page
-header('Location: /Bio-Organic-Herbal-Solutions/public/cart.php');
+header('Location: ' . BASE_URL . '/public/cart.php');
 exit();
 ?>

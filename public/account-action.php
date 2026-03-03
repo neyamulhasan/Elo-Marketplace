@@ -7,7 +7,7 @@ require_once '../app/models/User.php';
 // Redirect if not logged in
 if (!isLoggedIn()) {
     $_SESSION['error'] = "Please login to access your account";
-    header('Location: /Bio-Organic-Herbal-Solutions/public/login.php');
+    header('Location: ' . BASE_URL . '/public/login.php');
     exit();
 }
 
@@ -27,7 +27,7 @@ if ($action === 'update_profile') {
     // Validate email
     if (!validateEmail($email)) {
         $_SESSION['error'] = "Invalid email address";
-        header('Location: /Bio-Organic-Herbal-Solutions/public/account.php');
+        header('Location: ' . BASE_URL . '/public/account.php');
         exit();
     }
 
@@ -35,7 +35,7 @@ if ($action === 'update_profile') {
     $existingUser = $userModel->getByEmail($email);
     if ($existingUser && $existingUser['id'] != $_SESSION['user_id']) {
         $_SESSION['error'] = "Email already registered to another account";
-        header('Location: /Bio-Organic-Herbal-Solutions/public/account.php');
+        header('Location: ' . BASE_URL . '/public/account.php');
         exit();
     }
 
@@ -54,7 +54,7 @@ if ($action === 'update_profile') {
         $_SESSION['error'] = "Failed to update profile";
     }
 
-    header('Location: /Bio-Organic-Herbal-Solutions/public/account.php');
+    header('Location: ' . BASE_URL . '/public/account.php');
     exit();
 }
 
@@ -70,21 +70,21 @@ if ($action === 'change_password') {
     // Verify current password
     if (!password_verify($current_password, $user['password'])) {
         $_SESSION['error'] = "Current password is incorrect";
-        header('Location: /Bio-Organic-Herbal-Solutions/public/account.php#password');
+        header('Location: ' . BASE_URL . '/public/account.php#password');
         exit();
     }
 
     // Validate new password
     if (strlen($new_password) < 6) {
         $_SESSION['error'] = "New password must be at least 6 characters";
-        header('Location: /Bio-Organic-Herbal-Solutions/public/account.php#password');
+        header('Location: ' . BASE_URL . '/public/account.php#password');
         exit();
     }
 
     // Check if passwords match
     if ($new_password !== $confirm_password) {
         $_SESSION['error'] = "New passwords do not match";
-        header('Location: /Bio-Organic-Herbal-Solutions/public/account.php#password');
+        header('Location: ' . BASE_URL . '/public/account.php#password');
         exit();
     }
 
@@ -97,11 +97,11 @@ if ($action === 'change_password') {
         $_SESSION['error'] = "Failed to change password";
     }
 
-    header('Location: /Bio-Organic-Herbal-Solutions/public/account.php#password');
+    header('Location: ' . BASE_URL . '/public/account.php#password');
     exit();
 }
 
 // Invalid action
 $_SESSION['error'] = "Invalid action";
-header('Location: /Bio-Organic-Herbal-Solutions/public/account.php');
+header('Location: ' . BASE_URL . '/public/account.php');
 exit();

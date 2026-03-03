@@ -6,7 +6,7 @@ require_once '../app/helpers/image_helper.php';
 require_once '../app/models/Product.php';
 
 if (!isset($_GET['id'])) {
-    header('Location: /Bio-Organic-Herbal-Solutions/public/shop.php');
+    header('Location: ' . BASE_URL . '/public/shop.php');
     exit();
 }
 
@@ -17,7 +17,7 @@ $productModel = new Product($db);
 $product = $productModel->getById($_GET['id']);
 
 if (!$product) {
-    header('Location: /Bio-Organic-Herbal-Solutions/public/shop.php');
+    header('Location: ' . BASE_URL . '/public/shop.php');
     exit();
 }
 
@@ -28,8 +28,8 @@ include 'includes/header.php';
 <div class="container my-5">
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="/Bio-Organic-Herbal-Solutions/public/">Home</a></li>
-            <li class="breadcrumb-item"><a href="/Bio-Organic-Herbal-Solutions/public/shop.php">Shop</a></li>
+            <li class="breadcrumb-item"><a href="<?= BASE_URL ?>/public/">Home</a></li>
+            <li class="breadcrumb-item"><a href="<?= BASE_URL ?>/public/shop.php">Shop</a></li>
             <li class="breadcrumb-item active"><?php echo e($product['name']); ?></li>
         </ol>
     </nav>
@@ -52,7 +52,7 @@ include 'includes/header.php';
                             <img src="<?php echo e($image); ?>" 
                                  class="d-block w-100" 
                                  alt="<?php echo e($product['name']); ?>"
-                                 onerror="this.src='/Bio-Organic-Herbal-Solutions/public/assets/images/placeholder-large.svg'">
+                                 onerror="this.src='<?= BASE_URL ?>/public/assets/images/placeholder-large.svg'">
                         </div>
                         <?php endforeach; ?>
                     </div>
@@ -102,7 +102,7 @@ include 'includes/header.php';
                 <img src="<?php echo e($productImages[0]); ?>" 
                      class="card-img-top" 
                      alt="<?php echo e($product['name']); ?>"
-                     onerror="this.src='/Bio-Organic-Herbal-Solutions/public/assets/images/placeholder-large.svg'">
+                     onerror="this.src='<?= BASE_URL ?>/public/assets/images/placeholder-large.svg'">
             </div>
             <?php endif; ?>
         </div>
@@ -143,7 +143,7 @@ include 'includes/header.php';
             </div>
 
             <?php if ($product['stock'] > 0): ?>
-            <form action="/Bio-Organic-Herbal-Solutions/public/cart-action.php" method="POST">
+            <form action="<?= BASE_URL ?>/public/cart-action.php" method="POST">
                 <input type="hidden" name="product_id" value="<?php echo $product['id']; ?>">
                 <input type="hidden" name="action" value="add">
                 
@@ -158,7 +158,7 @@ include 'includes/header.php';
                     <button type="submit" class="btn btn-success btn-lg">
                         <i class="bi bi-cart-plus"></i> Add to Cart
                     </button>
-                    <a href="/Bio-Organic-Herbal-Solutions/public/shop.php" class="btn btn-outline-secondary btn-lg">
+                    <a href="<?= BASE_URL ?>/public/shop.php" class="btn btn-outline-secondary btn-lg">
                         Continue Shopping
                     </a>
                 </div>

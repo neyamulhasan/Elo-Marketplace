@@ -46,11 +46,11 @@ function handleImageUpload($file) {
     $new_filename = 'product_' . time() . '_' . uniqid() . '.' . $file_ext;
     $upload_dir = __DIR__ . '/../public/uploads/products/';
     
-    // Create directory if not exists
+    // Create directory if not exists and ensure proper permissions
     if (!file_exists($upload_dir)) {
-        mkdir($upload_dir, 0777, true);
-        chmod($upload_dir, 0777);
+        mkdir($upload_dir, 0775, true);
     }
+    chmod($upload_dir, 0775);
     
     $destination = $upload_dir . $new_filename;
     
@@ -155,7 +155,7 @@ if ($action === 'add') {
         setFlashMessage('error', 'Failed to add product.');
     }
     
-    header('Location: /Bio-Organic-Herbal-Solutions/admin/products.php');
+    header('Location: ' . BASE_URL . '/admin/products.php');
     exit();
     
 } elseif ($action === 'edit') {
@@ -197,7 +197,7 @@ if ($action === 'add') {
             }
         } else {
             setFlashMessage('error', $upload_result['error']);
-            header('Location: /Bio-Organic-Herbal-Solutions/admin/product-edit.php?id=' . $id);
+            header('Location: ' . BASE_URL . '/admin/product-edit.php?id=' . $id);
             exit();
         }
     }
@@ -208,7 +208,7 @@ if ($action === 'add') {
         setFlashMessage('error', 'Failed to update product.');
     }
     
-    header('Location: /Bio-Organic-Herbal-Solutions/admin/products.php');
+    header('Location: ' . BASE_URL . '/admin/products.php');
     exit();
     
 } elseif ($action === 'toggle_status') {
@@ -223,7 +223,7 @@ if ($action === 'add') {
     }
     
     // Preserve the filter parameter when redirecting
-    $redirect_url = '/Bio-Organic-Herbal-Solutions/admin/products.php';
+    $redirect_url = BASE_URL . '/admin/products.php';
     if (isset($_POST['show_all']) && $_POST['show_all'] == '1') {
         $redirect_url .= '?show_all=1';
     }
@@ -273,11 +273,11 @@ if ($action === 'add') {
         setFlashMessage('error', 'Failed to delete product. It may have related orders.');
     }
     
-    header('Location: /Bio-Organic-Herbal-Solutions/admin/products.php');
+    header('Location: ' . BASE_URL . '/admin/products.php');
     exit();
 }
 
 // Default redirect
-header('Location: /Bio-Organic-Herbal-Solutions/admin/products.php');
+header('Location: ' . BASE_URL . '/admin/products.php');
 exit();
 ?>

@@ -4,9 +4,19 @@
  * Application-wide constants and settings
  */
 
+// Auto-detect BASE_URL (works on localhost, VPS, and shared hosting with any folder name)
+if (!defined('BASE_URL')) {
+    $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
+    $host = $_SERVER['HTTP_HOST'] ?? 'localhost';
+    $docRoot = rtrim(str_replace('\\', '/', realpath($_SERVER['DOCUMENT_ROOT'] ?? dirname(__DIR__))), '/');
+    $projectRoot = rtrim(str_replace('\\', '/', dirname(__DIR__)), '/');
+    $subfolder = str_replace($docRoot, '', $projectRoot);
+    define('BASE_URL', $protocol . '://' . $host . $subfolder);
+}
+
 // Site Information
 define('SITE_NAME', 'Bio-Organic Herbal Solutions');
-define('SITE_URL', 'http://localhost/Bio-Organic-Herbal-Solutions');
+define('SITE_URL', BASE_URL);
 define('SITE_EMAIL', 'info@bioorganic.com');
 
 // Path Constants

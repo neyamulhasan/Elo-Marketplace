@@ -8,7 +8,8 @@ require_once '../app/models/Setting.php';
 $database = new Database();
 $db = $database->getConnection();
 $settingModel = new Setting($db);
-$about_us_image = $settingModel->get('about_us_image') ?? '/Bio-Organic-Herbal-Solutions/public/assets/images/about-image.jpg';
+$_about_raw = $settingModel->get('about_us_image');
+$about_us_image = $_about_raw ? BASE_URL . '/public/' . $_about_raw : BASE_URL . '/public/assets/images/about-image.jpg';
 
 $page_title = "About Us";
 include 'includes/header.php';
@@ -28,7 +29,7 @@ include 'includes/header.php';
         <!-- Our Story -->
         <div class="row align-items-center mb-5">
             <div class="col-lg-6 mb-4 mb-lg-0">
-                <img src="<?php echo e($about_us_image); ?>" alt="Bio-Organic Herbal Solutions" class="img-fluid rounded shadow" onerror="this.src='/Bio-Organic-Herbal-Solutions/public/assets/images/placeholder-about.svg'">
+                <img src="<?php echo e($about_us_image); ?>" alt="Bio-Organic Herbal Solutions" class="img-fluid rounded shadow" onerror="this.src='<?= BASE_URL ?>/public/assets/images/placeholder-about.svg'">
             </div>
             <div class="col-lg-6">
                 <h2 class="fw-bold mb-4">Our Story</h2>
@@ -140,10 +141,10 @@ include 'includes/header.php';
                         <h3 class="fw-bold mb-3">Ready to Start Your Natural Journey?</h3>
                         <p class="mb-4">Explore our range of organic and herbal products today!</p>
                         <div class="d-flex gap-3 justify-content-center flex-wrap">
-                            <a href="/Bio-Organic-Herbal-Solutions/public/shop.php" class="btn btn-light btn-lg">
+                            <a href="<?= BASE_URL ?>/public/shop.php" class="btn btn-light btn-lg">
                                 <i class="bi bi-shop"></i> Shop Now
                             </a>
-                            <a href="/Bio-Organic-Herbal-Solutions/public/contact.php" class="btn btn-outline-light btn-lg">
+                            <a href="<?= BASE_URL ?>/public/contact.php" class="btn btn-outline-light btn-lg">
                                 <i class="bi bi-envelope"></i> Contact Us
                             </a>
                         </div>

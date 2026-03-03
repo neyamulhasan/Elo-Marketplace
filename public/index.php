@@ -18,10 +18,12 @@ $settingModel = new Setting($db);
 $featured_products = $productModel->getAll(8);
 $categories = $categoryModel->getAll();
 
-// Get site settings
-$home_banner_image = $settingModel->get('home_banner_image') ?? '/Bio-Organic-Herbal-Solutions/public/assets/images/hero-image.jpg';
-$about_us_image = $settingModel->get('about_us_image') ?? '/Bio-Organic-Herbal-Solutions/public/assets/images/about-image.jpg';
-$fallback_category_logo = '/Bio-Organic-Herbal-Solutions/public/assets/images/bio.jpg';
+// Get site settings - stored as relative paths, build full URLs
+$_banner_raw = $settingModel->get('home_banner_image');
+$home_banner_image = $_banner_raw ? BASE_URL . '/public/' . $_banner_raw : BASE_URL . '/public/assets/images/hero-image.jpg';
+$_about_raw = $settingModel->get('about_us_image');
+$about_us_image = $_about_raw ? BASE_URL . '/public/' . $_about_raw : BASE_URL . '/public/assets/images/about-image.jpg';
+$fallback_category_logo = BASE_URL . '/public/assets/images/bio.jpg';
 
 $page_title = "Home";
 include 'includes/header.php';
@@ -35,10 +37,10 @@ include 'includes/header.php';
                 <h1 class="display-4 fw-bold text-success mb-4">Natural & Organic Herbal Solutions</h1>
                 <p class="lead mb-5">We bring you the finest organic medicines,
 Blending ancient wisdom with modern science.</p>
-                <a href="/Bio-Organic-Herbal-Solutions/public/shop.php" class="btn btn-success btn-lg px-5 py-3">Shop Now</a>
+                <a href="<?= BASE_URL ?>/public/shop.php" class="btn btn-success btn-lg px-5 py-3">Shop Now</a>
             </div>
             <div class="col-lg-6">
-                <img src="<?php echo e($home_banner_image); ?>" alt="Herbal Products" class="img-fluid rounded shadow" onerror="this.src='/Bio-Organic-Herbal-Solutions/public/assets/images/placeholder-hero.svg'">
+                <img src="<?php echo e($home_banner_image); ?>" alt="Herbal Products" class="img-fluid rounded shadow" onerror="this.src='<?= BASE_URL ?>/public/assets/images/placeholder-hero.svg'">
             </div>
         </div>
     </div>
@@ -55,9 +57,9 @@ Blending ancient wisdom with modern science.</p>
             <?php foreach ($categories as $category): ?>
             <div class="col-md-6 col-lg-3">
                 <?php 
-                $categoryImage = !empty($category['image']) ? $category['image'] : $fallback_category_logo;
+                $categoryImage = !empty($category['image']) ? BASE_URL . '/public/' . $category['image'] : $fallback_category_logo;
                 ?>
-                <a href="/Bio-Organic-Herbal-Solutions/public/shop.php?category=<?php echo $category['id']; ?>" 
+                <a href="<?= BASE_URL ?>/public/shop.php?category=<?php echo $category['id']; ?>" 
                    class="text-decoration-none">
                     <div class="category-tile position-relative overflow-hidden rounded shadow-sm" 
                          style="height: 250px;">
@@ -85,13 +87,13 @@ Blending ancient wisdom with modern science.</p>
         <div class="row g-4">
             <?php foreach ($featured_products as $product): ?>
             <div class="col-6 col-md-6 col-lg-3">
-                <a href="/Bio-Organic-Herbal-Solutions/public/product.php?id=<?php echo $product['id']; ?>" class="text-decoration-none text-dark">
+                <a href="<?= BASE_URL ?>/public/product.php?id=<?php echo $product['id']; ?>" class="text-decoration-none text-dark">
                     <div class="card h-100 product-card d-flex flex-column" style="cursor: pointer;">
                         <div class="product-image-container">
                             <img src="<?php echo e(getProductPrimaryImage($product)); ?>" 
                                  class="product-image" 
                                  alt="<?php echo e($product['name']); ?>"
-                                 onerror="this.src='/Bio-Organic-Herbal-Solutions/public/assets/images/placeholder-product.svg'">
+                                 onerror="this.src='<?= BASE_URL ?>/public/assets/images/placeholder-product.svg'">
                         </div>
                         <div class="card-body p-2 p-md-3 flex-grow-1">
                             <div class="mb-2 d-flex flex-wrap gap-1">
@@ -148,7 +150,7 @@ Blending ancient wisdom with modern science.</p>
                 </div>
             </div>
             <div class="col-lg-6">
-                <img src="<?php echo e($about_us_image); ?>" alt="About Us" class="img-fluid rounded" onerror="this.src='/Bio-Organic-Herbal-Solutions/public/assets/images/placeholder-about.svg'">
+                <img src="<?php echo e($about_us_image); ?>" alt="About Us" class="img-fluid rounded" onerror="this.src='<?= BASE_URL ?>/public/assets/images/placeholder-about.svg'">
             </div>
         </div>
     </div>

@@ -18,7 +18,7 @@ $userModel = new User($db);
 // Check cart
 initCart();
 if (empty($_SESSION['cart'])) {
-    header('Location: /Bio-Organic-Herbal-Solutions/public/cart.php');
+    header('Location: ' . BASE_URL . '/public/cart.php');
     exit();
 }
 
@@ -75,7 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['cart'] = [];
             
             setFlashMessage('success', 'Order placed successfully! Order ID: #' . $order_id);
-            header('Location: /Bio-Organic-Herbal-Solutions/public/orders.php');
+            header('Location: ' . BASE_URL . '/public/orders.php');
             exit();
         } else {
             $errors[] = 'Failed to place order. Please try again.';

@@ -5,7 +5,7 @@
                 <div class="col-md-4 mb-4">
                     <h5 class="mb-3 fw-bold text-success">Bio-Organic Herbal</h5>
                     <div class="d-flex align-items-center mb-3">
-                        <img src="/Bio-Organic-Herbal-Solutions/public/assets/images/bio.jpg" alt="Bio-Organic Herbal Solutions" class="rounded-circle" style="height: 50px; width: 50px; object-fit: cover; margin-right: 10px;">
+                        <img src="<?= BASE_URL ?>/public/assets/images/bio.jpg" alt="Bio-Organic Herbal Solutions" class="rounded-circle" style="height: 50px; width: 50px; object-fit: cover; margin-right: 10px;">
                     </div>
                     <p>Your trusted source for natural and organic herbal products in Bangladesh.</p>
                     <div class="social-links">
@@ -18,10 +18,10 @@
                 <div class="col-md-4 mb-4">
                     <h5 class="mb-3 fw-bold text-success">Quick Links</h5>
                     <ul class="list-unstyled">
-                        <li><a href="/Bio-Organic-Herbal-Solutions/public/" class="text-light text-decoration-none">Home</a></li>
-                        <li><a href="/Bio-Organic-Herbal-Solutions/public/shop.php" class="text-light text-decoration-none">Shop</a></li>
-                        <li><a href="/Bio-Organic-Herbal-Solutions/public/about.php" class="text-light text-decoration-none">About Us</a></li>
-                        <li><a href="/Bio-Organic-Herbal-Solutions/public/contact.php" class="text-light text-decoration-none">Contact</a></li>
+                        <li><a href="<?= BASE_URL ?>/public/" class="text-light text-decoration-none">Home</a></li>
+                        <li><a href="<?= BASE_URL ?>/public/shop.php" class="text-light text-decoration-none">Shop</a></li>
+                        <li><a href="<?= BASE_URL ?>/public/about.php" class="text-light text-decoration-none">About Us</a></li>
+                        <li><a href="<?= BASE_URL ?>/public/contact.php" class="text-light text-decoration-none">Contact</a></li>
                     </ul>
                 </div>
                 <div class="col-md-4 mb-4">
@@ -38,8 +38,8 @@
     </footer>
 
     <!-- Bootstrap 5 JS Bundle (Local) -->
-    <script src="/Bio-Organic-Herbal-Solutions/public/assets/js/vendor/bootstrap.bundle.min.js"></script>
+    <script src="<?= BASE_URL ?>/public/assets/js/vendor/bootstrap.bundle.min.js"></script>
     <!-- Custom JS -->
-    <script src="/Bio-Organic-Herbal-Solutions/public/assets/js/main.js"></script>
+    <script src="<?= BASE_URL ?>/public/assets/js/main.js"></script>
 </body>
 </html>

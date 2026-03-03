@@ -22,7 +22,7 @@ include 'includes/header.php';
     <?php if (empty($orders)): ?>
         <div class="alert alert-info">
             <i class="bi bi-info-circle"></i> You haven't placed any orders yet.
-            <a href="/Bio-Organic-Herbal-Solutions/public/shop.php" class="alert-link">Start Shopping</a>
+            <a href="<?= BASE_URL ?>/public/shop.php" class="alert-link">Start Shopping</a>
         </div>
     <?php else: ?>
         <div class="table-responsive">
@@ -59,7 +59,7 @@ include 'includes/header.php';
                             </span>
                         </td>
                         <td>
-                            <a href="/Bio-Organic-Herbal-Solutions/public/order-details.php?id=<?php echo $order['id']; ?>" class="btn btn-sm btn-outline-success">
+                            <a href="<?= BASE_URL ?>/public/order-details.php?id=<?php echo $order['id']; ?>" class="btn btn-sm btn-outline-success">
                                 <i class="bi bi-eye"></i> View
                             </a>
                         </td>

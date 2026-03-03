@@ -18,7 +18,7 @@ include 'includes/header.php';
 
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h2 class="mb-0">Site Settings</h2>
-    <a href="/Bio-Organic-Herbal-Solutions/admin/cleanup-settings-images.php" class="btn btn-outline-danger">
+    <a href="<?= BASE_URL ?>/admin/cleanup-settings-images.php" class="btn btn-outline-danger">
         <i class="bi bi-trash"></i> Cleanup Unused Images
     </a>
 </div>
@@ -30,7 +30,7 @@ include 'includes/header.php';
                 <h5 class="mb-0"><i class="bi bi-gear"></i> Homepage & About Us Images</h5>
             </div>
             <div class="card-body">
-                <form action="/Bio-Organic-Herbal-Solutions/admin/settings-action.php" method="POST" enctype="multipart/form-data">
+                <form action="<?= BASE_URL ?>/admin/settings-action.php" method="POST" enctype="multipart/form-data">
                     
                     <!-- Home Banner Image -->
                     <div class="mb-4">
@@ -40,12 +40,12 @@ include 'includes/header.php';
                         
                         <div class="mb-3">
                             <div class="border rounded p-3 bg-light text-center">
-                                <img src="<?php echo e($settings['home_banner_image'] ?? '/Bio-Organic-Herbal-Solutions/public/assets/images/hero-image.jpg'); ?>" 
+                                <img src="<?php echo e(!empty($settings['home_banner_image']) ? BASE_URL . '/public/' . $settings['home_banner_image'] : BASE_URL . '/public/assets/images/hero-image.jpg'); ?>" 
                                      alt="Current Banner" 
                                      class="img-fluid rounded"
                                      style="max-height: 300px; object-fit: cover;"
                                      id="banner-preview"
-                                     onerror="this.src='/Bio-Organic-Herbal-Solutions/public/assets/images/placeholder-hero.svg'">
+                                     onerror="this.src='<?= BASE_URL ?>/public/assets/images/placeholder-hero.svg'">
                                 <p class="text-muted small mt-2">Current Banner Image</p>
                                 <?php if (!empty($settings['home_banner_image'])): ?>
                                     <button type="submit" name="delete_banner" value="1" class="btn btn-sm btn-outline-danger mt-2">
@@ -74,12 +74,12 @@ include 'includes/header.php';
                         
                         <div class="mb-3">
                             <div class="border rounded p-3 bg-light text-center">
-                                <img src="<?php echo e($settings['about_us_image'] ?? '/Bio-Organic-Herbal-Solutions/public/assets/images/about-image.jpg'); ?>" 
+                                <img src="<?php echo e(!empty($settings['about_us_image']) ? BASE_URL . '/public/' . $settings['about_us_image'] : BASE_URL . '/public/assets/images/about-image.jpg'); ?>" 
                                      alt="Current About Image" 
                                      class="img-fluid rounded"
                                      style="max-height: 300px; object-fit: cover;"
                                      id="about-preview"
-                                     onerror="this.src='/Bio-Organic-Herbal-Solutions/public/assets/images/placeholder-about.svg'">
+                                     onerror="this.src='<?= BASE_URL ?>/public/assets/images/placeholder-about.svg'">
                                 <p class="text-muted small mt-2">Current About Us Image</p>
                                 <?php if (!empty($settings['about_us_image'])): ?>
                                     <button type="submit" name="delete_about" value="1" class="btn btn-sm btn-outline-danger mt-2">

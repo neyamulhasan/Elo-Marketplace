@@ -61,7 +61,7 @@ function destroyUserSession() {
  */
 function requireLogin($redirect_url = '') {
     if (!isLoggedIn()) {
-        $url = '/Bio-Organic-Herbal-Solutions/public/login.php';
+        $url = BASE_URL . '/public/login.php';
         if ($redirect_url) {
             $url .= '?redirect=' . urlencode($redirect_url);
         }
@@ -75,7 +75,7 @@ function requireLogin($redirect_url = '') {
  */
 function requireAdmin() {
     if (!isAdmin()) {
-        header('Location: /Bio-Organic-Herbal-Solutions/admin/login.php');
+        header('Location: ' . BASE_URL . '/admin/login.php');
         exit();
     }
 }

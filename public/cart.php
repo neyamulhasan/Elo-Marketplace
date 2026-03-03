@@ -42,7 +42,7 @@ include 'includes/header.php';
         <?php if (empty($_SESSION['cart'])): ?>
             <div class="alert alert-info">
                 <i class="bi bi-cart-x"></i> Your cart is empty.
-                <a href="/Bio-Organic-Herbal-Solutions/public/shop.php" class="alert-link">Continue Shopping</a>
+                <a href="<?= BASE_URL ?>/public/shop.php" class="alert-link">Continue Shopping</a>
             </div>
         <?php else: ?>
         <div class="row g-4">
@@ -87,7 +87,7 @@ include 'includes/header.php';
                                             <?php endif; ?>
                                         </td>
                                         <td>
-                                            <form action="/Bio-Organic-Herbal-Solutions/public/cart-action.php" method="POST" class="d-inline">
+                                            <form action="<?= BASE_URL ?>/public/cart-action.php" method="POST" class="d-inline">
                                                 <input type="hidden" name="product_id" value="<?php echo $item['id']; ?>">
                                                 <input type="hidden" name="action" value="update">
                                                 <div class="input-group" style="width: 120px;">
@@ -100,7 +100,7 @@ include 'includes/header.php';
                                         </td>
                                         <td class="fw-bold"><?php echo formatPrice($subtotal); ?></td>
                                         <td>
-                                            <form action="/Bio-Organic-Herbal-Solutions/public/cart-action.php" method="POST" class="d-inline">
+                                            <form action="<?= BASE_URL ?>/public/cart-action.php" method="POST" class="d-inline">
                                                 <input type="hidden" name="product_id" value="<?php echo $item['id']; ?>">
                                                 <input type="hidden" name="action" value="remove">
                                                 <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Remove this item?')">
@@ -134,7 +134,7 @@ include 'includes/header.php';
                                                 <br><span class="badge bg-danger small"><?php echo number_format($item['discount_percentage'], 0); ?>% OFF</span>
                                             <?php endif; ?>
                                         </div>
-                                        <form action="/Bio-Organic-Herbal-Solutions/public/cart-action.php" method="POST" class="d-inline ms-2">
+                                        <form action="<?= BASE_URL ?>/public/cart-action.php" method="POST" class="d-inline ms-2">
                                             <input type="hidden" name="product_id" value="<?php echo $item['id']; ?>">
                                             <input type="hidden" name="action" value="remove">
                                             <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Remove this item?')">
@@ -151,7 +151,7 @@ include 'includes/header.php';
                                         <?php endif; ?>
                                     </div>
                                     <div class="d-flex justify-content-between align-items-center">
-                                        <form action="/Bio-Organic-Herbal-Solutions/public/cart-action.php" method="POST" class="d-inline">
+                                        <form action="<?= BASE_URL ?>/public/cart-action.php" method="POST" class="d-inline">
                                             <input type="hidden" name="product_id" value="<?php echo $item['id']; ?>">
                                             <input type="hidden" name="action" value="update">
                                             <div class="input-group" style="width: 120px;">
@@ -192,16 +192,16 @@ include 'includes/header.php';
                         </div>
                         
                         <?php if (isLoggedIn()): ?>
-                            <a href="/Bio-Organic-Herbal-Solutions/public/checkout.php" class="btn btn-success w-100 mb-2">
+                            <a href="<?= BASE_URL ?>/public/checkout.php" class="btn btn-success w-100 mb-2">
                                 <i class="bi bi-credit-card"></i> Proceed to Checkout
                             </a>
                         <?php else: ?>
-                            <a href="/Bio-Organic-Herbal-Solutions/public/login.php?redirect=checkout.php" class="btn btn-success w-100 mb-2">
+                            <a href="<?= BASE_URL ?>/public/login.php?redirect=checkout.php" class="btn btn-success w-100 mb-2">
                                 <i class="bi bi-box-arrow-in-right"></i> Login to Checkout
                             </a>
                         <?php endif; ?>
                         
-                        <a href="/Bio-Organic-Herbal-Solutions/public/shop.php" class="btn btn-outline-secondary w-100">
+                        <a href="<?= BASE_URL ?>/public/shop.php" class="btn btn-outline-secondary w-100">
                             Continue Shopping
                         </a>
                     </div>

@@ -7,7 +7,7 @@ require_once '../app/models/User.php';
 // Redirect if not logged in
 if (!isLoggedIn()) {
     $_SESSION['error'] = "Please login to access your account";
-    header('Location: /Bio-Organic-Herbal-Solutions/public/login.php');
+    header('Location: ' . BASE_URL . '/public/login.php');
     exit();
 }
 
@@ -40,7 +40,7 @@ include 'includes/header.php';
                     <a href="#password" class="list-group-item list-group-item-action" data-bs-toggle="tab">
                         <i class="bi bi-key"></i> Change Password
                     </a>
-                    <a href="/Bio-Organic-Herbal-Solutions/public/logout.php" class="list-group-item list-group-item-action text-danger">
+                    <a href="<?= BASE_URL ?>/public/logout.php" class="list-group-item list-group-item-action text-danger">
                         <i class="bi bi-box-arrow-right"></i> Logout
                     </a>
                 </div>
@@ -76,7 +76,7 @@ include 'includes/header.php';
                                     </div>
                                 <?php endif; ?>
 
-                                <form action="/Bio-Organic-Herbal-Solutions/public/account-action.php" method="POST">
+                                <form action="<?= BASE_URL ?>/public/account-action.php" method="POST">
                                     <input type="hidden" name="action" value="update_profile">
                                     
                                     <div class="row">
@@ -145,7 +145,7 @@ include 'includes/header.php';
                                 <h5 class="mb-0"><i class="bi bi-shield-lock"></i> Change Password</h5>
                             </div>
                             <div class="card-body">
-                                <form action="/Bio-Organic-Herbal-Solutions/public/account-action.php" method="POST">
+                                <form action="<?= BASE_URL ?>/public/account-action.php" method="POST">
                                     <input type="hidden" name="action" value="change_password">
                                     
                                     <div class="mb-3">

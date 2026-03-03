@@ -1,23 +1,18 @@
 <?php
 /**
- * Database Configuration
- * Connection settings for MySQL database
+ * Database Configuration — TEMPLATE
+ * Copy this file to database.php and fill in your credentials.
  */
 
 class Database {
     private $host = "localhost";
-    private $db_name = "bio_organic_herbal";
-    private $username = "root";
-    private $password = "";
+    private $db_name = "your_database_name";
+    private $username = "your_db_user";
+    private $password = "your_db_password";
     public $conn;
 
-    /**
-     * Get database connection
-     * @return PDO connection object
-     */
     public function getConnection() {
         $this->conn = null;
-
         try {
             $this->conn = new PDO(
                 "mysql:host=" . $this->host . ";dbname=" . $this->db_name . ";charset=utf8mb4",
@@ -30,7 +25,6 @@ class Database {
         } catch(PDOException $exception) {
             echo "Connection error: " . $exception->getMessage();
         }
-
         return $this->conn;
     }
 }

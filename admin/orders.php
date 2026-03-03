@@ -58,7 +58,7 @@ include 'includes/header.php';
                         <td><?php echo formatPrice($order['total']); ?></td>
                         <td><?php echo ucwords(str_replace('_', ' ', $order['payment_method'])); ?></td>
                         <td>
-                            <form action="/Bio-Organic-Herbal-Solutions/admin/order-action.php" method="POST" class="d-inline">
+                            <form action="<?= BASE_URL ?>/admin/order-action.php" method="POST" class="d-inline">
                                 <input type="hidden" name="order_id" value="<?php echo $order['id']; ?>">
                                 <select name="status" class="form-select form-select-sm" onchange="this.form.submit()">
                                     <option value="pending" <?php echo $order['status'] == 'pending' ? 'selected' : ''; ?>>Pending</option>
@@ -70,7 +70,7 @@ include 'includes/header.php';
                         </td>
                         <td><?php echo formatDate($order['created_at']); ?></td>
                         <td>
-                            <a href="/Bio-Organic-Herbal-Solutions/admin/order-details.php?id=<?php echo $order['id']; ?>" class="btn btn-sm btn-outline-success">
+                            <a href="<?= BASE_URL ?>/admin/order-details.php?id=<?php echo $order['id']; ?>" class="btn btn-sm btn-outline-success">
                                 <i class="bi bi-eye"></i> View
                             </a>
                         </td>

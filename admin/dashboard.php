@@ -119,7 +119,7 @@ include 'includes/header.php';
                             </td>
                             <td><?php echo formatDate($order['created_at']); ?></td>
                             <td>
-                                <a href="/Bio-Organic-Herbal-Solutions/admin/order-details.php?id=<?php echo $order['id']; ?>" class="btn btn-sm btn-outline-success">
+                                <a href="<?= BASE_URL ?>/admin/order-details.php?id=<?php echo $order['id']; ?>" class="btn btn-sm btn-outline-success">
                                     <i class="bi bi-eye"></i> View
                                 </a>
                             </td>

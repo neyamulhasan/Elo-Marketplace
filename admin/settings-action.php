@@ -6,7 +6,7 @@ require_once '../app/models/Setting.php';
 requireAdmin();
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    header('Location: /Bio-Organic-Herbal-Solutions/admin/settings.php');
+    header('Location: ' . BASE_URL . '/admin/settings.php');
     exit;
 }
 
@@ -16,8 +16,9 @@ $settingModel = new Setting($db);
 
 $upload_dir = '../public/uploads/settings/';
 if (!file_exists($upload_dir)) {
-    mkdir($upload_dir, 0755, true);
+    mkdir($upload_dir, 0775, true);
 }
+chmod($upload_dir, 0775);
 
 $success_count = 0;
 $errors = [];
@@ -26,8 +27,8 @@ $deleted = [];
 // Handle delete actions first
 if (isset($_POST['delete_banner'])) {
     $old_image = $settingModel->get('home_banner_image');
-    if ($old_image && strpos($old_image, '/uploads/settings/') !== false) {
-        $old_file = '../public' . str_replace('/Bio-Organic-Herbal-Solutions/public', '', $old_image);
+    if ($old_image && strpos($old_image, 'uploads/settings/') !== false) {
+        $old_file = ROOT_PATH . '/public/' . $old_image;
         if (file_exists($old_file)) {
             @unlink($old_file);
         }
@@ -38,8 +39,8 @@ if (isset($_POST['delete_banner'])) {
 
 if (isset($_POST['delete_about'])) {
     $old_image = $settingModel->get('about_us_image');
-    if ($old_image && strpos($old_image, '/uploads/settings/') !== false) {
-        $old_file = '../public' . str_replace('/Bio-Organic-Herbal-Solutions/public', '', $old_image);
+    if ($old_image && strpos($old_image, 'uploads/settings/') !== false) {
+        $old_file = ROOT_PATH . '/public/' . $old_image;
         if (file_exists($old_file)) {
             @unlink($old_file);
         }
@@ -65,12 +66,12 @@ if (isset($_FILES['home_banner_image']) && $_FILES['home_banner_image']['error']
         $filepath = $upload_dir . $filename;
         
         if (move_uploaded_file($file['tmp_name'], $filepath)) {
-            $relative_path = '/Bio-Organic-Herbal-Solutions/public/uploads/settings/' . $filename;
+            $relative_path = 'uploads/settings/' . $filename;
             
             // Delete old image if exists and not default
             $old_image = $settingModel->get('home_banner_image');
-            if ($old_image && strpos($old_image, '/uploads/settings/') !== false) {
-                $old_file = '../public' . str_replace('/Bio-Organic-Herbal-Solutions/public', '', $old_image);
+            if ($old_image && strpos($old_image, 'uploads/settings/') !== false) {
+                $old_file = ROOT_PATH . '/public/' . $old_image;
                 if (file_exists($old_file)) {
                     unlink($old_file);
                 }
@@ -99,12 +100,12 @@ if (isset($_FILES['about_us_image']) && $_FILES['about_us_image']['error'] === U
         $filepath = $upload_dir . $filename;
         
         if (move_uploaded_file($file['tmp_name'], $filepath)) {
-            $relative_path = '/Bio-Organic-Herbal-Solutions/public/uploads/settings/' . $filename;
+            $relative_path = 'uploads/settings/' . $filename;
             
             // Delete old image if exists and not default
             $old_image = $settingModel->get('about_us_image');
-            if ($old_image && strpos($old_image, '/uploads/settings/') !== false) {
-                $old_file = '../public' . str_replace('/Bio-Organic-Herbal-Solutions/public', '', $old_image);
+            if ($old_image && strpos($old_image, 'uploads/settings/') !== false) {
+                $old_file = ROOT_PATH . '/public/' . $old_image;
                 if (file_exists($old_file)) {
                     unlink($old_file);
                 }
@@ -132,5 +133,5 @@ if ($success_count > 0 || count($deleted) > 0) {
     setFlashMessage('info', 'No changes were made.');
 }
 
-header('Location: /Bio-Organic-Herbal-Solutions/admin/settings.php');
+header('Location: ' . BASE_URL . '/admin/settings.php');
 exit;

@@ -15,7 +15,7 @@ $categoryModel = new Category($db);
 $settingModel = new Setting($db);
 
 // Get default category logo
-$default_category_logo = $settingModel->get('default_category_logo') ?? '/Bio-Organic-Herbal-Solutions/public/assets/images/bio.jpg';
+$default_category_logo = BASE_URL . '/public/assets/images/bio.jpg';
 
 // Get filters
 $category_id = isset($_GET['category']) ? intval($_GET['category']) : null;
@@ -45,12 +45,12 @@ include 'includes/header.php';
                     <h5 class="mb-0"><i class="bi bi-grid-3x3-gap-fill me-2"></i>Categories</h5>
                 </div>
                 <div class="list-group list-group-flush">
-                    <a href="/Bio-Organic-Herbal-Solutions/public/shop.php" 
+                    <a href="<?= BASE_URL ?>/public/shop.php" 
                        class="list-group-item list-group-item-action border-0 d-flex justify-content-between align-items-center <?php echo !$category_id ? 'active' : ''; ?>">
                         <span><i class="bi bi-collection me-2"></i>All Products</span>
                     </a>
                 <?php foreach ($categories as $category): ?>
-                <a href="/Bio-Organic-Herbal-Solutions/public/shop.php?category=<?php echo $category['id']; ?>" 
+                <a href="<?= BASE_URL ?>/public/shop.php?category=<?php echo $category['id']; ?>" 
                    class="list-group-item list-group-item-action border-0 d-flex align-items-center <?php echo $category_id == $category['id'] ? 'active' : ''; ?>">
                     <span><?php echo e($category['name']); ?></span>
                 </a>
@@ -83,13 +83,13 @@ include 'includes/header.php';
             <div class="row g-4">
                 <?php foreach ($products as $product): ?>
                 <div class="col-6 col-md-6 col-lg-4">
-                    <a href="/Bio-Organic-Herbal-Solutions/public/product.php?id=<?php echo $product['id']; ?>" class="text-decoration-none text-dark">
+                    <a href="<?= BASE_URL ?>/public/product.php?id=<?php echo $product['id']; ?>" class="text-decoration-none text-dark">
                         <div class="card h-100 product-card d-flex flex-column">
                             <div class="product-image-container">
                                 <img src="<?php echo e(getProductPrimaryImage($product)); ?>" 
                                      class="product-image" 
                                      alt="<?php echo e($product['name']); ?>"
-                                     onerror="this.src='/Bio-Organic-Herbal-Solutions/public/assets/images/placeholder-product.svg'">
+                                     onerror="this.src='<?= BASE_URL ?>/public/assets/images/placeholder-product.svg'">
                             </div>
                             <div class="card-body p-2 p-md-3 flex-grow-1">
                                 <div class="mb-2 d-flex flex-wrap gap-1">

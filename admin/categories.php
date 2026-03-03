@@ -48,14 +48,17 @@ include 'includes/header.php';
                                 // Get default category logo from settings
                                 require_once '../app/models/Setting.php';
                                 $settingModel = new Setting($db);
-                                $categoryImage = $settingModel->get('default_category_logo') ?? '/Bio-Organic-Herbal-Solutions/public/assets/images/bio.jpg';
+                                $dlogoRaw = $settingModel->get('default_category_logo');
+                                $categoryImage = $dlogoRaw ? BASE_URL . '/public/' . $dlogoRaw : BASE_URL . '/public/assets/images/bio.jpg';
+                            } else {
+                                $categoryImage = BASE_URL . '/public/' . $categoryImage;
                             }
                             ?>
                             <img src="<?php echo e($categoryImage); ?>" 
                                  alt="<?php echo e($category['name']); ?>" 
                                  class="img-thumbnail"
                                  style="width: 50px; height: 50px; object-fit: contain;"
-                                 onerror="this.src='/Bio-Organic-Herbal-Solutions/public/assets/images/placeholder-category.svg'">
+                                 onerror="this.src='<?= BASE_URL ?>/public/assets/images/placeholder-category.svg'">
                         </td>
                         <td><?php echo e($category['name']); ?></td>
                         <td><?php echo e($category['description']); ?></td>
@@ -80,7 +83,7 @@ include 'includes/header.php';
 <div class="modal fade" id="addCategoryModal" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form action="/Bio-Organic-Herbal-Solutions/admin/category-action.php" method="POST" enctype="multipart/form-data">
+            <form action="<?= BASE_URL ?>/admin/category-action.php" method="POST" enctype="multipart/form-data">
                 <input type="hidden" name="action" value="add">
                 <div class="modal-header bg-success text-white">
                     <h5 class="modal-title">Add New Category</h5>
@@ -99,7 +102,7 @@ include 'includes/header.php';
                         <label class="form-label">Category Image</label>
                         <div class="mb-2">
                             <img id="add_image_preview" 
-                                 src="/Bio-Organic-Herbal-Solutions/public/assets/images/placeholder-category.svg" 
+                                 src="<?= BASE_URL ?>/public/assets/images/placeholder-category.svg" 
                                  alt="Preview" 
                                  class="img-thumbnail d-block"
                                  style="max-height: 150px; object-fit: contain;">
@@ -125,7 +128,7 @@ include 'includes/header.php';
 <div class="modal fade" id="editCategoryModal" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form action="/Bio-Organic-Herbal-Solutions/admin/category-action.php" method="POST" enctype="multipart/form-data">
+            <form action="<?= BASE_URL ?>/admin/category-action.php" method="POST" enctype="multipart/form-data">
                 <input type="hidden" name="action" value="edit">
                 <input type="hidden" name="id" id="edit_id">
                 <input type="hidden" name="existing_image" id="edit_existing_image">
@@ -146,7 +149,7 @@ include 'includes/header.php';
                         <label class="form-label">Category Image</label>
                         <div class="mb-2">
                             <img id="edit_image_preview" 
-                                 src="/Bio-Organic-Herbal-Solutions/public/assets/images/placeholder-category.svg" 
+                                 src="<?= BASE_URL ?>/public/assets/images/placeholder-category.svg" 
                                  alt="Preview" 
                                  class="img-thumbnail d-block"
                                  style="max-height: 150px; object-fit: contain;">
@@ -178,7 +181,7 @@ include 'includes/header.php';
 <div class="modal fade" id="deleteCategoryModal" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form action="/Bio-Organic-Herbal-Solutions/admin/category-action.php" method="POST">
+            <form action="<?= BASE_URL ?>/admin/category-action.php" method="POST">
                 <input type="hidden" name="action" value="delete">
                 <input type="hidden" name="id" id="delete_id">
                 <div class="modal-header bg-danger text-white">
@@ -224,7 +227,7 @@ function editCategory(category) {
     document.getElementById('edit_existing_image').value = category.image || '';
     
     // Set preview image
-    const defaultLogo = '/Bio-Organic-Herbal-Solutions/public/assets/images/bio.jpg';
+    const defaultLogo = '<?= BASE_URL ?>/public/assets/images/bio.jpg';
     const previewImg = document.getElementById('edit_image_preview');
     previewImg.src = category.image || defaultLogo;
     

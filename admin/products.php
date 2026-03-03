@@ -42,7 +42,7 @@ include 'includes/header.php';
             <span class="badge bg-danger"><?php echo $inactive_count; ?> Inactive</span>
         </p>
     </div>
-    <a href="/Bio-Organic-Herbal-Solutions/admin/product-add.php" class="btn btn-success">
+    <a href="<?= BASE_URL ?>/admin/product-add.php" class="btn btn-success">
         <i class="bi bi-plus-circle"></i> Add Product
     </a>
 </div>
@@ -51,11 +51,11 @@ include 'includes/header.php';
 <div class="card mb-3">
     <div class="card-body">
         <div class="btn-group" role="group">
-            <a href="/Bio-Organic-Herbal-Solutions/admin/products.php" 
+            <a href="<?= BASE_URL ?>/admin/products.php" 
                class="btn btn-<?php echo !$show_all ? 'success' : 'outline-success'; ?>">
                 <i class="bi bi-check-circle"></i> Active Products (<?php echo $active_count; ?>)
             </a>
-            <a href="/Bio-Organic-Herbal-Solutions/admin/products.php?show_all=1" 
+            <a href="<?= BASE_URL ?>/admin/products.php?show_all=1" 
                class="btn btn-<?php echo $show_all ? 'primary' : 'outline-primary'; ?>">
                 <i class="bi bi-list"></i> All Products (<?php echo count($products); ?>)
             </a>
@@ -129,7 +129,7 @@ include 'includes/header.php';
                         </td>
                         <td>
                             <div class="btn-group" role="group">
-                                <a href="/Bio-Organic-Herbal-Solutions/admin/product-edit.php?id=<?php echo $product['id']; ?>" 
+                                <a href="<?= BASE_URL ?>/admin/product-edit.php?id=<?php echo $product['id']; ?>" 
                                    class="btn btn-sm btn-warning" 
                                    title="Edit">
                                     <i class="bi bi-pencil"></i>
@@ -162,7 +162,7 @@ include 'includes/header.php';
                             <i class="bi bi-inbox fs-1"></i>
                             <p class="mt-2">No products to display</p>
                             <?php if (!$show_all && $inactive_count > 0): ?>
-                                <a href="/Bio-Organic-Herbal-Solutions/admin/products.php?show_all=1" class="btn btn-sm btn-primary">
+                                <a href="<?= BASE_URL ?>/admin/products.php?show_all=1" class="btn btn-sm btn-primary">
                                     Show All Products (<?php echo $inactive_count; ?> inactive)
                                 </a>
                             <?php endif; ?>
@@ -179,7 +179,7 @@ include 'includes/header.php';
 <div class="modal fade" id="deleteProductModal" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form action="/Bio-Organic-Herbal-Solutions/admin/product-action.php" method="POST">
+            <form action="<?= BASE_URL ?>/admin/product-action.php" method="POST">
                 <input type="hidden" name="action" value="delete">
                 <input type="hidden" name="id" id="delete_id">
                 <div class="modal-header bg-danger text-white">
@@ -219,7 +219,7 @@ function toggleStatus(productId, newStatus, productName) {
         // Create form and submit
         const form = document.createElement('form');
         form.method = 'POST';
-        form.action = '/Bio-Organic-Herbal-Solutions/admin/product-action.php';
+        form.action = '<?= BASE_URL ?>/admin/product-action.php';
         
         const actionInput = document.createElement('input');
         actionInput.type = 'hidden';

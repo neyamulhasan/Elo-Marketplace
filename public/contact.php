@@ -110,7 +110,7 @@ include 'includes/header.php';
                     <div class="card-body p-4">
                         <h4 class="card-title text-success mb-4">Send Us a Message</h4>
                         
-                        <form action="/Bio-Organic-Herbal-Solutions/public/contact-submit.php" method="POST">
+                        <form action="<?= BASE_URL ?>/public/contact-submit.php" method="POST">
                             <div class="row g-3">
                                 <div class="col-md-6">
                                     <label class="form-label">Your Name *</label>

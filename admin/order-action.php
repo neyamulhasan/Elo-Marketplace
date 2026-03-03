@@ -20,6 +20,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-header('Location: /Bio-Organic-Herbal-Solutions/admin/orders.php');
+header('Location: ' . BASE_URL . '/admin/orders.php');
 exit();
 ?>

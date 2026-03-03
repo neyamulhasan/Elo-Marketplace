@@ -16,8 +16,9 @@ $action = $_POST['action'] ?? '';
 function handleCategoryImageUpload($file) {
     $upload_dir = '../public/uploads/categories/';
     if (!file_exists($upload_dir)) {
-        mkdir($upload_dir, 0755, true);
+        mkdir($upload_dir, 0775, true);
     }
+    chmod($upload_dir, 0775);
     
     $allowed_types = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
     
@@ -34,7 +35,7 @@ function handleCategoryImageUpload($file) {
     $filepath = $upload_dir . $filename;
     
     if (move_uploaded_file($file['tmp_name'], $filepath)) {
-        $relative_path = '/Bio-Organic-Herbal-Solutions/public/uploads/categories/' . $filename;
+        $relative_path = 'uploads/categories/' . $filename;
         return ['success' => true, 'path' => $relative_path];
     }
     
@@ -43,8 +44,8 @@ function handleCategoryImageUpload($file) {
 
 // Helper function to delete category image
 function deleteCategoryImage($imagePath) {
-    if ($imagePath && strpos($imagePath, '/uploads/categories/') !== false) {
-        $file = '../public' . str_replace('/Bio-Organic-Herbal-Solutions/public', '', $imagePath);
+    if ($imagePath && strpos($imagePath, 'uploads/categories/') !== false) {
+        $file = ROOT_PATH . '/public/' . $imagePath;
         if (file_exists($file)) {
             @unlink($file);
         }
@@ -61,7 +62,7 @@ if ($action === 'add') {
             $imagePath = $uploadResult['path'];
         } else {
             setFlashMessage('error', $uploadResult['error']);
-            header('Location: /Bio-Organic-Herbal-Solutions/admin/categories.php');
+            header('Location: ' . BASE_URL . '/admin/categories.php');
             exit();
         }
     }
@@ -102,7 +103,7 @@ if ($action === 'add') {
             $imagePath = $uploadResult['path'];
         } else {
             setFlashMessage('error', $uploadResult['error']);
-            header('Location: /Bio-Organic-Herbal-Solutions/admin/categories.php');
+            header('Location: ' . BASE_URL . '/admin/categories.php');
             exit();
         }
     }
@@ -134,6 +135,6 @@ if ($action === 'add') {
     }
 }
 
-header('Location: /Bio-Organic-Herbal-Solutions/admin/categories.php');
+header('Location: ' . BASE_URL . '/admin/categories.php');
 exit();
 ?>

@@ -7,7 +7,7 @@ require_once '../app/models/Order.php';
 requireAdmin();
 
 if (!isset($_GET['id'])) {
-    header('Location: /Bio-Organic-Herbal-Solutions/admin/orders.php');
+    header('Location: ' . BASE_URL . '/admin/orders.php');
     exit();
 }
 
@@ -17,7 +17,7 @@ $orderModel = new Order($db);
 
 $order = $orderModel->getById($_GET['id']);
 if (!$order) {
-    header('Location: /Bio-Organic-Herbal-Solutions/admin/orders.php');
+    header('Location: ' . BASE_URL . '/admin/orders.php');
     exit();
 }
 
@@ -29,7 +29,7 @@ include 'includes/header.php';
 
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h2>Order #<?php echo $order['id']; ?></h2>
-    <a href="/Bio-Organic-Herbal-Solutions/admin/orders.php" class="btn btn-outline-secondary">
+    <a href="<?= BASE_URL ?>/admin/orders.php" class="btn btn-outline-secondary">
         <i class="bi bi-arrow-left"></i> Back
     </a>
 </div>

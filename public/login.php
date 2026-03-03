@@ -13,7 +13,7 @@ $success = false;
 
 // Check if already logged in
 if (isLoggedIn()) {
-    header('Location: /Bio-Organic-Herbal-Solutions/public/');
+    header('Location: ' . BASE_URL . '/public/');
     exit();
 }
 
@@ -47,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     
                     // Redirect
                     $redirect = $_GET['redirect'] ?? 'index.php';
-                    header('Location: /Bio-Organic-Herbal-Solutions/public/' . $redirect);
+                    header('Location: ' . BASE_URL . '/public/' . $redirect);
                     exit();
                 }
             } else {

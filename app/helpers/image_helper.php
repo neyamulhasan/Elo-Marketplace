@@ -16,17 +16,17 @@ function getProductPrimaryImage($product) {
     if (!empty($product['images'])) {
         $images = json_decode($product['images'], true);
         if (is_array($images) && count($images) > 0) {
-            return '/Bio-Organic-Herbal-Solutions/public/' . $images[0]; // Return first image
+            return BASE_URL . '/public/' . $images[0]; // Return first image
         }
     }
     
     // Check if product has single image
     if (!empty($product['image'])) {
-        return '/Bio-Organic-Herbal-Solutions/public/' . $product['image'];
+        return BASE_URL . '/public/' . $product['image'];
     }
     
     // Return placeholder
-    return '/Bio-Organic-Herbal-Solutions/public/assets/images/placeholder-product.svg';
+    return BASE_URL . '/public/assets/images/placeholder-product.svg';
 }
 
 /**
@@ -44,7 +44,7 @@ function getProductImages($product) {
         $decoded = json_decode($product['images'], true);
         if (is_array($decoded) && count($decoded) > 0) {
             foreach ($decoded as $img) {
-                $images[] = '/Bio-Organic-Herbal-Solutions/public/' . $img;
+                $images[] = BASE_URL . '/public/' . $img;
             }
             return $images;
         }
@@ -52,12 +52,12 @@ function getProductImages($product) {
     
     // Check if product has single image
     if (!empty($product['image'])) {
-        $images[] = '/Bio-Organic-Herbal-Solutions/public/' . $product['image'];
+        $images[] = BASE_URL . '/public/' . $product['image'];
         return $images;
     }
     
     // Return placeholder
-    $images[] = '/Bio-Organic-Herbal-Solutions/public/assets/images/placeholder-product.svg';
+    $images[] = BASE_URL . '/public/assets/images/placeholder-product.svg';
     return $images;
 }
 

@@ -18,7 +18,7 @@ $product_id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 if (!$product_id) {
     $_SESSION['flash_message'] = 'Invalid product ID';
     $_SESSION['flash_type'] = 'danger';
-    header('Location: /Bio-Organic-Herbal-Solutions/admin/products.php');
+    header('Location: ' . BASE_URL . '/admin/products.php');
     exit;
 }
 
@@ -28,7 +28,7 @@ $product = $productModel->getById($product_id);
 if (!$product) {
     $_SESSION['flash_message'] = 'Product not found';
     $_SESSION['flash_type'] = 'danger';
-    header('Location: /Bio-Organic-Herbal-Solutions/admin/products.php');
+    header('Location: ' . BASE_URL . '/admin/products.php');
     exit;
 }
 
@@ -43,8 +43,8 @@ include 'includes/header.php';
         <div class="col">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="/Bio-Organic-Herbal-Solutions/admin/dashboard.php">Dashboard</a></li>
-                    <li class="breadcrumb-item"><a href="/Bio-Organic-Herbal-Solutions/admin/products.php">Products</a></li>
+                    <li class="breadcrumb-item"><a href="<?= BASE_URL ?>/admin/dashboard.php">Dashboard</a></li>
+                    <li class="breadcrumb-item"><a href="<?= BASE_URL ?>/admin/products.php">Products</a></li>
                     <li class="breadcrumb-item active">Edit Product</li>
                 </ol>
             </nav>
@@ -58,7 +58,7 @@ include 'includes/header.php';
                     <h4 class="mb-0"><i class="bi bi-pencil-square"></i> Edit Product</h4>
                 </div>
                 <div class="card-body">
-                    <form action="/Bio-Organic-Herbal-Solutions/admin/product-action.php" method="POST" enctype="multipart/form-data" id="editProductForm">
+                    <form action="<?= BASE_URL ?>/admin/product-action.php" method="POST" enctype="multipart/form-data" id="editProductForm">
                         <input type="hidden" name="action" value="edit">
                         <input type="hidden" name="id" value="<?php echo $product['id']; ?>">
                         
@@ -152,7 +152,7 @@ include 'includes/header.php';
                                                 if (empty($images)): 
                                                 ?>
                                                     <div class="col-12 text-center py-4" id="noImagesMessage">
-                                                        <img src="/Bio-Organic-Herbal-Solutions/public/assets/images/placeholder-product.svg" 
+                                                        <img src="<?= BASE_URL ?>/public/assets/images/placeholder-product.svg" 
                                                              alt="No images" 
                                                              class="img-thumbnail mb-2" 
                                                              style="max-width: 200px;">
@@ -162,7 +162,7 @@ include 'includes/header.php';
                                                     <?php foreach ($images as $index => $image_path): ?>
                                                         <div class="col-6 col-md-4 col-lg-3" data-image-path="<?php echo e($image_path); ?>">
                                                             <div class="position-relative image-item">
-                                                                <img src="/Bio-Organic-Herbal-Solutions/public/<?php echo e($image_path); ?>" 
+                                                                <img src="<?= BASE_URL ?>/public/<?php echo e($image_path); ?>" 
                                                                      alt="Product image" 
                                                                      class="img-thumbnail w-100" 
                                                                      style="height: 150px; object-fit: cover;">
@@ -246,7 +246,7 @@ include 'includes/header.php';
                         <hr>
 
                         <div class="d-flex justify-content-between align-items-center">
-                            <a href="/Bio-Organic-Herbal-Solutions/admin/products.php" class="btn btn-secondary">
+                            <a href="<?= BASE_URL ?>/admin/products.php" class="btn btn-secondary">
                                 <i class="bi bi-x-circle"></i> Cancel
                             </a>
                             <button type="submit" class="btn btn-warning btn-lg">
@@ -288,7 +288,7 @@ function toggleStatus(productId, newStatus, productName) {
     if (confirm(`Are you sure you want to ${action} "${productName}"?`)) {
         const form = document.createElement('form');
         form.method = 'POST';
-        form.action = '/Bio-Organic-Herbal-Solutions/admin/product-action.php';
+        form.action = '<?= BASE_URL ?>/admin/product-action.php';
         
         const actionInput = document.createElement('input');
         actionInput.type = 'hidden';
@@ -319,7 +319,7 @@ function deleteProduct(productId, productName) {
         if (confirm(`FINAL CONFIRMATION\n\nYou are about to delete "${productName}" permanently.\n\nClick OK to proceed with deletion, or Cancel to abort.`)) {
             const form = document.createElement('form');
             form.method = 'POST';
-            form.action = '/Bio-Organic-Herbal-Solutions/admin/product-action.php';
+            form.action = '<?= BASE_URL ?>/admin/product-action.php';
             
             const actionInput = document.createElement('input');
             actionInput.type = 'hidden';
@@ -421,7 +421,7 @@ function uploadImages() {
     progressDiv.style.display = 'block';
     uploadBtn.disabled = true;
     
-    fetch('/Bio-Organic-Herbal-Solutions/admin/product-images-handler.php', {
+    fetch('<?= BASE_URL ?>/admin/product-images-handler.php', {
         method: 'POST',
         body: formData
     })
@@ -471,7 +471,7 @@ function deleteImage(imagePath) {
     formData.append('product_id', <?php echo $product['id']; ?>);
     formData.append('image_path', imagePath);
     
-    fetch('/Bio-Organic-Herbal-Solutions/admin/product-images-handler.php', {
+    fetch('<?= BASE_URL ?>/admin/product-images-handler.php', {
         method: 'POST',
         body: formData
     })
@@ -497,7 +497,7 @@ function deleteImage(imagePath) {
                 if (container.children.length === 0) {
                     container.innerHTML = `
                         <div class="col-12 text-center py-4" id="noImagesMessage">
-                            <img src="/Bio-Organic-Herbal-Solutions/public/assets/images/placeholder-product.svg" 
+                            <img src="<?= BASE_URL ?>/public/assets/images/placeholder-product.svg" 
                                  alt="No images" 
                                  class="img-thumbnail mb-2" 
                                  style="max-width: 200px;">
@@ -535,7 +535,7 @@ function resetToDefault() {
     formData.append('action', 'reset');
     formData.append('product_id', <?php echo $product['id']; ?>);
     
-    fetch('/Bio-Organic-Herbal-Solutions/admin/product-images-handler.php', {
+    fetch('<?= BASE_URL ?>/admin/product-images-handler.php', {
         method: 'POST',
         body: formData
     })

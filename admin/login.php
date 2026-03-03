@@ -12,7 +12,7 @@ $errors = [];
 
 // Check if already logged in as admin
 if (isAdmin()) {
-    header('Location: /Bio-Organic-Herbal-Solutions/admin/dashboard.php');
+    header('Location: ' . BASE_URL . '/admin/dashboard.php');
     exit();
 }
 
@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($user && $user['role'] === ROLE_ADMIN) {
             setUserSession($user);
             setFlashMessage('success', 'Welcome to Admin Panel!');
-            header('Location: /Bio-Organic-Herbal-Solutions/admin/dashboard.php');
+            header('Location: ' . BASE_URL . '/admin/dashboard.php');
             exit();
         } else {
             $errors[] = 'Invalid admin credentials';
@@ -49,8 +49,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Login - Bio-Organic Herbal Solutions</title>
-    <link href="/Bio-Organic-Herbal-Solutions/public/assets/css/vendor/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/Bio-Organic-Herbal-Solutions/public/assets/css/vendor/bootstrap-icons.css">
+    <link href="<?= BASE_URL ?>/public/assets/css/vendor/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/public/assets/css/vendor/bootstrap-icons.css">
     <style>
         body {
             background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
@@ -70,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="card login-card">
                     <div class="card-body p-5">
                         <div class="text-center mb-4">
-                            <img src="/Bio-Organic-Herbal-Solutions/public/assets/images/bio.jpg" alt="Bio-Organic Herbal Solutions" style="height: 80px; margin-bottom: 15px; border-radius: 10px;">
+                            <img src="<?= BASE_URL ?>/public/assets/images/bio.jpg" alt="Bio-Organic Herbal Solutions" style="height: 80px; margin-bottom: 15px; border-radius: 10px;">
                             <h3 class="mt-3">Admin Login</h3>
                             <p class="text-muted">Bio-Organic Herbal Solutions</p>
                         </div>
@@ -108,7 +108,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         </form>
                         
                         <div class="text-center mt-4">
-                            <a href="/Bio-Organic-Herbal-Solutions/public/" class="text-decoration-none">
+                            <a href="<?= BASE_URL ?>/public/" class="text-decoration-none">
                                 <i class="bi bi-arrow-left"></i> Back to Website
                             </a>
                         </div>
@@ -122,6 +122,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
     </div>
     
-    <script src="/Bio-Organic-Herbal-Solutions/public/assets/js/vendor/bootstrap.bundle.min.js"></script>
+    <script src="<?= BASE_URL ?>/public/assets/js/vendor/bootstrap.bundle.min.js"></script>
 </body>
 </html>

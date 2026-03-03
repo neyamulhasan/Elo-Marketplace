@@ -192,10 +192,10 @@ CREATE TABLE `site_settings` (
   UNIQUE KEY `setting_key` (`setting_key`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- Insert default site settings
+-- Insert default site settings (images are NULL; upload via admin panel)
 INSERT INTO `site_settings` (`setting_key`, `setting_value`) VALUES
-('home_banner_image', '/Bio-Organic-Herbal-Solutions/public/assets/images/hero-image.jpg'),
-('about_us_image', '/Bio-Organic-Herbal-Solutions/public/assets/images/about-image.jpg'),
-('default_category_logo', '/Bio-Organic-Herbal-Solutions/public/assets/images/bio.jpg');
+('home_banner_image', NULL),
+('about_us_image', NULL),
+('default_category_logo', NULL);
 
 COMMIT;

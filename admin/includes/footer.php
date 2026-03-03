@@ -3,6 +3,6 @@
         </div>
     </div>
 
-    <script src="/Bio-Organic-Herbal-Solutions/public/assets/js/vendor/bootstrap.bundle.min.js"></script>
+    <script src="<?= BASE_URL ?>/public/assets/js/vendor/bootstrap.bundle.min.js"></script>
 </body>
 </html>

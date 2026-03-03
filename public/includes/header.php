@@ -7,23 +7,23 @@
     <title><?php echo isset($page_title) ? $page_title . ' - ' : ''; ?>Bio-Organic Herbal Solutions</title>
     
     <!-- Bootstrap 5 CSS (Local) -->
-    <link href="/Bio-Organic-Herbal-Solutions/public/assets/css/vendor/bootstrap.min.css" rel="stylesheet">
+    <link href="<?= BASE_URL ?>/public/assets/css/vendor/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap Icons (Local) -->
-    <link rel="stylesheet" href="/Bio-Organic-Herbal-Solutions/public/assets/css/vendor/bootstrap-icons.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/public/assets/css/vendor/bootstrap-icons.css">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="/Bio-Organic-Herbal-Solutions/public/assets/css/style.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/public/assets/css/style.css">
 </head>
 <body class="d-flex flex-column min-vh-100">
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
         <div class="container">
-            <a class="navbar-brand fw-bold text-success d-flex align-items-center" href="/Bio-Organic-Herbal-Solutions/public/">
-                <img src="/Bio-Organic-Herbal-Solutions/public/assets/images/bio.jpg" alt="Bio-Organic Herbal Solutions" style="height: 40px; margin-right: 10px;">
+            <a class="navbar-brand fw-bold text-success d-flex align-items-center" href="<?= BASE_URL ?>/public/">
+                <img src="<?= BASE_URL ?>/public/assets/images/bio.jpg" alt="Bio-Organic Herbal Solutions" style="height: 40px; margin-right: 10px;">
                 Bio-Organic Herbal
             </a>
             
             <!-- Mobile Cart Icon (Always Visible) -->
-            <a class="btn btn-outline-success position-relative d-lg-none me-2" href="/Bio-Organic-Herbal-Solutions/public/cart.php">
+            <a class="btn btn-outline-success position-relative d-lg-none me-2" href="<?= BASE_URL ?>/public/cart.php">
                 <i class="bi bi-cart"></i>
                 <?php if (isset($_SESSION['cart']) && count($_SESSION['cart']) > 0): ?>
                     <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
@@ -38,16 +38,16 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="/Bio-Organic-Herbal-Solutions/public/">Home</a>
+                        <a class="nav-link" href="<?= BASE_URL ?>/public/">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/Bio-Organic-Herbal-Solutions/public/shop.php">Shop</a>
+                        <a class="nav-link" href="<?= BASE_URL ?>/public/shop.php">Shop</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/Bio-Organic-Herbal-Solutions/public/contact.php">Contact</a>
+                        <a class="nav-link" href="<?= BASE_URL ?>/public/contact.php">Contact</a>
                     </li>
                     <li class="nav-item d-none d-lg-block">
-                        <a class="nav-link" href="/Bio-Organic-Herbal-Solutions/public/cart.php">
+                        <a class="nav-link" href="<?= BASE_URL ?>/public/cart.php">
                             <i class="bi bi-cart"></i> Cart 
                             <?php if (isset($_SESSION['cart']) && count($_SESSION['cart']) > 0): ?>
                                 <span class="badge bg-success"><?php echo count($_SESSION['cart']); ?></span>
@@ -60,15 +60,15 @@
                                 <i class="bi bi-person-circle"></i> <?php echo htmlspecialchars($_SESSION['user_name']); ?>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="/Bio-Organic-Herbal-Solutions/public/account.php">My Account</a></li>
-                                <li><a class="dropdown-item" href="/Bio-Organic-Herbal-Solutions/public/orders.php">My Orders</a></li>
+                                <li><a class="dropdown-item" href="<?= BASE_URL ?>/public/account.php">My Account</a></li>
+                                <li><a class="dropdown-item" href="<?= BASE_URL ?>/public/orders.php">My Orders</a></li>
                                 <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="/Bio-Organic-Herbal-Solutions/public/logout.php">Logout</a></li>
+                                <li><a class="dropdown-item" href="<?= BASE_URL ?>/public/logout.php">Logout</a></li>
                             </ul>
                         </li>
                     <?php else: ?>
                         <li class="nav-item">
-                            <a class="nav-link" href="/Bio-Organic-Herbal-Solutions/public/login.php">Login</a>
+                            <a class="nav-link" href="<?= BASE_URL ?>/public/login.php">Login</a>
                         </li>
                     <?php endif; ?>
                 </ul>
