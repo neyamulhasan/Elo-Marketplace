@@ -24,6 +24,31 @@ $success_count = 0;
 $errors = [];
 $deleted = [];
 
+// ── TEXT SETTINGS FORM ────────────────────────────────────────────────────────
+if (($_POST['form_type'] ?? '') === 'text') {
+    $text_keys = [
+        'hero_title', 'hero_subtitle', 'hero_btn_text',
+        'categories_title', 'categories_subtitle',
+        'about_title',
+        'about_feature_1_title', 'about_feature_1_text',
+        'about_feature_2_title', 'about_feature_2_text',
+        'about_feature_3_title', 'about_feature_3_text',
+        'about_feature_4_title', 'about_feature_4_text',
+        'contact_cta_title', 'contact_cta_subtitle',
+        'whatsapp_number', 'whatsapp_message', 'facebook_url',
+    ];
+
+    foreach ($text_keys as $key) {
+        if (isset($_POST[$key])) {
+            $settingModel->set($key, trim($_POST[$key]));
+        }
+    }
+
+    setFlashMessage('success', 'Homepage content updated successfully.');
+    header('Location: ' . BASE_URL . '/admin/settings.php#text');
+    exit;
+}
+
 // Handle delete actions first
 if (isset($_POST['delete_banner'])) {
     $old_image = $settingModel->get('home_banner_image');

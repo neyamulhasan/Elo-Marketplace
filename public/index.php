@@ -20,8 +20,40 @@ $categories = $categoryModel->getAll();
 
 // Get site settings
 $home_banner_image = $settingModel->get('home_banner_image') ?? BASE_URL . '/public/assets/images/hero-image.jpg';
-$about_us_image = $settingModel->get('about_us_image') ?? BASE_URL . '/public/assets/images/about-image.jpg';
+$about_us_image    = $settingModel->get('about_us_image')    ?? BASE_URL . '/public/assets/images/about-image.jpg';
 $fallback_category_logo = BASE_URL . '/public/assets/images/elo.png';
+
+// Hero section
+$hero_title    = $settingModel->get('hero_title')    ?? 'Elo Marketplace';
+$hero_subtitle = $settingModel->get('hero_subtitle') ?? 'Quality products, global sourcing, delivered to your doorstep.';
+$hero_btn_text = $settingModel->get('hero_btn_text') ?? 'Shop Now';
+
+// Categories section
+$categories_title    = $settingModel->get('categories_title')    ?? 'Shop by Category';
+$categories_subtitle = $settingModel->get('categories_subtitle') ?? 'Browse our wide selection of quality products by category.';
+
+// About / Why Choose Us section
+$about_title = $settingModel->get('about_title') ?? 'Why Choose Us?';
+$about_features = [];
+$default_features = [
+    1 => ['title' => 'Trusted Suppliers',   'text' => 'Products sourced directly from verified global manufacturers.'],
+    2 => ['title' => 'Quality Assured',     'text' => 'Rigorous quality control and testing on every product.'],
+    3 => ['title' => 'Competitive Pricing', 'text' => 'Direct sourcing means better prices for you.'],
+    4 => ['title' => 'Reliable Delivery',   'text' => 'Fast and secure delivery straight to your doorstep.'],
+];
+for ($i = 1; $i <= 4; $i++) {
+    $about_features[$i] = [
+        'title' => $settingModel->get("about_feature_{$i}_title") ?? $default_features[$i]['title'],
+        'text'  => $settingModel->get("about_feature_{$i}_text")  ?? $default_features[$i]['text'],
+    ];
+}
+
+// Contact CTA section
+$contact_cta_title    = $settingModel->get('contact_cta_title')    ?? 'Have Questions? We Are Here to Help.';
+$contact_cta_subtitle = $settingModel->get('contact_cta_subtitle') ?? 'Reach out for personalized recommendations and instant support.';
+$whatsapp_number      = $settingModel->get('whatsapp_number')      ?? '8801792457594';
+$whatsapp_message     = $settingModel->get('whatsapp_message')     ?? 'Hello, I am interested in your products.';
+$facebook_url         = $settingModel->get('facebook_url')         ?? 'https://www.facebook.com/';
 
 $page_title = "Home";
 include 'includes/header.php';
@@ -32,12 +64,12 @@ include 'includes/header.php';
     <div class="container">
         <div class="row align-items-center g-4">
             <div class="col-lg-6 mb-4 mb-lg-0">
-                <h1 class="display-4 fw-bold text-success mb-4">Elo Marketplace</h1>
-                <p class="lead mb-5">Quality products, global sourcing, delivered to your doorstep.</p>
-                <a href="<?= BASE_URL ?>/public/shop.php" class="btn btn-success btn-lg px-5 py-3">Shop Now</a>
+                <h1 class="display-4 fw-bold text-success mb-4"><?php echo e($hero_title); ?></h1>
+                <p class="lead mb-5"><?php echo e($hero_subtitle); ?></p>
+                <a href="<?= BASE_URL ?>/public/shop.php" class="btn btn-success btn-lg px-5 py-3"><?php echo e($hero_btn_text); ?></a>
             </div>
             <div class="col-lg-6">
-                <img src="<?php echo e($home_banner_image); ?>" alt="Herbal Products" class="img-fluid rounded shadow" onerror="this.src='<?= BASE_URL ?>/public/assets/images/placeholder-hero.svg'">
+                <img src="<?php echo e($home_banner_image); ?>" alt="Hero Banner" class="img-fluid rounded shadow" onerror="this.src='<?= BASE_URL ?>/public/assets/images/placeholder-hero.svg'">
             </div>
         </div>
     </div>
@@ -47,8 +79,8 @@ include 'includes/header.php';
 <section class="categories-section py-5">
     <div class="container">
         <div class="text-center mb-5">
-            <h2 class="fw-bold">Shop by Category</h2>
-            <p class="text-muted">Explore our natural and organic product collections</p>
+            <h2 class="fw-bold"><?php echo e($categories_title); ?></h2>
+            <p class="text-muted"><?php echo e($categories_subtitle); ?></p>
         </div>
         <div class="row g-4">
             <?php foreach ($categories as $category): ?>
@@ -128,26 +160,16 @@ include 'includes/header.php';
     <div class="container">
         <div class="row align-items-center">
             <div class="col-lg-6 mb-4 mb-lg-0">
-                <h2 class="mb-3">Why Choose Us?</h2>
+                <h2 class="mb-3"><?php echo e($about_title); ?></h2>
+                <?php for ($i = 1; $i <= 4; $i++): ?>
                 <div class="feature-item mb-3">
                     <i class="bi bi-check-circle-fill text-success me-2"></i>
-                    <strong>100% Organic:</strong> All our products are certified organic and natural.
+                    <strong><?php echo e($about_features[$i]['title']); ?>:</strong> <?php echo e($about_features[$i]['text']); ?>
                 </div>
-                <div class="feature-item mb-3">
-                    <i class="bi bi-check-circle-fill text-success me-2"></i>
-                    <strong>Quality Assured:</strong> Rigorous quality control and testing.
-                </div>
-                <div class="feature-item mb-3">
-                    <i class="bi bi-check-circle-fill text-success me-2"></i>
-                    <strong>Fast Delivery:</strong> Quick and reliable delivery across Bangladesh.
-                </div>
-                <div class="feature-item mb-3">
-                    <i class="bi bi-check-circle-fill text-success me-2"></i>
-                    <strong>Expert Support:</strong> Professional guidance and customer support.
-                </div>
+                <?php endfor; ?>
             </div>
             <div class="col-lg-6">
-                <img src="<?php echo e($about_us_image); ?>" alt="About Us" class="img-fluid rounded" onerror="this.src='<?= BASE_URL ?>/public/assets/images/placeholder-about.svg'">
+                <img src="<?php echo e($about_us_image); ?>" alt="Why Choose Us" class="img-fluid rounded" onerror="this.src='<?= BASE_URL ?>/public/assets/images/placeholder-about.svg'">
             </div>
         </div>
     </div>
@@ -158,11 +180,11 @@ include 'includes/header.php';
     <div class="container">
         <div class="row align-items-center">
             <div class="col-lg-8 text-center text-lg-start mb-3 mb-lg-0">
-                <h3 class="mb-2">Have Questions? Need Help Choosing Products?</h3>
-                <p class="mb-0">Contact us on WhatsApp for personalized recommendations and instant support!</p>
+                <h3 class="mb-2"><?php echo e($contact_cta_title); ?></h3>
+                <p class="mb-0"><?php echo e($contact_cta_subtitle); ?></p>
             </div>
             <div class="col-lg-4 text-center text-lg-end">
-                <a href="https://wa.me/8801792457594?text=Hello%2C%20I%27m%20interested%20in%20your%20herbal%20products" 
+                <a href="https://wa.me/<?php echo e($whatsapp_number); ?>?text=<?php echo rawurlencode($whatsapp_message); ?>" 
                    target="_blank" 
                    class="btn btn-light btn-lg">
                     <i class="bi bi-whatsapp"></i> Chat on WhatsApp
@@ -174,14 +196,16 @@ include 'includes/header.php';
                 <div class="d-flex justify-content-center gap-4 flex-wrap">
                     <div>
                         <i class="bi bi-whatsapp fs-4"></i>
-                        <span class="ms-2">+880 1792-457594</span>
+                        <span class="ms-2"><?php echo e($whatsapp_number); ?></span>
                     </div>
+                    <?php if (!empty($facebook_url)): ?>
                     <div>
                         <i class="bi bi-facebook fs-4"></i>
-                        <a href="https://www.facebook.com/Bio.Organic.Herbal.Solutions" target="_blank" class="text-white text-decoration-none ms-2">
+                        <a href="<?php echo e($facebook_url); ?>" target="_blank" class="text-white text-decoration-none ms-2">
                             Facebook Page
                         </a>
                     </div>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>
