@@ -1,290 +1,220 @@
-# 🌿 Bio-Organic Herbal Solutions
+# Elo Marketplace
 
-**Professional E-Commerce Platform for Herbal & Organic Products**
+**Modern E-Commerce Platform — PHP / MySQL / Bootstrap 5**
 
-A complete, minimal, and professional e-commerce system built with PHP, MySQL, and Bootstrap 5.
-
----
-
-## 🎯 Overview
-
-Full-featured e-commerce website for **Bio-Organic Herbal Solutions**, a Bangladeshi herbal products company. Built with clean code, security best practices, and optimized for performance.
-
-**Live URLs:**
-- Customer Site: `http://localhost/Bio-Organic-Herbal-Solutions/public/`
-- Admin Panel: `http://localhost/Bio-Organic-Herbal-Solutions/admin/`
+Elo Marketplace is a full-featured e-commerce platform offering carefully selected, high-quality products sourced directly from trusted global manufacturers. By working closely with reliable suppliers, the platform delivers competitive prices without compromising on quality. The mission is simple: make global shopping simple, secure, and accessible — delivering value and convenience to every customer's doorstep.
 
 ---
 
-## ✨ Features
+## Overview
 
-### 🛒 Customer Features
-- Product browsing with categories and search
+Elo Marketplace is built on a clean MVC-inspired architecture using core PHP, MySQL, and Bootstrap 5. It covers the complete shopping lifecycle — from product discovery and cart management through to checkout and order tracking — alongside a fully featured admin panel for day-to-day operations.
+
+**Local Development URLs:**
+
+- Customer Site: `http://localhost/Elo-Marketplace/public/`
+- Admin Panel: `http://localhost/Elo-Marketplace/admin/`
+
+---
+
+## Features
+
+### Customer Features
+
+- Product browsing with category filtering and search
+- Detailed product pages with image gallery
 - Shopping cart with quantity management
 - Wishlist system
 - Secure checkout (Cash on Delivery)
-- Order tracking and history
+- Order placement, tracking, and history
 - Product reviews and ratings
-- Contact form with WhatsApp integration
-- User registration and login
+- User registration, login, and account management
+- Contact form
 
-### 👨‍💼 Admin Features
-- Dashboard with statistics
-- Product management (Add, Edit, Activate/Deactivate, Delete)
-- Category management (Add, Edit, Delete)
-- Order management and status updates
-- User management
-- Message/inquiry management
-- Product filter (Active/All products view)
+### Admin Features
 
-### 🚀 Technical Features
-- **Fast Loading** - Local Bootstrap files (no CDN)
-- **Optimized** - SVG placeholders, browser caching
-- **Secure** - Password hashing, PDO prepared statements
-- **Responsive** - Mobile-friendly design
-- **SEO-Friendly** - Clean URLs via .htaccess
+- Dashboard with sales and order statistics
+- Product management — add, edit, activate/deactivate, delete
+- Multi-image product gallery management
+- Category management — add, edit, delete
+- Order management with status workflow (Pending → Processing → Delivered → Cancelled)
+- User account management
+- Contact message inbox
 
----
+### Technical Features
 
-## 🏗️ Tech Stack
-
-- **Backend:** PHP 8.2.12
-- **Database:** MySQL (via XAMPP)
-- **Frontend:** Bootstrap 5.3.0 (local files)
-- **Server:** Apache 2.4.58
-- **Architecture:** Custom MVC-like structure
+- Fully local static assets — no external CDN dependencies
+- PDO prepared statements throughout — no raw SQL interpolation
+- Session-based authentication with role separation (Admin / Customer)
+- Password hashing via `password_hash()` / `password_verify()`
+- Input validation and server-side sanitization
+- Secure file upload handling with type and size enforcement
+- Apache `.htaccess` configuration with clean routing and browser caching headers
+- Responsive layout supporting all viewport sizes
 
 ---
 
-## 📁 Project Structure
+## Tech Stack
+
+| Layer      | Technology                        |
+|------------|-----------------------------------|
+| Backend    | PHP 8.2                           |
+| Database   | MySQL 8 (via XAMPP/LAMPP)         |
+| Frontend   | Bootstrap 5.3 (local), Bootstrap Icons |
+| Server     | Apache 2.4                        |
+| Architecture | Custom MVC-inspired, no framework |
+
+---
+
+## Project Structure
 
 ```
-Bio-Organic-Herbal-Solutions/
-├── admin/                  # Admin panel
-│   ├── dashboard.php       # Admin dashboard
-│   ├── products.php        # Product management
-│   ├── categories.php      # Category management
-│   ├── orders.php          # Order management
-│   ├── users.php           # User management
-│   └── messages.php        # Contact messages
+Elo-Marketplace/
+├── admin/                      # Admin panel
+│   ├── dashboard.php           # Overview statistics
+│   ├── products.php            # Product listing and management
+│   ├── product-add.php         # Add new product
+│   ├── product-edit.php        # Edit existing product
+│   ├── product-images.php      # Product image gallery
+│   ├── categories.php          # Category management
+│   ├── orders.php              # Order listing
+│   ├── order-details.php       # Order detail view
+│   ├── users.php               # User management
+│   ├── settings.php            # Site settings
+│   └── includes/               # Admin header and footer
 │
-├── public/                 # Customer site
-│   ├── index.php           # Homepage
-│   ├── shop.php            # Product listing
-│   ├── product.php         # Product details
-│   ├── cart.php            # Shopping cart
-│   ├── checkout.php        # Checkout page
-│   ├── contact.php         # Contact page
-│   ├── login.php           # Customer login
-│   ├── register.php        # Registration
-│   ├── assets/             # CSS, JS, Images
-│   │   ├── css/            # Bootstrap CSS (local)
-│   │   ├── js/             # Bootstrap JS (local)
-│   │   └── images/         # Logo, placeholders
-│   └── includes/           # Header, footer
+├── public/                     # Customer-facing site
+│   ├── index.php               # Homepage
+│   ├── shop.php                # Product listing
+│   ├── product.php             # Product detail
+│   ├── cart.php                # Shopping cart
+│   ├── checkout.php            # Checkout
+│   ├── orders.php              # Order history
+│   ├── order-details.php       # Order detail
+│   ├── account.php             # Account management
+│   ├── contact.php             # Contact page
+│   ├── login.php               # Customer login
+│   ├── logout.php              # Logout
+│   ├── assets/                 # CSS, JS, fonts, images
+│   ├── includes/               # Public header and footer
+│   └── uploads/                # Uploaded images
+│       ├── products/
+│       ├── categories/
+│       └── settings/
 │
-├── app/                    # Business logic
-│   ├── config/             # Database configuration
-│   ├── models/             # Database models (PDO)
-│   └── helpers/            # Helper functions
+├── app/                        # Core application logic
+│   ├── models/                 # Database models (PDO)
+│   │   ├── User.php
+│   │   ├── Product.php
+│   │   ├── ProductImage.php
+│   │   ├── Category.php
+│   │   ├── Order.php
+│   │   └── Setting.php
+│   └── helpers/                # Utility functions
+│       ├── session.php
+│       ├── validation.php
+│       └── image_helper.php
 │
-├── uploads/                # Product images
-├── .htaccess              # Apache config & routing
-├── README.md              # This file
-└── SETUP.md               # Installation guide
+├── config/
+│   ├── config.php              # Global constants and base URL
+│   ├── database.php            # Database credentials (not committed)
+│   └── database.example.php   # Credentials template
+│
+├── database.sql                # Full schema with sample data
+├── README.md                   # This file
+└── SETUP.md                    # Installation guide
 ```
 
 ---
 
-## 📊 Database
+## Database
 
-**Database Name:** `bio_organic_herbal`
+**Database Name:** `elo_marketplace`
 
-**Tables (9):**
-- `users` - Customer and admin accounts
-- `products` - Product catalog
-- `categories` - Product categories
-- `product_images` - Product image gallery
-- `orders` - Customer orders
-- `order_items` - Order line items
-- `wishlist` - Customer wishlists
-- `reviews` - Product reviews
-- `messages` - Contact form submissions
-
----
-
-## 🔐 Default Credentials
-
-**Admin Account:**
-- Email: `admin@bioorganic.com`
-- Password: `admin123`
-
-⚠️ **Important:** Change the password after first login!
+| Table           | Description                        |
+|-----------------|------------------------------------|
+| `users`         | Customer and admin accounts        |
+| `categories`    | Product categories                 |
+| `products`      | Product catalog                    |
+| `product_images`| Product image gallery              |
+| `orders`        | Customer orders                    |
+| `order_items`   | Line items per order               |
+| `wishlist`      | Customer saved products            |
+| `reviews`       | Product reviews and ratings        |
+| `messages`      | Contact form submissions           |
+| `settings`      | Site-wide configuration            |
 
 ---
 
-## 📞 Contact Information
+## Default Admin Credentials
 
-- **WhatsApp:** +880 1792-457594 (Click-to-chat enabled)
-- **Facebook:** [Bio.Organic.Herbal.Solutions](https://www.facebook.com/Bio.Organic.Herbal.Solutions)
-- **Company Logo:** elo.png (used throughout site)
+| Field    | Value               |
+|----------|---------------------|
+| Email    | `admin@elo.com`     |
+| Password | `admin123`          |
 
----
-
-## ⚡ Performance
-
-- **Response Time:** 3-5ms average
-- **Page Load:** <0.5 seconds
-- **Bootstrap:** 680KB total (local files)
-  - CSS: 228KB
-  - JS: 79KB
-  - Icons: 374KB
-- **Placeholders:** SVG format (<1KB each)
-- **Caching:** Enabled for static assets
+Change the default password immediately after first login.
 
 ---
 
-## 🛡️ Security Features
+## Security
 
-- Password hashing with `password_hash()`
-- PDO prepared statements (SQL injection prevention)
-- Session-based authentication
-- Role-based access control (Admin/User)
-- Input validation and sanitization
-- Secure file upload handling
-
----
-
-## 📱 Responsive Design
-
-- ✅ Desktop (1920px+)
-- ✅ Laptop (1024px+)
-- ✅ Tablet (768px+)
-- ✅ Mobile (320px+)
+- All database queries use PDO prepared statements
+- Passwords are hashed with `password_hash()` (bcrypt)
+- Sessions are validated on every protected request
+- Role-based access control separates admin and customer routes
+- File uploads are validated by MIME type and extension
+- All user inputs are sanitized before processing or display
 
 ---
 
-## 🎨 Design Features
+## Responsive Design
 
-- **Color Scheme:** Green/organic theme
-- **Logo:** elo.png integrated throughout
-- **Layout:** Clean, minimal, professional
-- **UI:** Bootstrap 5 components
-- **Icons:** Bootstrap Icons
+The interface is built with Bootstrap 5 and tested across all standard breakpoints:
 
----
-
-## 📝 Key Functionalities
-
-### Product Management
-- ✅ Add products with multiple images
-- ✅ Edit product details (name, price, stock, description)
-- ✅ Activate/Deactivate (hide without deleting)
-- ✅ Permanently delete (with confirmation)
-- ✅ Filter view (Active/All Products)
-- ✅ Stock tracking
-
-### Category Management
-- ✅ Create and organize categories
-- ✅ Edit category details
-- ✅ Delete categories (with confirmation modal)
-
-### Order Processing
-- ✅ Customer order placement
-- ✅ Admin order review
-- ✅ Status updates (Pending → Processing → Delivered → Cancelled)
-- ✅ Order history tracking
-
-### User Management
-- ✅ Customer registration
-- ✅ Profile management
-- ✅ Order history
-- ✅ Wishlist functionality
+- Desktop (1920px and above)
+- Laptop (1024px and above)
+- Tablet (768px and above)
+- Mobile (320px and above)
 
 ---
 
-## 🚦 Status
+## Installation
 
-- **Development:** ✅ Complete
-- **Testing:** ✅ Verified
-- **Performance:** ✅ Optimized
-- **Security:** ✅ Implemented
-- **Production Ready:** ✅ Yes
-
----
-
-## 📖 Documentation
-
-- **README.md** - This file (overview)
-- **SETUP.md** - Complete installation guide
-
----
-
-## 🔄 Recent Updates
-
-- ✅ Local Bootstrap integration (removed CDN dependencies)
-- ✅ SVG placeholders for better performance
-- ✅ Contact information integration (WhatsApp, Facebook)
-- ✅ Product activation/deactivation with filter system
-- ✅ Delete category feature with confirmation
-- ✅ Delete product feature with warnings
-
----
-
-## 🎯 Future Enhancements (Optional)
-
-- Payment gateway integration (bKash, Nagad, SSL Commerz)
-- Email notifications for orders
-- Advanced search with filters
-- Product ratings display
-- Inventory alerts
-- Discount/coupon system
-- Multi-language support
-
----
-
-## 🛠️ Installation
-
-See **SETUP.md** for complete installation instructions.
+Refer to **SETUP.md** for full step-by-step instructions.
 
 **Quick Start:**
-1. Install XAMPP
-2. Import database
-3. Configure database connection
-4. Start Apache & MySQL
-5. Access website
+
+1. Install XAMPP or LAMPP
+2. Clone or copy the project to `htdocs/Elo-Marketplace/`
+3. Import `database.sql` into MySQL
+4. Copy `config/database.example.php` to `config/database.php` and set your credentials
+5. Start Apache and MySQL
+6. Visit `http://localhost/Elo-Marketplace/public/`
 
 ---
 
-## 📄 License
+## Common Issues
 
-Proprietary - Built for Bio-Organic Herbal Solutions
+| Symptom                    | Resolution                                          |
+|----------------------------|-----------------------------------------------------|
+| 500 Internal Server Error  | Ensure `config/database.php` exists with valid credentials |
+| Database connection error  | Verify MySQL is running and credentials are correct |
+| Images not loading         | Check write permissions on `public/uploads/`        |
+| Admin login fails          | Confirm credentials against the `users` table       |
+| Page not found             | Verify Apache `mod_rewrite` is enabled              |
 
----
+**Log locations:**
 
-## 🙏 Support
-
-**For Installation:** See SETUP.md
-
-**Common Issues:**
-- Database connection error → Check config/database.php
-- Page not found → Check .htaccess and mod_rewrite
-- Images not loading → Check uploads/ permissions
-- Admin login fails → Verify credentials in users table
-
-**Logs Location:**
-- Apache: `/opt/lampp/logs/error_log`
-- PHP: Check `php.ini` error_log setting
+- Apache error log: `/opt/lampp/logs/error_log`
+- PHP errors: configured via `php.ini` `error_log` directive
 
 ---
 
-## 👨‍💻 Development Info
+## License
 
-**Built for:** Bio-Organic Herbal Solutions  
-**Purpose:** E-commerce platform for herbal & organic products  
-**Approach:** Minimal, functional, professional  
-**Target Market:** Bangladesh (local startup)
+Proprietary. All rights reserved.
 
 ---
 
-**Built with ❤️ for natural health products** 🌿
+*Elo Marketplace — Quality products, global sourcing, delivered to your doorstep.*
