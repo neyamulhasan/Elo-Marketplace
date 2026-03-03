@@ -36,90 +36,87 @@ $page_title = "Shop";
 include 'includes/header.php';
 ?>
 
-<div class="container my-5">
+<div class="container my-4">
     <div class="row">
-        <!-- Sidebar -->
-        <div class="col-lg-3 mb-4">
-            <div class="card border-0 shadow-sm">
-                <div class="card-header bg-success text-white border-0">
-                    <h5 class="mb-0"><i class="bi bi-grid-3x3-gap-fill me-2"></i>Categories</h5>
-                </div>
-                <div class="list-group list-group-flush">
-                    <a href="<?= BASE_URL ?>/public/shop.php" 
-                       class="list-group-item list-group-item-action border-0 d-flex justify-content-between align-items-center <?php echo !$category_id ? 'active' : ''; ?>">
-                        <span><i class="bi bi-collection me-2"></i>All Products</span>
-                    </a>
-                <?php foreach ($categories as $category): ?>
-                <a href="<?= BASE_URL ?>/public/shop.php?category=<?php echo $category['id']; ?>" 
-                   class="list-group-item list-group-item-action border-0 d-flex align-items-center <?php echo $category_id == $category['id'] ? 'active' : ''; ?>">
-                    <span><?php echo e($category['name']); ?></span>
-                </a>
+
+        <!-- Category Sidebar -->
+        <div class="col-lg-2 d-none d-lg-block">
+            <div class="shop-cat-sidebar">
+                <p class="fw-bold mb-3" style="font-size:0.95rem; color:#191919;">Shop by category</p>
+                <ul class="list-unstyled mb-0">
+                    <li>
+                        <a href="<?= BASE_URL ?>/public/shop.php<?= $search ? '?search='.urlencode($search) : '' ?>"
+                           class="shop-cat-link <?= !$category_id ? 'active' : '' ?>">
+                            All Products
+                        </a>
+                    </li>
+                    <?php foreach ($categories as $category): ?>
+                    <li>
+                        <a href="<?= BASE_URL ?>/public/shop.php?category=<?= $category['id'] ?><?= $search ? '&search='.urlencode($search) : '' ?>"
+                           class="shop-cat-link <?= $category_id == $category['id'] ? 'active' : '' ?>">
+                            <?= e($category['name']) ?>
+                        </a>
+                    </li>
                     <?php endforeach; ?>
-                </div>
-            </div>
-            
-            <!-- Search Box -->
-            <div class="card mt-4">
-                <div class="card-body">
-                    <h5 class="card-title">Search Products</h5>
-                    <form method="GET" action="">
-                        <div class="input-group">
-                            <input type="text" name="search" class="form-control" placeholder="Search..." value="<?php echo e($search); ?>">
-                            <button class="btn btn-success" type="submit"><i class="bi bi-search"></i></button>
-                        </div>
-                    </form>
-                </div>
+                </ul>
             </div>
         </div>
 
         <!-- Products -->
-        <div class="col-lg-9">
-            <div class="d-flex justify-content-between align-items-center mb-4">
-                <h2 class="fw-bold">Products</h2>
-                <p class="text-muted mb-0"><?php echo count($products); ?> products found</p>
+        <div class="col-lg-10">
+
+            <!-- Mobile category pills -->
+            <div class="d-lg-none shop-filter-wrap mb-3">
+                <div class="shop-filter-bar">
+                    <a href="<?= BASE_URL ?>/public/shop.php<?= $search ? '?search='.urlencode($search) : '' ?>"
+                       class="shop-filter-pill <?= !$category_id ? 'active' : '' ?>">All</a>
+                    <?php foreach ($categories as $category): ?>
+                        <a href="<?= BASE_URL ?>/public/shop.php?category=<?= $category['id'] ?><?= $search ? '&search='.urlencode($search) : '' ?>"
+                           class="shop-filter-pill <?= $category_id == $category['id'] ? 'active' : '' ?>">
+                            <?= e($category['name']) ?>
+                        </a>
+                    <?php endforeach; ?>
+                </div>
             </div>
 
+            <!-- Results count -->
+            <p class="text-muted mb-3" style="font-size:0.88rem;"><?= count($products) ?> results</p>
+
             <?php if (count($products) > 0): ?>
-            <div class="row g-4">
+            <div class="row g-3">
                 <?php foreach ($products as $product): ?>
-                <div class="col-6 col-md-6 col-lg-4">
-                    <a href="<?= BASE_URL ?>/public/product.php?id=<?php echo $product['id']; ?>" class="text-decoration-none text-dark">
+                <div class="col-6 col-md-4 col-lg-3">
+                    <a href="<?= BASE_URL ?>/public/product.php?id=<?= $product['id'] ?>" class="text-decoration-none text-dark">
                         <div class="card h-100 product-card d-flex flex-column">
                             <div class="product-image-container">
-                                <img src="<?php echo e(getProductPrimaryImage($product)); ?>" 
-                                     class="product-image" 
-                                     alt="<?php echo e($product['name']); ?>"
+                                <img src="<?= e(getProductPrimaryImage($product)) ?>"
+                                     class="product-image"
+                                     alt="<?= e($product['name']) ?>"
                                      onerror="this.src='<?= BASE_URL ?>/public/assets/images/placeholder-product.svg'">
                             </div>
                             <div class="card-body p-2 p-md-3 flex-grow-1">
-                                <div class="mb-2 d-flex flex-wrap gap-1">
-                                    <span class="badge bg-success small"><?php echo e($product['category_name']); ?></span>
+                                <div class="mb-1 d-flex flex-wrap gap-1">
+                                    <span class="badge bg-success small"><?= e($product['category_name']) ?></span>
                                     <?php if (hasDiscount($product['discount_percentage'])): ?>
-                                        <span class="badge bg-danger small"><?php echo number_format($product['discount_percentage'], 0); ?>% OFF</span>
-                                    <?php else: ?>
-                                        <span class="badge bg-info small">Regular Price</span>
+                                        <span class="badge bg-danger small"><?= number_format($product['discount_percentage'], 0) ?>% OFF</span>
                                     <?php endif; ?>
                                 </div>
-                                <h6 class="card-title small mb-2"><?php echo e($product['name']); ?></h6>
-                                <div class="mb-2" style="min-height: 48px; display: flex; flex-direction: column; justify-content: center;">
+                                <h6 class="card-title small mb-2"><?= e($product['name']) ?></h6>
+                                <div class="mb-2">
                                     <?php if (hasDiscount($product['discount_percentage'])): ?>
-                                        <p class="text-muted text-decoration-line-through small mb-1"><?php echo formatPrice($product['price']); ?></p>
-                                        <p class="text-success fw-bold mb-0"><?php echo formatPrice(calculateDiscountedPrice($product['price'], $product['discount_percentage'])); ?></p>
+                                        <p class="text-muted text-decoration-line-through small mb-0"><?= formatPrice($product['price']) ?></p>
+                                        <p class="text-success fw-bold mb-0"><?= formatPrice(calculateDiscountedPrice($product['price'], $product['discount_percentage'])) ?></p>
                                     <?php else: ?>
-                                        <p class="text-success fw-bold mb-0"><?php echo formatPrice($product['price']); ?></p>
+                                        <p class="text-success fw-bold mb-0"><?= formatPrice($product['price']) ?></p>
                                     <?php endif; ?>
                                 </div>
-                                <div class="d-flex justify-content-end align-items-center mb-2">
-                                    <?php if ($product['stock'] > 0): ?>
-                                        <span class="badge bg-success small">In Stock</span>
-                                    <?php else: ?>
-                                        <span class="badge bg-danger small">Out of Stock</span>
-                                    <?php endif; ?>
-                                </div>
+                                <?php if ($product['stock'] <= 0): ?>
+                                    <span class="badge bg-danger small">Out of Stock</span>
+                                <?php endif; ?>
                             </div>
                             <div class="card-footer bg-transparent border-0 p-2 p-md-3 mt-auto">
                                 <?php if ($product['stock'] > 0): ?>
-                                    <button class="btn btn-success btn-sm w-100 add-to-cart" data-id="<?php echo $product['id']; ?>" onclick="event.preventDefault(); event.stopPropagation();">
+                                    <button class="btn btn-success btn-sm w-100 add-to-cart" data-id="<?= $product['id'] ?>" onclick="event.preventDefault(); event.stopPropagation();">
                                         <i class="bi bi-cart-plus"></i> <span class="d-none d-md-inline">Add to Cart</span><span class="d-inline d-md-none">Add</span>
                                     </button>
                                 <?php else: ?>

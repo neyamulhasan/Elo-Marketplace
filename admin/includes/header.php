@@ -6,10 +6,14 @@
     <title><?php echo isset($page_title) ? $page_title . ' - ' : ''; ?>Admin Panel</title>
     <link href="<?= BASE_URL ?>/public/assets/css/vendor/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="<?= BASE_URL ?>/public/assets/css/vendor/bootstrap-icons.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        body, * { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important; }
         .sidebar {
             min-height: 100vh;
-            background: #28a745;
+            background: #191919; /* sidebar */
         }
         .sidebar .nav-link {
             color: rgba(255,255,255,0.8);
