@@ -32,9 +32,8 @@ include 'includes/header.php';
     <div class="container">
         <div class="row align-items-center g-4">
             <div class="col-lg-6 mb-4 mb-lg-0">
-                <h1 class="display-4 fw-bold text-success mb-4">Natural & Organic Herbal Solutions</h1>
-                <p class="lead mb-5">We bring you the finest organic medicines,
-Blending ancient wisdom with modern science.</p>
+                <h1 class="display-4 fw-bold text-success mb-4">Elo Marketplace</h1>
+                <p class="lead mb-5">Quality products, global sourcing, delivered to your doorstep.</p>
                 <a href="<?= BASE_URL ?>/public/shop.php" class="btn btn-success btn-lg px-5 py-3">Shop Now</a>
             </div>
             <div class="col-lg-6">
