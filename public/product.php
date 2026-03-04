@@ -45,7 +45,7 @@ include 'includes/header.php';
             <?php if ($hasMultiple): ?>
             <!-- Image Slider for Multiple Images -->
             <div class="card">
-                <div id="productImageCarousel" class="carousel slide" data-bs-ride="carousel">
+                <div id="productImageCarousel" class="carousel slide">
                     <div class="carousel-inner">
                         <?php foreach ($productImages as $index => $image): ?>
                         <div class="carousel-item <?php echo $index === 0 ? 'active' : ''; ?>">

@@ -74,4 +74,28 @@ function hasMultipleImages($product) {
     }
     return false;
 }
+
+/**
+ * Resolve a settings image value to a full URL.
+ * Handles both old absolute URLs (http://localhost/...) and new relative paths (/uploads/settings/...).
+ *
+ * @param string|null $storedValue  Value from site_settings table
+ * @param string      $fallback     Fallback image path (relative to BASE_URL/public)
+ * @return string Full image URL
+ */
+function resolveSettingsImage($storedValue, $fallback = '') {
+    if (empty($storedValue)) {
+        return $fallback ? BASE_URL . '/public/' . ltrim($fallback, '/') : '';
+    }
+    // Already a full URL (old format) — extract relative part so it works on any host
+    if (strpos($storedValue, 'http') === 0) {
+        $pos = strpos($storedValue, '/uploads/settings/');
+        if ($pos !== false) {
+            return BASE_URL . '/public' . substr($storedValue, $pos);
+        }
+        return $storedValue; // can't parse, return as-is
+    }
+    // Relative path (new format)
+    return BASE_URL . '/public' . $storedValue;
+}
 ?>

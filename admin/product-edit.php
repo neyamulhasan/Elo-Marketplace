@@ -144,10 +144,10 @@ include 'includes/header.php';
                                                         $images = $decoded;
                                                     }
                                                 }
-                                                if (!empty($product['image'])) {
+                                                if (empty($images) && !empty($product['image'])) {
                                                     $images[] = $product['image'];
                                                 }
-                                                $images = array_unique($images);
+                                                $images = array_values(array_unique($images));
                                                 
                                                 if (empty($images)): 
                                                 ?>

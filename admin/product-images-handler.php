@@ -76,9 +76,8 @@ function uploadProductImages($product_id, $files) {
     
     // Ensure directory exists
     if (!file_exists($upload_dir)) {
-        mkdir($upload_dir, 0775, true);
+        mkdir($upload_dir, 0777, true);
     }
-    chmod($upload_dir, 0775);
     
     // Handle multiple files
     $file_count = count($files['name']);
@@ -167,7 +166,7 @@ function uploadProductImages($product_id, $files) {
 }
 
 /**
- * Get product images as array
+ * Get product images as array (from JSON field only — avoids duplicates with single-image field)
  */
 function getProductImages($product_id, $productModel) {
     $product = $productModel->getById($product_id);
@@ -177,20 +176,20 @@ function getProductImages($product_id, $productModel) {
     
     $images = [];
     
-    // Add images from JSON array
+    // Use the images JSON array as the single source of truth
     if (!empty($product['images'])) {
         $decoded = json_decode($product['images'], true);
         if (is_array($decoded)) {
-            $images = array_merge($images, $decoded);
+            $images = $decoded;
         }
     }
     
-    // Add single image if exists
-    if (!empty($product['image'])) {
+    // Only fall back to single image field if JSON array is empty
+    if (empty($images) && !empty($product['image'])) {
         $images[] = $product['image'];
     }
     
-    return array_unique($images);
+    return array_values(array_unique($images));
 }
 
 /**

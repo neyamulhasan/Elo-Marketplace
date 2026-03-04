@@ -18,9 +18,9 @@ $settingModel = new Setting($db);
 $featured_products = $productModel->getAll(8);
 $categories = $categoryModel->getAll();
 
-// Get site settings
-$home_banner_image = $settingModel->get('home_banner_image') ?? BASE_URL . '/public/assets/images/hero-image.jpg';
-$about_us_image    = $settingModel->get('about_us_image')    ?? BASE_URL . '/public/assets/images/about-image.jpg';
+// Get site settings — resolve to full URL dynamically (works on any host/device)
+$home_banner_image = resolveSettingsImage($settingModel->get('home_banner_image'), 'assets/images/hero-image.jpg');
+$about_us_image    = resolveSettingsImage($settingModel->get('about_us_image'),    'assets/images/about-image.jpg');
 $fallback_category_logo = BASE_URL . '/public/assets/images/elo.png';
 
 // Hero section

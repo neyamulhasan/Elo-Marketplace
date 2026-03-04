@@ -1,4 +1,4 @@
-// Main JavaScript for Bio-Organic Herbal Solutions
+// Main JavaScript for Elo Marketplace
 
 document.addEventListener('DOMContentLoaded', function() {
     
@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // Create form and submit
             const form = document.createElement('form');
             form.method = 'POST';
-            form.action = '/Bio-Organic-Herbal-Solutions/public/cart-action.php';
+            form.action = (window.BASE_URL || '') + '/public/cart-action.php';
             form.setAttribute('data-cart-form', 'true');
             form.style.display = 'none';
             
@@ -162,5 +162,5 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    console.log('Bio-Organic Herbal Solutions - Website loaded successfully!');
+    console.log('Elo Marketplace - Website loaded successfully!');
 });

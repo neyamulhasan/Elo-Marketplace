@@ -2,6 +2,7 @@
 require_once '../config/config.php';
 require_once '../app/helpers/session.php';
 require_once '../app/helpers/validation.php';
+require_once '../app/helpers/image_helper.php';
 require_once '../app/models/Setting.php';
 
 requireAdmin();
@@ -186,7 +187,7 @@ include 'includes/header.php';
                                 </label>
                                 <div class="mb-3">
                                     <div class="border rounded p-3 bg-light text-center">
-                                        <img src="<?php echo e($settings['home_banner_image'] ?? BASE_URL . '/public/assets/images/hero-image.jpg'); ?>" 
+                                        <img src="<?php echo e(resolveSettingsImage($settings['home_banner_image'] ?? null, 'assets/images/hero-image.jpg')); ?>" 
                                              alt="Current Banner" 
                                              class="img-fluid rounded"
                                              style="max-height: 300px; object-fit: cover;"
@@ -214,7 +215,7 @@ include 'includes/header.php';
                                 </label>
                                 <div class="mb-3">
                                     <div class="border rounded p-3 bg-light text-center">
-                                        <img src="<?php echo e($settings['about_us_image'] ?? BASE_URL . '/public/assets/images/about-image.jpg'); ?>" 
+                                        <img src="<?php echo e(resolveSettingsImage($settings['about_us_image'] ?? null, 'assets/images/about-image.jpg')); ?>" 
                                              alt="Current About Image" 
                                              class="img-fluid rounded"
                                              style="max-height: 300px; object-fit: cover;"

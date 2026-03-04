@@ -16,9 +16,18 @@ $settingModel = new Setting($db);
 
 $upload_dir = '../public/uploads/settings/';
 if (!file_exists($upload_dir)) {
-    mkdir($upload_dir, 0775, true);
+    mkdir($upload_dir, 0777, true);
 }
-chmod($upload_dir, 0775);
+
+// Helper: extract relative path from any stored value (handles old absolute URLs too)
+function settingsRelPath($storedValue) {
+    if (!$storedValue) return null;
+    // Already relative
+    if (strpos($storedValue, 'http') !== 0) return $storedValue;
+    // Strip everything before /uploads/
+    $pos = strpos($storedValue, '/uploads/settings/');
+    return $pos !== false ? substr($storedValue, $pos) : null;
+}
 
 $success_count = 0;
 $errors = [];
@@ -51,24 +60,20 @@ if (($_POST['form_type'] ?? '') === 'text') {
 
 // Handle delete actions first
 if (isset($_POST['delete_banner'])) {
-    $old_image = $settingModel->get('home_banner_image');
-    if ($old_image && strpos($old_image, '/uploads/settings/') !== false) {
-        $old_file = '../public' . str_replace(BASE_URL . '/public', '', $old_image);
-        if (file_exists($old_file)) {
-            @unlink($old_file);
-        }
+    $rel = settingsRelPath($settingModel->get('home_banner_image'));
+    if ($rel) {
+        $old_file = '../public' . $rel;
+        if (file_exists($old_file)) { @unlink($old_file); }
     }
     $settingModel->delete('home_banner_image');
     $deleted[] = 'Banner image removed';
 }
 
 if (isset($_POST['delete_about'])) {
-    $old_image = $settingModel->get('about_us_image');
-    if ($old_image && strpos($old_image, '/uploads/settings/') !== false) {
-        $old_file = '../public' . str_replace(BASE_URL . '/public', '', $old_image);
-        if (file_exists($old_file)) {
-            @unlink($old_file);
-        }
+    $rel = settingsRelPath($settingModel->get('about_us_image'));
+    if ($rel) {
+        $old_file = '../public' . $rel;
+        if (file_exists($old_file)) { @unlink($old_file); }
     }
     $settingModel->delete('about_us_image');
     $deleted[] = 'About Us image removed';
@@ -91,14 +96,14 @@ if (isset($_FILES['home_banner_image']) && $_FILES['home_banner_image']['error']
         $filepath = $upload_dir . $filename;
         
         if (move_uploaded_file($file['tmp_name'], $filepath)) {
-            $relative_path = BASE_URL . '/public/uploads/settings/' . $filename;
+            $relative_path = '/uploads/settings/' . $filename;
             
-            // Delete old image if exists and not default
-            $old_image = $settingModel->get('home_banner_image');
-            if ($old_image && strpos($old_image, '/uploads/settings/') !== false) {
-                $old_file = '../public' . str_replace(BASE_URL . '/public', '', $old_image);
+            // Delete old image if exists
+            $old_rel = settingsRelPath($settingModel->get('home_banner_image'));
+            if ($old_rel) {
+                $old_file = '../public' . $old_rel;
                 if (file_exists($old_file)) {
-                    unlink($old_file);
+                    @unlink($old_file);
                 }
             }
             
@@ -125,14 +130,14 @@ if (isset($_FILES['about_us_image']) && $_FILES['about_us_image']['error'] === U
         $filepath = $upload_dir . $filename;
         
         if (move_uploaded_file($file['tmp_name'], $filepath)) {
-            $relative_path = BASE_URL . '/public/uploads/settings/' . $filename;
+            $relative_path = '/uploads/settings/' . $filename;
             
-            // Delete old image if exists and not default
-            $old_image = $settingModel->get('about_us_image');
-            if ($old_image && strpos($old_image, '/uploads/settings/') !== false) {
-                $old_file = '../public' . str_replace(BASE_URL . '/public', '', $old_image);
+            // Delete old image if exists
+            $old_rel = settingsRelPath($settingModel->get('about_us_image'));
+            if ($old_rel) {
+                $old_file = '../public' . $old_rel;
                 if (file_exists($old_file)) {
-                    unlink($old_file);
+                    @unlink($old_file);
                 }
             }
             

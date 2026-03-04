@@ -39,7 +39,9 @@
 
     <!-- Bootstrap 5 JS Bundle (Local) -->
     <script src="<?= BASE_URL ?>/public/assets/js/vendor/bootstrap.bundle.min.js"></script>
+    <!-- Base URL for JS -->
+    <script>window.BASE_URL = '<?= BASE_URL ?>';</script>
     <!-- Custom JS -->
-    <script src="<?= BASE_URL ?>/public/assets/js/main.js"></script>
+    <script src="<?= BASE_URL ?>/public/assets/js/main.js?v=<?= filemtime(ROOT_PATH . '/public/assets/js/main.js') ?>"></script>
 </body>
 </html>

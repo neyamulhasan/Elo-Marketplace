@@ -61,12 +61,14 @@ include 'includes/header.php';
                         <td><?php echo e($category['description']); ?></td>
                         <td><?php echo formatDate($category['created_at']); ?></td>
                         <td>
-                            <button class="btn btn-sm btn-warning me-1" onclick="editCategory(<?php echo htmlspecialchars(json_encode($category)); ?>)">
-                                <i class="bi bi-pencil"></i> Edit
-                            </button>
-                            <button class="btn btn-sm btn-danger" onclick="deleteCategory(<?php echo $category['id']; ?>, '<?php echo e($category['name']); ?>')">
-                                <i class="bi bi-trash"></i> Delete
-                            </button>
+                            <div class="d-flex gap-1 flex-nowrap">
+                                <button class="btn btn-sm btn-warning" onclick="editCategory(<?php echo htmlspecialchars(json_encode($category)); ?>)" title="Edit">
+                                    <i class="bi bi-pencil"></i>
+                                </button>
+                                <button class="btn btn-sm btn-danger" onclick="deleteCategory(<?php echo $category['id']; ?>, '<?php echo e($category['name']); ?>')" title="Delete">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                            </div>
                         </td>
                     </tr>
                     <?php endforeach; ?>
