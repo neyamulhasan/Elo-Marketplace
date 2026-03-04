@@ -2,7 +2,7 @@
 
 **Modern E-Commerce Platform — PHP / MySQL / Bootstrap 5**
 
-Elo Marketplace is a full-featured e-commerce platform offering carefully selected, high-quality products sourced directly from trusted global manufacturers. By working closely with reliable suppliers, the platform delivers competitive prices without compromising on quality. The mission is simple: make global shopping simple, secure, and accessible — delivering value and convenience to every customer's doorstep.
+Elo Marketplace is a full-featured e-commerce platform specialising in imported products sourced directly from trusted global manufacturers — covering electronics, mobile accessories, home goods, clothing, sports gear and more. By working closely with reliable suppliers, the platform delivers competitive prices without compromising on quality. The mission is simple: make global shopping simple, secure, and accessible — delivering value and convenience to every customer's doorstep.
 
 ---
 
@@ -148,10 +148,10 @@ Elo-Marketplace/
 
 ## Default Admin Credentials
 
-| Field    | Value               |
-|----------|---------------------|
-| Email    | `admin@elo.com`     |
-| Password | `admin123`          |
+| Field    | Value                        |
+|----------|------------------------------|
+| Email    | `admin@elo-marketplace.com`  |
+| Password | `admin123`                   |
 
 Change the default password immediately after first login.
 

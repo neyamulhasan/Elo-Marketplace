@@ -29,7 +29,7 @@ CREATE TABLE `users` (
 
 -- Insert default admin user (password: admin123)
 INSERT INTO `users` (`name`, `email`, `password`, `role`, `status`) VALUES
-('Admin User', 'admin@bioorganic.com', '$2y$10$LI8hOGXuAnTLqrXq5MDYBeDGSM2oYU.vRxVVa/AUvZmtJZ7jweHha', 'admin', 1);
+('Admin User', 'admin@elo-marketplace.com', '$2y$10$LI8hOGXuAnTLqrXq5MDYBeDGSM2oYU.vRxVVa/AUvZmtJZ7jweHha', 'admin', 1);
 
 -- --------------------------------------------------------
 -- Table structure for table `categories`
@@ -46,11 +46,14 @@ CREATE TABLE `categories` (
 
 -- Insert sample categories
 INSERT INTO `categories` (`name`, `description`, `image`) VALUES
-('Herbal Supplements', 'Natural herbal supplements for health and wellness', NULL),
-('Organic Oils', 'Pure organic essential and carrier oils', NULL),
-('Herbal Teas', 'Premium quality herbal tea blends', NULL),
-('Natural Skincare', 'Organic skincare products', NULL),
-('Ayurvedic Products', 'Traditional Ayurvedic herbal remedies', NULL);
+('Electronics & Gadgets', 'Latest smartphones, laptops, smart devices and consumer electronics', NULL),
+('Mobile Accessories', 'Phone cases, chargers, cables, screen protectors and more', NULL),
+('Home & Kitchen', 'Smart home devices, appliances, cookware and storage solutions', NULL),
+('Clothing & Apparel', 'Men\'s and women\'s fashion, casual wear and seasonal clothing', NULL),
+('Sports & Outdoors', 'Fitness equipment, outdoor gear, cycling and camping essentials', NULL),
+('Beauty & Personal Care', 'Skincare, grooming tools, hair care and wellness products', NULL),
+('Toys & Hobbies', 'RC toys, model kits, puzzles, board games and hobby supplies', NULL),
+('Tools & Hardware', 'Power tools, hand tools, workshop supplies and DIY accessories', NULL);
 
 -- --------------------------------------------------------
 -- Table structure for table `products`
@@ -76,11 +79,31 @@ CREATE TABLE `products` (
 
 -- Insert sample products
 INSERT INTO `products` (`name`, `description`, `price`, `discount_percentage`, `stock`, `category_id`, `sku`, `status`) VALUES
-('Turmeric Powder 100g', 'Pure organic turmeric powder with high curcumin content', 250.00, 0.00, 50, 1, 'TUR-100', 1),
-('Neem Oil 50ml', 'Cold-pressed organic neem oil for skin and hair', 180.00, 0.00, 30, 2, 'NEEM-50', 1),
-('Green Tea 50g', 'Premium quality organic green tea leaves', 320.00, 0.00, 40, 3, 'GT-50', 1),
-('Aloe Vera Gel 100ml', 'Pure aloe vera gel for skin care', 150.00, 0.00, 60, 4, 'ALO-100', 1),
-('Ashwagandha Powder 100g', 'Premium quality ashwagandha root powder', 450.00, 0.00, 25, 5, 'ASH-100', 1);
+-- Electronics & Gadgets (category 1)
+('Wireless Bluetooth Earbuds Pro', 'True wireless stereo earbuds with active noise cancellation, 30hr battery life, IPX5 waterproof, compatible with iOS and Android', 2499.00, 10.00, 120, 1, 'ELC-EAR-001', 1),
+('Smart LED TV 43" 4K UHD', '4K Ultra HD smart television with built-in Wi-Fi, Android OS, HDR support and multiple HDMI/USB ports', 18999.00, 15.00, 30, 1, 'ELC-TV-43', 1),
+('Mechanical Gaming Keyboard RGB', 'Compact TKL mechanical keyboard with RGB backlight, blue switches, anti-ghosting and USB-C connection', 1899.00, 5.00, 75, 1, 'ELC-KB-RGB', 1),
+('Portable Power Bank 20000mAh', 'Fast-charge 20000mAh power bank with dual USB-A + USB-C output, LED indicator and slim design', 1199.00, 0.00, 200, 1, 'ELC-PB-20K', 1),
+-- Mobile Accessories (category 2)
+('USB-C Fast Charger 65W GaN', 'GaN technology 65W USB-C wall charger, foldable plug, compatible with laptops, phones and tablets', 899.00, 0.00, 150, 2, 'MOB-CHG-65W', 1),
+('Magnetic Phone Mount for Car', '360° adjustable magnetic dashboard phone holder, universal fit, strong neodymium magnet, no-scratch base', 349.00, 0.00, 300, 2, 'MOB-MNT-CAR', 1),
+('Tempered Glass Screen Protector 5-Pack', '9H hardness ultra-clear tempered glass, bubble-free installation, compatible with most smartphone models', 199.00, 0.00, 500, 2, 'MOB-SCR-5PK', 1),
+-- Home & Kitchen (category 3)
+('Smart RGB LED Strip Light 5m', 'Wi-Fi enabled 5-metre RGB LED strip, app controlled, works with Alexa and Google Home, music sync mode', 699.00, 10.00, 180, 3, 'HOM-LED-5M', 1),
+('Stainless Steel Cookware Set 7pc', '7-piece non-stick stainless steel cookware set including pots, pans and glass lids, dishwasher safe', 3499.00, 20.00, 40, 3, 'HOM-CKW-7PC', 1),
+('Digital Air Fryer 5L', '5-litre digital air fryer with touch control panel, 8 preset cooking modes, 360° rapid air circulation', 4299.00, 12.00, 55, 3, 'HOM-AFR-5L', 1),
+-- Clothing & Apparel (category 4)
+('Men\'s Oversized Graphic Hoodie', 'Premium cotton-blend fleece hoodie, oversized streetwear fit, kangaroo pocket, available in multiple colours', 1299.00, 0.00, 90, 4, 'CLO-HOD-MEN', 1),
+('Women\'s High-Waist Yoga Leggings', 'Four-way stretch moisture-wicking leggings with hidden waistband pocket, squat-proof fabric', 899.00, 5.00, 110, 4, 'CLO-LEG-WMN', 1),
+-- Sports & Outdoors (category 5)
+('Resistance Bands Set 5pc', 'Set of 5 premium latex resistance bands (10–50 lb), includes carry bag and exercise guide', 649.00, 0.00, 160, 5, 'SPT-RES-5PC', 1),
+('Foldable Trekking Poles Pair', 'Lightweight aluminium collapsible hiking poles with cork grip, wrist straps and interchangeable tips', 1499.00, 8.00, 60, 5, 'SPT-TRK-PLR', 1),
+-- Beauty & Personal Care (category 6)
+('Electric Facial Cleansing Brush', 'Sonic vibration cleansing brush with 3 speed settings, waterproof silicone head, USB rechargeable', 799.00, 10.00, 130, 6, 'BEA-CLN-FCL', 1),
+-- Toys & Hobbies (category 7)
+('RC Drift Car 4WD 1:16 Scale', 'High-speed 4WD remote control drift car, 2.4GHz controller, LED headlights, 25km/h top speed', 1799.00, 0.00, 70, 7, 'TOY-RC-CAR', 1),
+-- Tools & Hardware (category 8)
+('Cordless Drill Set 20V', '20V lithium-ion cordless drill/driver with 2 batteries, charger, 25-piece bit set and carry case', 3299.00, 15.00, 45, 8, 'TLS-DRL-20V', 1);
 
 -- --------------------------------------------------------
 -- Table structure for table `product_images`
